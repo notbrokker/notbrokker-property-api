@@ -736,7 +736,7 @@ async function simularCreditoHipotecario_old(monto, plazo) {
     log('info', `🏦 Iniciando simulación hipotecaria específica: ${monto} UF por ${plazo} años`);
     
     const browser = await chromium.launch({ 
-        headless: false, // Mantener false para debugging
+        headless: true, // Mantener false para debugging
         args: [
             '--no-sandbox', 
             '--disable-setuid-sandbox',
