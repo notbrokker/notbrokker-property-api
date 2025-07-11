@@ -1,0 +1,524 @@
+{
+  "formularios": 2,
+  "inputs": [
+    {
+      "indice": 0,
+      "tipo": "text",
+      "nombre": "sin-nombre",
+      "id": "keywords",
+      "valor": "sin-valor",
+      "placeholder": "Buscar en CMF Educa",
+      "clase": "form-control border-0 input-radius-0 ntg-placeholder-in-title",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 1,
+      "tipo": "hidden",
+      "nombre": "indice",
+      "id": "indice",
+      "valor": "101.2.3",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 2,
+      "tipo": "hidden",
+      "nombre": "maxuf",
+      "id": "maxuf",
+      "valor": "20000",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 3,
+      "tipo": "hidden",
+      "nombre": "minuf",
+      "id": "minuf",
+      "valor": "100",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 4,
+      "tipo": "hidden",
+      "nombre": "maxpeso",
+      "id": "maxpeso",
+      "valor": "785710600",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 5,
+      "tipo": "hidden",
+      "nombre": "minpeso",
+      "id": "minpeso",
+      "valor": "3928553",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 6,
+      "tipo": "hidden",
+      "nombre": "paso",
+      "id": "paso",
+      "valor": "2",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 7,
+      "tipo": "hidden",
+      "nombre": "template",
+      "id": "sin-id",
+      "valor": "sin-valor",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 8,
+      "tipo": "radio",
+      "nombre": "tipomoneda",
+      "id": "UF",
+      "valor": "1",
+      "placeholder": "sin-placeholder",
+      "clase": "form-check-input",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 9,
+      "tipo": "radio",
+      "nombre": "tipomoneda",
+      "id": "PESOS",
+      "valor": "2",
+      "placeholder": "sin-placeholder",
+      "clase": "form-check-input",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 10,
+      "tipo": "number",
+      "nombre": "monto",
+      "id": "monto",
+      "valor": "sin-valor",
+      "placeholder": "Ingrese el monto de su crédito",
+      "clase": "form-control currency",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 11,
+      "tipo": "hidden",
+      "nombre": "tipocredito",
+      "id": "sin-id",
+      "valor": "3",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 12,
+      "tipo": "hidden",
+      "nombre": "tipotasa",
+      "id": "sin-id",
+      "valor": "1",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 13,
+      "tipo": "hidden",
+      "nombre": "plazo",
+      "id": "sin-id",
+      "valor": "0",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 14,
+      "tipo": "submit",
+      "nombre": "sin-nombre",
+      "id": "sin-id",
+      "valor": "Simular »",
+      "placeholder": "sin-placeholder",
+      "clase": "btn btn-outlined btn-block btn-primary",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 15,
+      "tipo": "hidden",
+      "nombre": "HTTP_REFERER",
+      "id": "HTTP_REFERER_525",
+      "valor": "https://www.cmfchile.cl/educa/621/w3-article-27597.html",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 16,
+      "tipo": "hidden",
+      "nombre": "HTTP_REFERER_PREV",
+      "id": "HTTP_REFERER_PREV_525",
+      "valor": "https://www.cmfchile.cl/educa/621/w3-article-27597.html",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 17,
+      "tipo": "hidden",
+      "nombre": "action",
+      "id": "action_525",
+      "valor": "exeResponse",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 18,
+      "tipo": "hidden",
+      "nombre": "fdid",
+      "id": "fdid_525",
+      "valor": "525",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 19,
+      "tipo": "hidden",
+      "nombre": "cid",
+      "id": "cid_525",
+      "valor": "523",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 20,
+      "tipo": "hidden",
+      "nombre": "context_cid",
+      "id": "context_cid_525",
+      "valor": "523",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 21,
+      "tipo": "hidden",
+      "nombre": "context_iid",
+      "id": "context_iid_525",
+      "valor": "621",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 22,
+      "tipo": "hidden",
+      "nombre": "context_aid",
+      "id": "context_aid_525",
+      "valor": "27597",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 23,
+      "tipo": "hidden",
+      "nombre": "context_pvid",
+      "id": "context_pvid_1262_fdid_525",
+      "valor": "1262",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 24,
+      "tipo": "hidden",
+      "nombre": "context_pvid",
+      "id": "context_pvid_27877_fdid_525",
+      "valor": "27877",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 25,
+      "tipo": "hidden",
+      "nombre": "context_pvid",
+      "id": "context_pvid_28774_fdid_525",
+      "valor": "28774",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 26,
+      "tipo": "hidden",
+      "nombre": "context_pvid",
+      "id": "context_pvid_44674_fdid_525",
+      "valor": "44674",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 27,
+      "tipo": "hidden",
+      "nombre": "context_pnid",
+      "id": "context_pnid_500_fdid_525",
+      "valor": "500",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 28,
+      "tipo": "hidden",
+      "nombre": "context_pnid",
+      "id": "context_pnid_512_fdid_525",
+      "valor": "512",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 29,
+      "tipo": "hidden",
+      "nombre": "context_pnid",
+      "id": "context_pnid_527_fdid_525",
+      "valor": "527",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 30,
+      "tipo": "hidden",
+      "nombre": "context_pnid",
+      "id": "context_pnid_851_fdid_525",
+      "valor": "851",
+      "placeholder": "sin-placeholder",
+      "clase": "sin-clase",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 31,
+      "tipo": "text",
+      "nombre": "email",
+      "id": "email_525",
+      "valor": "sin-valor",
+      "placeholder": "sin-placeholder",
+      "clase": "form-control",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 32,
+      "tipo": "radio",
+      "nombre": "opciones",
+      "id": "opciones_525_1_1",
+      "valor": "Contenido",
+      "placeholder": "sin-placeholder",
+      "clase": "radio",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 33,
+      "tipo": "radio",
+      "nombre": "opciones",
+      "id": "opciones_525_2_1",
+      "valor": "Diseño",
+      "placeholder": "sin-placeholder",
+      "clase": "radio",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 34,
+      "tipo": "radio",
+      "nombre": "opciones",
+      "id": "opciones_525_3_1",
+      "valor": "Estructura",
+      "placeholder": "sin-placeholder",
+      "clase": "radio",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 35,
+      "tipo": "radio",
+      "nombre": "opciones",
+      "id": "opciones_525_4_1",
+      "valor": "Ingenieria",
+      "placeholder": "sin-placeholder",
+      "clase": "radio",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 36,
+      "tipo": "button",
+      "nombre": "enviar",
+      "id": "enviar_525",
+      "valor": "ENVIAR",
+      "placeholder": "sin-placeholder",
+      "clase": "btn btn-primary font-weight-bold border btn-block mt-5",
+      "esVisible": false,
+      "estaHabilitado": true
+    }
+  ],
+  "selects": [
+    {
+      "indice": 0,
+      "nombre": "plazo",
+      "id": "plazo",
+      "clase": "form-control",
+      "esVisible": true,
+      "estaHabilitado": true,
+      "opciones": [
+        "Seleccione el plazo"
+      ]
+    }
+  ],
+  "botones": [
+    {
+      "indice": 0,
+      "tipo": "submit",
+      "nombre": "sin-nombre",
+      "id": "boton_busqueda",
+      "valor": "sin-valor",
+      "texto": "Buscar",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 1,
+      "tipo": "button",
+      "nombre": "sin-nombre",
+      "id": "sin-id",
+      "valor": "sin-valor",
+      "texto": "Abrir / cerrar buscador",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 2,
+      "tipo": "button",
+      "nombre": "sin-nombre",
+      "id": "sin-id",
+      "valor": "sin-valor",
+      "texto": "sin-texto",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 3,
+      "tipo": "submit",
+      "nombre": "sin-nombre",
+      "id": "sin-id",
+      "valor": "Simular »",
+      "texto": "sin-texto",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 4,
+      "tipo": "button",
+      "nombre": "enviar",
+      "id": "enviar_525",
+      "valor": "ENVIAR",
+      "texto": "sin-texto",
+      "esVisible": false,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 5,
+      "tipo": "button",
+      "nombre": "sin-nombre",
+      "id": "sin-id",
+      "valor": "sin-valor",
+      "texto": "+a Agrandar texto",
+      "esVisible": true,
+      "estaHabilitado": true
+    },
+    {
+      "indice": 6,
+      "tipo": "button",
+      "nombre": "sin-nombre",
+      "id": "sin-id",
+      "valor": "sin-valor",
+      "texto": "-a Agrandar texto",
+      "esVisible": true,
+      "estaHabilitado": true
+    }
+  ],
+  "textosRelevantes": [
+    {
+      "patron": "monto",
+      "coincidencias": 16,
+      "primera": "monto"
+    },
+    {
+      "patron": "plazo",
+      "coincidencias": 38,
+      "primera": "plazo"
+    },
+    {
+      "patron": "años",
+      "coincidencias": 1,
+      "primera": "años"
+    },
+    {
+      "patron": "uf",
+      "coincidencias": 13,
+      "primera": "uf"
+    },
+    {
+      "patron": "pesos",
+      "coincidencias": 2,
+      "primera": "Pesos"
+    }
+  ]
+}
