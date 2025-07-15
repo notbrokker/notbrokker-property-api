@@ -808,54 +808,391 @@ class MortgageService {
     }
 
     /**
-     * Generar análisis comparativo
-     */
+   * Generar análisis comparativo COMPLETO con cálculos reales
+   */
     static generarAnalisisComparativo(bancos) {
         if (!bancos || bancos.length === 0) {
             return { error: 'No hay datos para analizar' };
         }
 
-        return {
-            estadisticas: {
-                totalBancos: bancos.length,
-                rangoDividendos: 'Análisis pendiente',
-                rangoTasas: 'Análisis pendiente'
-            },
-            potencialAhorro: {
-                mensual: 'Cálculo pendiente',
-                total30Anos: 'Cálculo pendiente'
+        try {
+            logInfo(`📊 Generando análisis comparativo para ${bancos.length} bancos`);
+
+            // 1. EXTRAER Y LIMPIAR DIVIDENDOS
+            const dividendos = [];
+            const tasas = [];
+
+            for (const banco of bancos) {
+                // Extraer dividendo mensual (eliminar formato y convertir a número)
+                const dividendoTexto = banco.dividendoMensual || '';
+                const dividendoMatch = dividendoTexto.match(/[\d.,]+/);
+                if (dividendoMatch) {
+                    const dividendoNumero = parseFloat(dividendoMatch[0].replace(',', ''));
+                    if (!isNaN(dividendoNumero)) {
+                        dividendos.push({
+                            banco: banco.banco,
+                            dividendo: dividendoNumero,
+                            texto: dividendoTexto
+                        });
+                    }
+                }
+
+                // Extraer tasa de crédito
+                const tasaTexto = banco.tasaCredito || '';
+                const tasaMatch = tasaTexto.match(/(\d+[.,]\d+)%?/);
+                if (tasaMatch) {
+                    const tasaNumero = parseFloat(tasaMatch[1].replace(',', '.'));
+                    if (!isNaN(tasaNumero)) {
+                        tasas.push({
+                            banco: banco.banco,
+                            tasa: tasaNumero,
+                            texto: tasaTexto
+                        });
+                    }
+                }
             }
-        };
+
+            // 2. CALCULAR ESTADÍSTICAS DE DIVIDENDOS
+            let rangoDividendos = 'No disponible';
+            let mejorDividendo = null;
+            let peorDividendo = null;
+
+            if (dividendos.length > 0) {
+                dividendos.sort((a, b) => a.dividendo - b.dividendo);
+
+                mejorDividendo = dividendos[0];
+                peorDividendo = dividendos[dividendos.length - 1];
+
+                const diferencia = peorDividendo.dividendo - mejorDividendo.dividendo;
+
+                rangoDividendos = `${mejorDividendo.dividendo.toLocaleString('es-CL')} UF - ${peorDividendo.dividendo.toLocaleString('es-CL')} UF (diferencia: ${diferencia.toLocaleString('es-CL')} UF)`;
+            }
+
+            // 3. CALCULAR ESTADÍSTICAS DE TASAS
+            let rangoTasas = 'No disponible';
+            let mejorTasa = null;
+            let peorTasa = null;
+
+            if (tasas.length > 0) {
+                tasas.sort((a, b) => a.tasa - b.tasa);
+
+                mejorTasa = tasas[0];
+                peorTasa = tasas[tasas.length - 1];
+
+                const diferenciaTasa = peorTasa.tasa - mejorTasa.tasa;
+
+                rangoTasas = `${mejorTasa.tasa}% - ${peorTasa.tasa}% (diferencia: ${diferenciaTasa.toFixed(2)}%)`;
+            }
+
+            // 4. CALCULAR POTENCIAL AHORRO
+            let ahorroMensual = 'No disponible';
+            let ahorroTotal30Anos = 'No disponible';
+
+            if (dividendos.length >= 2) {
+                const ahorroMensualUF = peorDividendo.dividendo - mejorDividendo.dividendo;
+                const ahorroTotal30AnosUF = ahorroMensualUF * 12 * 30;
+
+                // Convertir a pesos (aproximado con UF = $35,000)
+                const valorUFAproximado = 35000;
+                const ahorroMensualPesos = ahorroMensualUF * valorUFAproximado;
+                const ahorroTotal30AnosPesos = ahorroTotal30AnosUF * valorUFAproximado;
+
+                ahorroMensual = `${ahorroMensualUF.toLocaleString('es-CL')} UF (~$${ahorroMensualPesos.toLocaleString('es-CL')})`;
+                ahorroTotal30Anos = `${ahorroTotal30AnosUF.toLocaleString('es-CL')} UF (~$${ahorroTotal30AnosPesos.toLocaleString('es-CL')})`;
+            }
+
+            // 5. CONSTRUIR ANÁLISIS COMPLETO
+            const analisis = {
+                estadisticas: {
+                    totalBancos: bancos.length,
+                    bancosConDividendo: dividendos.length,
+                    bancosConTasa: tasas.length,
+                    rangoDividendos,
+                    rangoTasas
+                },
+                mejoresOfertas: {
+                    menorDividendo: mejorDividendo ? {
+                        banco: mejorDividendo.banco,
+                        dividendo: mejorDividendo.texto,
+                        valor: mejorDividendo.dividendo
+                    } : null,
+                    menorTasa: mejorTasa ? {
+                        banco: mejorTasa.banco,
+                        tasa: mejorTasa.texto,
+                        valor: mejorTasa.tasa
+                    } : null
+                },
+                potencialAhorro: {
+                    mensual: ahorroMensual,
+                    total30Anos: ahorroTotal30Anos,
+                    explicacion: dividendos.length >= 2 ?
+                        `Comparando ${mejorDividendo.banco} (mejor) vs ${peorDividendo.banco} (peor)` :
+                        'Insuficientes datos para calcular ahorro'
+                },
+                recomendaciones: this.generarRecomendacionesPersonalizadas(mejorDividendo, mejorTasa, dividendos.length, tasas.length)
+            };
+
+            logInfo('✅ Análisis comparativo completado con cálculos reales');
+            return analisis;
+
+        } catch (error) {
+            logError(`Error generando análisis comparativo: ${error.message}`);
+            return {
+                error: `Error en análisis: ${error.message}`,
+                estadisticas: {
+                    totalBancos: bancos.length,
+                    rangoDividendos: 'Error en cálculo',
+                    rangoTasas: 'Error en cálculo'
+                },
+                potencialAhorro: {
+                    mensual: 'Error en cálculo',
+                    total30Anos: 'Error en cálculo'
+                }
+            };
+        }
     }
 
     /**
-     * Generar comparación de escenarios
+     * Generar comparación de escenarios COMPLETA con análisis real
      */
     static generarComparacionEscenarios(escenarios) {
         try {
+            logInfo(`📊 Generando comparación completa de ${escenarios.length} escenarios`);
+
+            // 1. PREPARAR DATOS PARA COMPARACIÓN
             const comparaciones = escenarios.map(esc => {
                 const mejorOferta = esc.resultado.bancos[0];
+
+                // Extraer dividendo numérico para comparaciones
+                let dividendoNumerico = null;
+                if (mejorOferta && mejorOferta.dividendoMensual) {
+                    const match = mejorOferta.dividendoMensual.match(/[\d.,]+/);
+                    if (match) {
+                        dividendoNumerico = parseFloat(match[0].replace(',', ''));
+                    }
+                }
+
                 return {
                     escenario: esc.escenario.etiqueta,
                     monto: esc.escenario.monto,
                     plazo: esc.escenario.plazo,
                     mejorDividendo: mejorOferta ? mejorOferta.dividendoMensual : 'N/A',
                     mejorBanco: mejorOferta ? mejorOferta.banco : 'N/A',
-                    totalBancos: esc.resultado.bancos.length
+                    totalBancos: esc.resultado.bancos.length,
+                    dividendoNumerico,
+                    costoTotalAproximado: dividendoNumerico ? dividendoNumerico * 12 * esc.escenario.plazo : null
                 };
+            });
+
+            // 2. IDENTIFICAR MEJOR ESCENARIO
+            const escenariosConDividendo = comparaciones.filter(c => c.dividendoNumerico !== null);
+            let mejorEscenario = null;
+            let peorEscenario = null;
+
+            if (escenariosConDividendo.length > 0) {
+                escenariosConDividendo.sort((a, b) => a.dividendoNumerico - b.dividendoNumerico);
+                mejorEscenario = escenariosConDividendo[0];
+                peorEscenario = escenariosConDividendo[escenariosConDividendo.length - 1];
+            }
+
+            // 3. CALCULAR AHORRO ENTRE ESCENARIOS
+            let ahorroEntreEscenarios = null;
+            if (mejorEscenario && peorEscenario && mejorEscenario !== peorEscenario) {
+                const ahorroMensual = peorEscenario.dividendoNumerico - mejorEscenario.dividendoNumerico;
+                const ahorroTotalUF = ahorroMensual * 12 * mejorEscenario.plazo;
+
+                ahorroEntreEscenarios = {
+                    mensual: `${ahorroMensual.toLocaleString('es-CL')} UF`,
+                    total: `${ahorroTotalUF.toLocaleString('es-CL')} UF`,
+                    escenarioOptimo: mejorEscenario.escenario,
+                    escenarioCaro: peorEscenario.escenario
+                };
+            }
+
+            // 4. ANÁLISIS POR PLAZO
+            const analisisPorPlazo = this.analizarImpactoPlazo(comparaciones);
+
+            // 5. ANÁLISIS POR MONTO
+            const analisisPorMonto = this.analizarImpactoMonto(comparaciones);
+
+            // 6. GENERAR RECOMENDACIÓN INTELIGENTE
+            const recomendacionDetallada = this.generarRecomendacionInteligente({
+                comparaciones,
+                mejorEscenario,
+                ahorroEntreEscenarios,
+                analisisPorPlazo,
+                analisisPorMonto
             });
 
             return {
                 comparacionDetallada: comparaciones,
-                recomendacion: 'Análisis detallado pendiente'
+                analisisOptimizacion: {
+                    mejorEscenario: mejorEscenario ? {
+                        escenario: mejorEscenario.escenario,
+                        dividendo: mejorEscenario.mejorDividendo,
+                        banco: mejorEscenario.mejorBanco,
+                        ventaja: ahorroEntreEscenarios ? `Ahorra ${ahorroEntreEscenarios.mensual} mensual vs peor opción` : 'Es la opción más económica'
+                    } : null,
+                    ahorroEntreEscenarios,
+                    analisisPorPlazo,
+                    analisisPorMonto
+                },
+                recomendacion: recomendacionDetallada,
+                metadatos: {
+                    escenariosAnalizados: escenarios.length,
+                    escenariosConDatos: escenariosConDividendo.length,
+                    timestamp: new Date().toISOString()
+                }
             };
 
         } catch (error) {
+            logError(`Error generando comparación de escenarios: ${error.message}`);
             return {
-                error: `Error generando comparación: ${error.message}`
+                error: `Error en comparación: ${error.message}`,
+                recomendacion: 'No se pudo completar el análisis debido a un error técnico'
             };
         }
     }
+
+    /**
+ * Generar recomendaciones personalizadas
+ */
+    static generarRecomendacionesPersonalizadas(mejorDividendo, mejorTasa, totalDividendos, totalTasas) {
+
+        // DEBUG TEMPORAL - REMOVER DESPUÉS
+        console.log('DEBUG - mejorDividendo:', mejorDividendo);
+        console.log('DEBUG - mejorTasa:', mejorTasa);
+
+        const recomendaciones = [];
+
+        // Validar que los datos existen antes de usarlos
+        if (mejorDividendo && mejorDividendo.banco) {
+            recomendaciones.push(`💰 Menor dividendo: ${mejorDividendo.banco} con ${mejorDividendo.texto}`);
+        }
+
+        if (mejorTasa && mejorTasa.banco) {
+            recomendaciones.push(`📈 Menor tasa: ${mejorTasa.banco} con ${mejorTasa.texto}`);
+        }
+
+        if (mejorDividendo && mejorTasa && mejorDividendo.banco === mejorTasa.banco) {
+            recomendaciones.push(`⭐ RECOMENDACIÓN: ${mejorDividendo.banco} ofrece tanto el menor dividendo como la menor tasa`);
+        } else if (mejorDividendo && mejorTasa && mejorDividendo.banco && mejorTasa.banco) {
+            recomendaciones.push(`⚖️ DECISIÓN: Evalúa entre menor dividendo (${mejorDividendo.banco}) vs menor tasa (${mejorTasa.banco})`);
+        }
+
+        // Agregar información sobre la cobertura de datos
+        if (totalDividendos > 0 && totalTasas > 0) {
+            recomendaciones.push(`📊 Datos analizados: ${totalDividendos} bancos con dividendo, ${totalTasas} bancos con tasa`);
+        } else if (totalDividendos === 0 && totalTasas === 0) {
+            recomendaciones.push('⚠️ No se pudieron extraer datos numéricos de dividendos ni tasas');
+        }
+
+        recomendaciones.push('📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco');
+        recomendaciones.push('⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir');
+
+        return recomendaciones;
+    }
+
+    /**
+ * Analizar impacto del plazo en los dividendos
+ */
+    static analizarImpactoPlazo(comparaciones) {
+        const plazos = [...new Set(comparaciones.map(c => c.plazo))].sort((a, b) => a - b);
+
+        if (plazos.length < 2) {
+            return { conclusion: 'Se necesitan al menos 2 plazos diferentes para analizar impacto' };
+        }
+
+        const analisisPlazo = plazos.map(plazo => {
+            const escenariosEnPlazo = comparaciones.filter(c => c.plazo === plazo && c.dividendoNumerico);
+
+            if (escenariosEnPlazo.length === 0) return null;
+
+            const dividendoPromedio = escenariosEnPlazo.reduce((sum, esc) => sum + esc.dividendoNumerico, 0) / escenariosEnPlazo.length;
+
+            return {
+                plazo,
+                dividendoPromedio: dividendoPromedio.toFixed(2),
+                escenarios: escenariosEnPlazo.length
+            };
+        }).filter(a => a !== null);
+
+        return {
+            tendencia: analisisPlazo.length >= 2 ?
+                (analisisPlazo[1].dividendoPromedio < analisisPlazo[0].dividendoPromedio ?
+                    'Dividendos menores con plazos más largos' :
+                    'Dividendos mayores con plazos más largos') :
+                'Insuficientes datos',
+            detalles: analisisPlazo
+        };
+    }
+
+    /**
+     * Analizar impacto del monto en los dividendos
+     */
+    static analizarImpactoMonto(comparaciones) {
+        const montos = [...new Set(comparaciones.map(c => c.monto))].sort((a, b) => a - b);
+
+        if (montos.length < 2) {
+            return { conclusion: 'Se necesitan al menos 2 montos diferentes para analizar impacto' };
+        }
+
+        const analisisMonto = montos.map(monto => {
+            const escenariosEnMonto = comparaciones.filter(c => c.monto === monto && c.dividendoNumerico);
+
+            if (escenariosEnMonto.length === 0) return null;
+
+            const dividendoPromedio = escenariosEnMonto.reduce((sum, esc) => sum + esc.dividendoNumerico, 0) / escenariosEnMonto.length;
+
+            return {
+                monto,
+                dividendoPromedio: dividendoPromedio.toFixed(2),
+                escenarios: escenariosEnMonto.length
+            };
+        }).filter(a => a !== null);
+
+        return {
+            tendencia: analisisMonto.length >= 2 ?
+                'Dividendos proporcionales al monto solicitado' :
+                'Insuficientes datos',
+            detalles: analisisMonto
+        };
+    }
+
+    /**
+     * Generar recomendación inteligente basada en todos los análisis
+     */
+    static generarRecomendacionInteligente({ comparaciones, mejorEscenario, ahorroEntreEscenarios, analisisPorPlazo, analisisPorMonto }) {
+        const recomendaciones = [];
+
+        // Recomendación principal
+        if (mejorEscenario) {
+            recomendaciones.push(`🏆 MEJOR OPCIÓN: ${mejorEscenario.escenario} con ${mejorEscenario.mejorBanco}`);
+            recomendaciones.push(`   └ Dividendo: ${mejorEscenario.mejorDividendo}`);
+        }
+
+        // Ahorro potencial
+        if (ahorroEntreEscenarios) {
+            recomendaciones.push(`💰 AHORRO POTENCIAL: ${ahorroEntreEscenarios.mensual} mensual (${ahorroEntreEscenarios.total} total)`);
+            recomendaciones.push(`   └ Entre ${ahorroEntreEscenarios.escenarioOptimo} vs ${ahorroEntreEscenarios.escenarioCaro}`);
+        }
+
+        // Análisis de plazo
+        if (analisisPorPlazo.tendencia && !analisisPorPlazo.tendencia.includes('Insuficientes')) {
+            recomendaciones.push(`📅 IMPACTO PLAZO: ${analisisPorPlazo.tendencia}`);
+        }
+
+        // Recomendaciones finales
+        recomendaciones.push('');
+        recomendaciones.push('📋 PRÓXIMOS PASOS RECOMENDADOS:');
+        recomendaciones.push('• Contacta directamente al banco recomendado para confirmar condiciones');
+        recomendaciones.push('• Solicita una simulación oficial con tus datos específicos');
+        recomendaciones.push('• Considera costos adicionales (notariales, tasación, seguros)');
+        recomendaciones.push('• Evalúa tu capacidad de pago con holgura de al menos 20%');
+
+        return recomendaciones.join('\n');
+    }
+
 }
 
 module.exports = MortgageService;

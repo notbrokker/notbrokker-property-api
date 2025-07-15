@@ -1,0 +1,17 @@
+{
+  "escenarios": [
+    {
+      "monto": 9200,
+      "plazo": 15
+    },
+    {
+      "monto": 9200,
+      "plazo": 20
+    },
+    {
+      "monto": 9200,
+      "plazo": 30
+    }
+  ],
+  "incluirAnalisis": true
+}

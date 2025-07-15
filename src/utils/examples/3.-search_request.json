@@ -1,0 +1,21 @@
+{
+    "tipo": "Casa",
+    "operacion": "Arriendo",
+    "ubicacion": "Concón, Valparaíso",
+    "maxPaginas": 2,
+    "moneda": "CLF",
+    "filtros": {
+        "dormitorios": {
+            "minimo": 4
+        },
+        "banos": {
+            "minimo": 4
+        },
+        "superficieTotal": {
+            "minimo": 184
+        },
+        "estacionamientos": {
+            "minimo": 2
+        }
+    }
+}

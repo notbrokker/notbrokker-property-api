@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "url": "https://casa.mercadolibre.cl/MLC-1614107669-vass-vende-casa-6d-3b-en-exclusivo-condominio-de-concon-_JM#reco_item_pos=0&reco_backend=item_decorator&reco_backend_type=function&reco_client=home_items-decorator-legacy&reco_id=852a8b4a-7462-473d-89b9-26ea905153d8&reco_model=&c_id=/home/navigation-recommendations-seed/element&c_uid=586a99b5-aa3e-4de3-8847-61defce72f20&da_id=navigation&da_position=0&id_origin=/home/dynamic_access&da_sort_algorithm=ranker",
+  "url_valida": true,
+  "portal_detectado": "mercadolibre",
+  "portal_soportado": true,
+  "validacion_completa": {
+    "formato_url": "✅ Válido",
+    "protocolo": "✅ HTTPS/HTTP",
+    "dominio": "✅ Válido",
+    "caracteres": "✅ Permitidos"
+  },
+  "recomendaciones": [
+    "URL válida y portal soportado",
+    "Puedes proceder con el scraping"
+  ],
+  "timestamp": "2025-07-12T06:37:26.327Z"
+}

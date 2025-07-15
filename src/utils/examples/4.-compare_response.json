@@ -1,0 +1,1477 @@
+{
+  "success": true,
+  "comparacion": {
+    "escenarios": [
+      {
+        "escenario": {
+          "numero": 1,
+          "monto": 9200,
+          "plazo": 15,
+          "etiqueta": "9200 UF x 15 años"
+        },
+        "resultado": {
+          "parametrosSimulacion": {
+            "monto": "9200 UF",
+            "plazo": "15 años",
+            "tipoCredito": "Mutuo No Endosable",
+            "tipoTasa": "Fija"
+          },
+          "resumenComparativo": {
+            "totalBancos": 10,
+            "valorUF": "No disponible",
+            "mejorOferta": {
+              "banco": "Coopeuch",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.785.867",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,20%",
+              "cae": "4,84 %",
+              "modalId": "#myModal1",
+              "posicion": 1,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.893)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 68,61",
+                  "dividendoPesos": "$2.693.987",
+                  "dividendoConSegurosUF": "UF 71,5",
+                  "dividendoConSegurosPesos": "$2.807.463"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 71,5",
+                    "valorPesos": "$2.807.463"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 71,5",
+                    "valorPesos": "$2.807.463"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 71,5",
+                    "valorPesos": "$2.807.463"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Coopeuch",
+                  "fecha": "04/07/2025"
+                }
+              }
+            }
+          },
+          "bancos": [
+            {
+              "banco": "Coopeuch",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.785.867",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,20%",
+              "cae": "4,84 %",
+              "modalId": "#myModal1",
+              "posicion": 1,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.893)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 68,61",
+                  "dividendoPesos": "$2.693.987",
+                  "dividendoConSegurosUF": "UF 71,5",
+                  "dividendoConSegurosPesos": "$2.807.463"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 71,5",
+                    "valorPesos": "$2.807.463"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 71,5",
+                    "valorPesos": "$2.807.463"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 71,5",
+                    "valorPesos": "$2.807.463"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Coopeuch",
+                  "fecha": "04/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Bice",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.825.525",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,80%",
+              "cae": "4,97 %",
+              "modalId": "#myModal2",
+              "posicion": 2,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 6,20 (equivale a $243.444)",
+                  "Tasación": "UF 3,50 \n(equivale a $137.428)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 71,31",
+                  "dividendoPesos": "$2.800.003",
+                  "dividendoConSegurosUF": "UF 73,87",
+                  "dividendoConSegurosPesos": "$2.900.522"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 73,87",
+                    "valorPesos": "$2.900.522"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 73,87",
+                    "valorPesos": "$2.900.522"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 73,87",
+                    "valorPesos": "$2.900.522"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Bice",
+                  "fecha": "27/06/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco del Estado de Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.836.127",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,75%",
+              "cae": "5,02 %",
+              "modalId": "#myModal3",
+              "posicion": 3,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 2,92 (equivale a $114.654)",
+                  "Tasación": "UF 3,15 \n(equivale a $123.685)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 71,08",
+                  "dividendoPesos": "$2.790.972",
+                  "dividendoConSegurosUF": "UF 74,8",
+                  "dividendoConSegurosPesos": "$2.937.038"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 74,8",
+                    "valorPesos": "$2.937.038"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 74,8",
+                    "valorPesos": "$2.937.038"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 74,8",
+                    "valorPesos": "$2.937.038"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco del Estado de Chile",
+                  "fecha": "14/04/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Internacional",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.841.231",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,71%",
+              "cae": "5,07 %",
+              "modalId": "#myModal4",
+              "posicion": 4,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 8,50 (equivale a $333.754)",
+                  "Tasación": "UF 2,50 \n(equivale a $98.163)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 70,90",
+                  "dividendoPesos": "$2.783.904",
+                  "dividendoConSegurosUF": "UF 73,59",
+                  "dividendoConSegurosPesos": "$2.889.528"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 73,59",
+                    "valorPesos": "$2.889.528"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 73,59",
+                    "valorPesos": "$2.889.528"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 73,59",
+                    "valorPesos": "$2.889.528"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Internacional",
+                  "fecha": "17/06/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Falabella",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.862.827",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,70%",
+              "cae": "5,22 %",
+              "modalId": "#myModal5",
+              "posicion": 5,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 70,86",
+                  "dividendoPesos": "$2.782.333",
+                  "dividendoConSegurosUF": "UF 74,22",
+                  "dividendoConSegurosPesos": "$2.914.265"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 74,22",
+                    "valorPesos": "$2.914.265"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 74,22",
+                    "valorPesos": "$2.914.265"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 74,22",
+                    "valorPesos": "$2.914.265"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Falabella",
+                  "fecha": "30/12/2024"
+                }
+              }
+            },
+            {
+              "banco": "Itaú Corpbanca",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.940.180",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,85%",
+              "cae": "5,58 %",
+              "modalId": "#myModal6",
+              "posicion": 6,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,28 (equivale a $168.055)",
+                  "Tasación": "UF 2,50 \n(equivale a $98.163)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 71,54",
+                  "dividendoPesos": "$2.809.034",
+                  "dividendoConSegurosUF": "UF 74,88",
+                  "dividendoConSegurosPesos": "$2.940.180"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 74,88",
+                    "valorPesos": "$2.940.180"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 74,88",
+                    "valorPesos": "$2.940.180"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 74,88",
+                    "valorPesos": "$2.940.180"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Itaú Corpbanca",
+                  "fecha": "04/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco de Crédito e Inversiones",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.993.973",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,60%",
+              "cae": "5,92 %",
+              "modalId": "#myModal7",
+              "posicion": 7,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 3,50 (equivale a $137.428)",
+                  "Tasación": "UF 2,30 \n(equivale a $90.310)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 74,98",
+                  "dividendoPesos": "$2.944.106",
+                  "dividendoConSegurosUF": "UF 78,33",
+                  "dividendoConSegurosPesos": "$3.075.645"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 78,33",
+                    "valorPesos": "$3.075.645"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 78,33",
+                    "valorPesos": "$3.075.645"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 78,33",
+                    "valorPesos": "$3.075.645"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco de Crédito e Inversiones",
+                  "fecha": "09/04/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco de Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.999.078",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,59%",
+              "cae": "5,95 %",
+              "modalId": "#myModal8",
+              "posicion": 8,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,50 (equivale a $176.693)",
+                  "Tasación": "UF 2,90 \n(equivale a $113.869)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 74,94",
+                  "dividendoPesos": "$2.942.536",
+                  "dividendoConSegurosUF": "UF 77,81",
+                  "dividendoConSegurosPesos": "$3.055.227"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 77,81",
+                    "valorPesos": "$3.055.227"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 77,81",
+                    "valorPesos": "$3.055.227"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 77,81",
+                    "valorPesos": "$3.055.227"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco de Chile",
+                  "fecha": "10/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Scotiabank Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$3.102.345",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,66%",
+              "cae": "6,46 %",
+              "modalId": "#myModal9",
+              "posicion": 9,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 5,60 (equivale a $219.885)",
+                  "Tasación": "UF 2,25 \n(equivale a $88.347)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 75,26",
+                  "dividendoPesos": "$2.955.100",
+                  "dividendoConSegurosUF": "UF 79,01",
+                  "dividendoConSegurosPesos": "$3.102.345"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 79,01",
+                    "valorPesos": "$3.102.345"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 79,01",
+                    "valorPesos": "$3.102.345"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 79,01",
+                    "valorPesos": "$3.102.345"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Scotiabank Chile",
+                  "fecha": "10/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Santander-Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$3.225.638",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "6,50%",
+              "cae": "7,12 %",
+              "modalId": "#myModal10",
+              "posicion": 10,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 3,50 (equivale a $137.428)",
+                  "Tasación": "UF 2,88 \n(equivale a $113.084)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 79,20",
+                  "dividendoPesos": "$3.109.805",
+                  "dividendoConSegurosUF": "UF 82,15",
+                  "dividendoConSegurosPesos": "$3.225.638"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 82,15",
+                    "valorPesos": "$3.225.638"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 82,15",
+                    "valorPesos": "$3.225.638"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 82,15",
+                    "valorPesos": "$3.225.638"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Santander-Chile",
+                  "fecha": "16/06/2025"
+                }
+              }
+            }
+          ],
+          "timestamp": "2025-07-15T02:31:25.878Z",
+          "analisis": {
+            "estadisticas": {
+              "totalBancos": 10,
+              "bancosConDividendo": 10,
+              "bancosConTasa": 10,
+              "rangoDividendos": "2,785 UF - 3,225 UF (diferencia: 0,44 UF)",
+              "rangoTasas": "4.2% - 6.5% (diferencia: 2.30%)"
+            },
+            "mejoresOfertas": {
+              "menorDividendo": {
+                "banco": "Coopeuch",
+                "dividendo": "$2.785.867",
+                "valor": 2.785
+              },
+              "menorTasa": {
+                "banco": "Coopeuch",
+                "tasa": "4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                "valor": 4.2
+              }
+            },
+            "potencialAhorro": {
+              "mensual": "0,44 UF (~$15.400)",
+              "total30Anos": "158,4 UF (~$5.544.000)",
+              "explicacion": "Comparando Coopeuch (mejor) vs Banco Santander-Chile (peor)"
+            },
+            "recomendaciones": [
+              "💰 Menor dividendo: Coopeuch con $2.785.867",
+              "📈 Menor tasa: Coopeuch con 4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+              "⭐ RECOMENDACIÓN: Coopeuch ofrece tanto el menor dividendo como la menor tasa",
+              "📊 Datos analizados: 10 bancos con dividendo, 10 bancos con tasa",
+              "📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco",
+              "⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir"
+            ]
+          }
+        },
+        "resumen": {
+          "mejorOferta": {
+            "banco": "Coopeuch",
+            "dividendo": "$2.785.867",
+            "tasa": "4,20%"
+          },
+          "totalBancos": 10
+        }
+      },
+      {
+        "escenario": {
+          "numero": 2,
+          "monto": 9200,
+          "plazo": 20,
+          "etiqueta": "9200 UF x 20 años"
+        },
+        "resultado": {
+          "parametrosSimulacion": {
+            "monto": "9200 UF",
+            "plazo": "20 años",
+            "tipoCredito": "Mutuo No Endosable",
+            "tipoTasa": "Fija"
+          },
+          "resumenComparativo": {
+            "totalBancos": 10,
+            "valorUF": "No disponible",
+            "mejorOferta": {
+              "banco": "Coopeuch",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.304.083",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,20%",
+              "cae": "4,81 %",
+              "modalId": "#myModal1",
+              "posicion": 1,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 56,34",
+                  "dividendoPesos": "$2.212.202",
+                  "dividendoConSegurosUF": "UF 59,23",
+                  "dividendoConSegurosPesos": "$2.325.679"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 59,23",
+                    "valorPesos": "$2.325.679"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 59,23",
+                    "valorPesos": "$2.325.679"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 59,23",
+                    "valorPesos": "$2.325.679"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Coopeuch",
+                  "fecha": "04/07/2025"
+                }
+              }
+            }
+          },
+          "bancos": [
+            {
+              "banco": "Coopeuch",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.304.083",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,20%",
+              "cae": "4,81 %",
+              "modalId": "#myModal1",
+              "posicion": 1,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 56,34",
+                  "dividendoPesos": "$2.212.202",
+                  "dividendoConSegurosUF": "UF 59,23",
+                  "dividendoConSegurosPesos": "$2.325.679"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 59,23",
+                    "valorPesos": "$2.325.679"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 59,23",
+                    "valorPesos": "$2.325.679"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 59,23",
+                    "valorPesos": "$2.325.679"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Coopeuch",
+                  "fecha": "04/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco del Estado de Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.350.023",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,70%",
+              "cae": "4,96 %",
+              "modalId": "#myModal2",
+              "posicion": 2,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 2,92 (equivale a $114.654)",
+                  "Tasación": "UF 3,15 \n(equivale a $123.685)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 58,71",
+                  "dividendoPesos": "$2.305.261",
+                  "dividendoConSegurosUF": "UF 62,42",
+                  "dividendoConSegurosPesos": "$2.450.935"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 62,42",
+                    "valorPesos": "$2.450.935"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 62,42",
+                    "valorPesos": "$2.450.935"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 62,42",
+                    "valorPesos": "$2.450.935"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco del Estado de Chile",
+                  "fecha": "14/04/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Bice",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.368.085",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,90%",
+              "cae": "5,06 %",
+              "modalId": "#myModal3",
+              "posicion": 3,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 6,20 (equivale a $243.444)",
+                  "Tasación": "UF 3,50 \n(equivale a $137.428)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 59,67",
+                  "dividendoPesos": "$2.342.956",
+                  "dividendoConSegurosUF": "UF 62,22",
+                  "dividendoConSegurosPesos": "$2.443.082"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 62,22",
+                    "valorPesos": "$2.443.082"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 62,22",
+                    "valorPesos": "$2.443.082"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 62,22",
+                    "valorPesos": "$2.443.082"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Bice",
+                  "fecha": "27/06/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Falabella",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.382.221",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,68%",
+              "cae": "5,17 %",
+              "modalId": "#myModal4",
+              "posicion": 4,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 58,61",
+                  "dividendoPesos": "$2.301.335",
+                  "dividendoConSegurosUF": "UF 61,97",
+                  "dividendoConSegurosPesos": "$2.433.266"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 61,97",
+                    "valorPesos": "$2.433.266"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 61,97",
+                    "valorPesos": "$2.433.266"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 61,97",
+                    "valorPesos": "$2.433.266"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Falabella",
+                  "fecha": "30/12/2024"
+                }
+              }
+            },
+            {
+              "banco": "Banco Internacional",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.430.517",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,06%",
+              "cae": "5,39 %",
+              "modalId": "#myModal5",
+              "posicion": 5,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 8,50 (equivale a $333.754)",
+                  "Tasación": "UF 2,50 \n(equivale a $98.163)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 60,44",
+                  "dividendoPesos": "$2.373.190",
+                  "dividendoConSegurosUF": "UF 63,13",
+                  "dividendoConSegurosPesos": "$2.478.813"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 63,13",
+                    "valorPesos": "$2.478.813"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 63,13",
+                    "valorPesos": "$2.478.813"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 63,13",
+                    "valorPesos": "$2.478.813"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Internacional",
+                  "fecha": "17/06/2025"
+                }
+              }
+            },
+            {
+              "banco": "Itaú Corpbanca",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.474.102",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,90%",
+              "cae": "5,58 %",
+              "modalId": "#myModal6",
+              "posicion": 6,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,28 (equivale a $168.055)",
+                  "Tasación": "UF 2,50 \n(equivale a $98.163)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 59,67",
+                  "dividendoPesos": "$2.342.956",
+                  "dividendoConSegurosUF": "UF 63,01",
+                  "dividendoConSegurosPesos": "$2.474.102"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 63,01",
+                    "valorPesos": "$2.474.102"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 63,01",
+                    "valorPesos": "$2.474.102"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 63,01",
+                    "valorPesos": "$2.474.102"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Itaú Corpbanca",
+                  "fecha": "04/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco de Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.512.581",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,49%",
+              "cae": "5,83 %",
+              "modalId": "#myModal7",
+              "posicion": 7,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,50 (equivale a $176.693)",
+                  "Tasación": "UF 2,90 \n(equivale a $113.869)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 62,54",
+                  "dividendoPesos": "$2.455.647",
+                  "dividendoConSegurosUF": "UF 65,42",
+                  "dividendoConSegurosPesos": "$2.568.731"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 65,42",
+                    "valorPesos": "$2.568.731"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 65,42",
+                    "valorPesos": "$2.568.731"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 65,42",
+                    "valorPesos": "$2.568.731"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco de Chile",
+                  "fecha": "10/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco de Crédito e Inversiones",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.513.367",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,53%",
+              "cae": "5,83 %",
+              "modalId": "#myModal8",
+              "posicion": 8,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 3,50 (equivale a $137.428)",
+                  "Tasación": "UF 2,30 \n(equivale a $90.310)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 62,74",
+                  "dividendoPesos": "$2.463.500",
+                  "dividendoConSegurosUF": "UF 66,08",
+                  "dividendoConSegurosPesos": "$2.594.646"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 66,08",
+                    "valorPesos": "$2.594.646"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 66,08",
+                    "valorPesos": "$2.594.646"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 66,08",
+                    "valorPesos": "$2.594.646"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco de Crédito e Inversiones",
+                  "fecha": "09/04/2025"
+                }
+              }
+            },
+            {
+              "banco": "Scotiabank Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.629.984",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,63%",
+              "cae": "6,38 %",
+              "modalId": "#myModal9",
+              "posicion": 9,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 5,60 (equivale a $219.885)",
+                  "Tasación": "UF 2,25 \n(equivale a $88.347)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 63,23",
+                  "dividendoPesos": "$2.482.740",
+                  "dividendoConSegurosUF": "UF 66,98",
+                  "dividendoConSegurosPesos": "$2.629.984"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 66,98",
+                    "valorPesos": "$2.629.984"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 66,98",
+                    "valorPesos": "$2.629.984"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 66,98",
+                    "valorPesos": "$2.629.984"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Scotiabank Chile",
+                  "fecha": "10/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Santander-Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.769.376",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "6,50%",
+              "cae": "7,07 %",
+              "modalId": "#myModal10",
+              "posicion": 10,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 3,50 (equivale a $137.428)",
+                  "Tasación": "UF 2,88 \n(equivale a $113.084)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 67,59",
+                  "dividendoPesos": "$2.653.936",
+                  "dividendoConSegurosUF": "UF 70,53",
+                  "dividendoConSegurosPesos": "$2.769.376"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 70,53",
+                    "valorPesos": "$2.769.376"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 70,53",
+                    "valorPesos": "$2.769.376"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 70,53",
+                    "valorPesos": "$2.769.376"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Santander-Chile",
+                  "fecha": "16/06/2025"
+                }
+              }
+            }
+          ],
+          "timestamp": "2025-07-15T02:32:15.413Z",
+          "analisis": {
+            "estadisticas": {
+              "totalBancos": 10,
+              "bancosConDividendo": 10,
+              "bancosConTasa": 10,
+              "rangoDividendos": "2,304 UF - 2,769 UF (diferencia: 0,465 UF)",
+              "rangoTasas": "4.2% - 6.5% (diferencia: 2.30%)"
+            },
+            "mejoresOfertas": {
+              "menorDividendo": {
+                "banco": "Coopeuch",
+                "dividendo": "$2.304.083",
+                "valor": 2.304
+              },
+              "menorTasa": {
+                "banco": "Coopeuch",
+                "tasa": "4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                "valor": 4.2
+              }
+            },
+            "potencialAhorro": {
+              "mensual": "0,465 UF (~$16.275)",
+              "total30Anos": "167,4 UF (~$5.859.000)",
+              "explicacion": "Comparando Coopeuch (mejor) vs Banco Santander-Chile (peor)"
+            },
+            "recomendaciones": [
+              "💰 Menor dividendo: Coopeuch con $2.304.083",
+              "📈 Menor tasa: Coopeuch con 4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+              "⭐ RECOMENDACIÓN: Coopeuch ofrece tanto el menor dividendo como la menor tasa",
+              "📊 Datos analizados: 10 bancos con dividendo, 10 bancos con tasa",
+              "📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco",
+              "⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir"
+            ]
+          }
+        },
+        "resumen": {
+          "mejorOferta": {
+            "banco": "Coopeuch",
+            "dividendo": "$2.304.083",
+            "tasa": "4,20%"
+          },
+          "totalBancos": 10
+        }
+      },
+      {
+        "escenario": {
+          "numero": 3,
+          "monto": 9200,
+          "plazo": 30,
+          "etiqueta": "9200 UF x 30 años"
+        },
+        "resultado": {
+          "parametrosSimulacion": {
+            "monto": "9200 UF",
+            "plazo": "30 años",
+            "tipoCredito": "Mutuo No Endosable",
+            "tipoTasa": "Fija"
+          },
+          "resumenComparativo": {
+            "totalBancos": 6,
+            "valorUF": "No disponible",
+            "mejorOferta": {
+              "banco": "Coopeuch",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$1.841.539",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,20%",
+              "cae": "4,75 %",
+              "modalId": "#myModal1",
+              "posicion": 1,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 44,57",
+                  "dividendoPesos": "$1.750.051",
+                  "dividendoConSegurosUF": "UF 47,46",
+                  "dividendoConSegurosPesos": "$1.863.527"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 47,46",
+                    "valorPesos": "$1.863.527"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 47,46",
+                    "valorPesos": "$1.863.527"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 47,46",
+                    "valorPesos": "$1.863.527"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Coopeuch",
+                  "fecha": "04/07/2025"
+                }
+              }
+            }
+          },
+          "bancos": [
+            {
+              "banco": "Coopeuch",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$1.841.539",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,20%",
+              "cae": "4,75 %",
+              "modalId": "#myModal1",
+              "posicion": 1,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 44,57",
+                  "dividendoPesos": "$1.750.051",
+                  "dividendoConSegurosUF": "UF 47,46",
+                  "dividendoConSegurosPesos": "$1.863.527"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 47,46",
+                    "valorPesos": "$1.863.527"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 47,46",
+                    "valorPesos": "$1.863.527"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 47,46",
+                    "valorPesos": "$1.863.527"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Coopeuch",
+                  "fecha": "04/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco del Estado de Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$1.886.694",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,65%",
+              "cae": "4,88 %",
+              "modalId": "#myModal2",
+              "posicion": 2,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 2,92 (equivale a $114.654)",
+                  "Tasación": "UF 3,15 \n(equivale a $123.685)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 46,91",
+                  "dividendoPesos": "$1.841.931",
+                  "dividendoConSegurosUF": "UF 50,62",
+                  "dividendoConSegurosPesos": "$1.987.605"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 50,62",
+                    "valorPesos": "$1.987.605"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 50,62",
+                    "valorPesos": "$1.987.605"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 50,62",
+                    "valorPesos": "$1.987.605"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco del Estado de Chile",
+                  "fecha": "14/04/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Falabella",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$1.920.462",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,64%",
+              "cae": "5,08 %",
+              "modalId": "#myModal3",
+              "posicion": 3,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,17 (equivale a $163.736)",
+                  "Tasación": "UF 2,98 \n(equivale a $117.010)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 46,86",
+                  "dividendoPesos": "$1.839.968",
+                  "dividendoConSegurosUF": "UF 50,21",
+                  "dividendoConSegurosPesos": "$1.971.507"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 50,21",
+                    "valorPesos": "$1.971.507"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 50,21",
+                    "valorPesos": "$1.971.507"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 50,21",
+                    "valorPesos": "$1.971.507"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Falabella",
+                  "fecha": "30/12/2024"
+                }
+              }
+            },
+            {
+              "banco": "Itaú Corpbanca",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.033.153",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "4,94%",
+              "cae": "5,56 %",
+              "modalId": "#myModal4",
+              "posicion": 4,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 4,28 (equivale a $168.055)",
+                  "Tasación": "UF 2,50 \n(equivale a $98.163)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 48,44",
+                  "dividendoPesos": "$1.902.007",
+                  "dividendoConSegurosUF": "UF 51,78",
+                  "dividendoConSegurosPesos": "$2.033.153"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 51,78",
+                    "valorPesos": "$2.033.153"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 51,78",
+                    "valorPesos": "$2.033.153"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 51,78",
+                    "valorPesos": "$2.033.153"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Itaú Corpbanca",
+                  "fecha": "04/07/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco de Crédito e Inversiones",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.055.534",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "5,43%",
+              "cae": "5,71 %",
+              "modalId": "#myModal5",
+              "posicion": 5,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 3,50 (equivale a $137.428)",
+                  "Tasación": "UF 2,30 \n(equivale a $90.310)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 51,08",
+                  "dividendoPesos": "$2.005.667",
+                  "dividendoConSegurosUF": "UF 54,43",
+                  "dividendoConSegurosPesos": "$2.137.206"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 54,43",
+                    "valorPesos": "$2.137.206"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 54,43",
+                    "valorPesos": "$2.137.206"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 54,43",
+                    "valorPesos": "$2.137.206"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco de Crédito e Inversiones",
+                  "fecha": "09/04/2025"
+                }
+              }
+            },
+            {
+              "banco": "Banco Santander-Chile",
+              "tipoCredito": "Mutuo no Endosable",
+              "dividendoMensual": "$2.354.735",
+              "monedaCredito": "UF",
+              "tipoTasa": "Fija",
+              "tasaCredito": "6,50%",
+              "cae": "7,01 %",
+              "modalId": "#myModal6",
+              "posicion": 6,
+              "detalle": {
+                "valoresUnicaVez": {
+                  "Estudio de título": "UF 3,50 (equivale a $137.428)",
+                  "Tasación": "UF 2,88 \n(equivale a $113.084)"
+                },
+                "valoresMensuales": {
+                  "dividendoUF": "UF 57,03",
+                  "dividendoPesos": "$2.239.295",
+                  "dividendoConSegurosUF": "UF 59,97",
+                  "dividendoConSegurosPesos": "$2.354.735"
+                },
+                "seguros": {
+                  "desgravamen": {
+                    "valorUF": "UF 59,97",
+                    "valorPesos": "$2.354.735"
+                  },
+                  "incendio": {
+                    "valorUF": "UF 59,97",
+                    "valorPesos": "$2.354.735"
+                  },
+                  "incendio más sismo": {
+                    "valorUF": "UF 59,97",
+                    "valorPesos": "$2.354.735"
+                  }
+                },
+                "actualizacion": {
+                  "entidad": "Banco Santander-Chile",
+                  "fecha": "16/06/2025"
+                }
+              }
+            }
+          ],
+          "timestamp": "2025-07-15T02:32:52.236Z",
+          "analisis": {
+            "estadisticas": {
+              "totalBancos": 6,
+              "bancosConDividendo": 6,
+              "bancosConTasa": 6,
+              "rangoDividendos": "1,841 UF - 2,354 UF (diferencia: 0,513 UF)",
+              "rangoTasas": "4.2% - 6.5% (diferencia: 2.30%)"
+            },
+            "mejoresOfertas": {
+              "menorDividendo": {
+                "banco": "Coopeuch",
+                "dividendo": "$1.841.539",
+                "valor": 1.841
+              },
+              "menorTasa": {
+                "banco": "Coopeuch",
+                "tasa": "4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                "valor": 4.2
+              }
+            },
+            "potencialAhorro": {
+              "mensual": "0,513 UF (~$17.955)",
+              "total30Anos": "184,68 UF (~$6.463.800)",
+              "explicacion": "Comparando Coopeuch (mejor) vs Banco Santander-Chile (peor)"
+            },
+            "recomendaciones": [
+              "💰 Menor dividendo: Coopeuch con $1.841.539",
+              "📈 Menor tasa: Coopeuch con 4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+              "⭐ RECOMENDACIÓN: Coopeuch ofrece tanto el menor dividendo como la menor tasa",
+              "📊 Datos analizados: 6 bancos con dividendo, 6 bancos con tasa",
+              "📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco",
+              "⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir"
+            ]
+          }
+        },
+        "resumen": {
+          "mejorOferta": {
+            "banco": "Coopeuch",
+            "dividendo": "$1.841.539",
+            "tasa": "4,20%"
+          },
+          "totalBancos": 6
+        }
+      }
+    ],
+    "resumen": {
+      "totalEscenarios": 3,
+      "escenariosProcesados": 3,
+      "escenariosConError": 0
+    },
+    "comparacionGeneral": {
+      "comparacionDetallada": [
+        {
+          "escenario": "9200 UF x 15 años",
+          "monto": 9200,
+          "plazo": 15,
+          "mejorDividendo": "$2.785.867",
+          "mejorBanco": "Coopeuch",
+          "totalBancos": 10,
+          "dividendoNumerico": 2.785,
+          "costoTotalAproximado": 501.3
+        },
+        {
+          "escenario": "9200 UF x 20 años",
+          "monto": 9200,
+          "plazo": 20,
+          "mejorDividendo": "$2.304.083",
+          "mejorBanco": "Coopeuch",
+          "totalBancos": 10,
+          "dividendoNumerico": 2.304,
+          "costoTotalAproximado": 552.9599999999999
+        },
+        {
+          "escenario": "9200 UF x 30 años",
+          "monto": 9200,
+          "plazo": 30,
+          "mejorDividendo": "$1.841.539",
+          "mejorBanco": "Coopeuch",
+          "totalBancos": 6,
+          "dividendoNumerico": 1.841,
+          "costoTotalAproximado": 662.76
+        }
+      ],
+      "analisisOptimizacion": {
+        "mejorEscenario": {
+          "escenario": "9200 UF x 30 años",
+          "dividendo": "$1.841.539",
+          "banco": "Coopeuch",
+          "ventaja": "Ahorra 0,944 UF mensual vs peor opción"
+        },
+        "ahorroEntreEscenarios": {
+          "mensual": "0,944 UF",
+          "total": "339,84 UF",
+          "escenarioOptimo": "9200 UF x 30 años",
+          "escenarioCaro": "9200 UF x 15 años"
+        },
+        "analisisPorPlazo": {
+          "tendencia": "Dividendos menores con plazos más largos",
+          "detalles": [
+            {
+              "plazo": 15,
+              "dividendoPromedio": "2.79",
+              "escenarios": 1
+            },
+            {
+              "plazo": 20,
+              "dividendoPromedio": "2.30",
+              "escenarios": 1
+            },
+            {
+              "plazo": 30,
+              "dividendoPromedio": "1.84",
+              "escenarios": 1
+            }
+          ]
+        },
+        "analisisPorMonto": {
+          "conclusion": "Se necesitan al menos 2 montos diferentes para analizar impacto"
+        }
+      },
+      "recomendacion": "🏆 MEJOR OPCIÓN: 9200 UF x 30 años con Coopeuch\n   └ Dividendo: $1.841.539\n💰 AHORRO POTENCIAL: 0,944 UF mensual (339,84 UF total)\n   └ Entre 9200 UF x 30 años vs 9200 UF x 15 años\n📅 IMPACTO PLAZO: Dividendos menores con plazos más largos\n\n📋 PRÓXIMOS PASOS RECOMENDADOS:\n• Contacta directamente al banco recomendado para confirmar condiciones\n• Solicita una simulación oficial con tus datos específicos\n• Considera costos adicionales (notariales, tasación, seguros)\n• Evalúa tu capacidad de pago con holgura de al menos 20%",
+      "metadatos": {
+        "escenariosAnalizados": 3,
+        "escenariosConDatos": 3,
+        "timestamp": "2025-07-15T02:32:52.334Z"
+      }
+    }
+  },
+  "metadata": {
+    "timestamp": "2025-07-15T02:32:52.334Z",
+    "tiempoProcesamiento": "Aproximadamente 90 segundos"
+  }
+}
