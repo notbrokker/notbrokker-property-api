@@ -5,6 +5,7 @@ const { logger, logInfo, logError } = require('./utils/logger');
 const { ErrorFactory, formatErrorResponse } = require('./utils/errors');
 const { errorHandler, notFoundHandler, uncaughtErrorHandler } = require('./middleware/errorHandler'); // NUEVO
 const { setupRoutes } = require('./routes'); // NUEVO
+//const { setupRoutes } = require('./src/routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;

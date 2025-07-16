@@ -1,0 +1,617 @@
+<!-- src/services/pdf/templates/premium-report-template.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Financiero Inmobiliario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #2d3748;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Professional */
+        .report-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .report-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .report-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .report-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .confidence-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .confidence-score {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 5px;
+        }
+
+        .confidence-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Property Summary */
+        .property-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #667eea;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .property-details h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .property-address {
+            color: #718096;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .property-description {
+            color: #4a5568;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .property-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            color: #667eea;
+            margin-right: 10px;
+        }
+
+        .feature-text {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .price-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .price-main {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price-uf {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Financial Metrics */
+        .financial-section {
+            margin: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 12px;
+            color: #667eea;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .metric-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            color: #667eea;
+        }
+
+        .metric-title {
+            font-size: 0.95rem;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .metric-positive .metric-value {
+            color: #38a169;
+        }
+
+        .metric-negative .metric-value {
+            color: #e53e3e;
+        }
+
+        .metric-neutral .metric-value {
+            color: #667eea;
+        }
+
+        .metric-subtitle {
+            font-size: 0.9rem;
+            color: #718096;
+            line-height: 1.4;
+        }
+
+        .metric-details {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #4a5568;
+        }
+
+        .metric-calculation {
+            font-family: 'Courier New', monospace;
+            background: #e2e8f0;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size: 0.8rem;
+        }
+
+        /* Financing Analysis */
+        .financing-analysis {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #38a169;
+        }
+
+        .financing-title {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .financing-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .financing-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .financing-card.recommended {
+            border-color: #38a169;
+            background: #f0fff4;
+            position: relative;
+        }
+
+        .financing-card.recommended::before {
+            content: "✓ RECOMENDADO";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #38a169;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .financing-term {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .financing-payment {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .financing-details {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .financing-bank {
+            font-weight: 600;
+            color: #38a169;
+        }
+
+        /* Market Comparison */
+        .market-comparison {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #f6ad55;
+        }
+
+        .comparison-title {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .comparables-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .comparable-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 3px solid #f6ad55;
+        }
+
+        .comparable-details h4 {
+            color: #2d3748;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .comparable-specs {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .comparable-location {
+            font-size: 0.85rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .comparable-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #667eea;
+            text-align: right;
+        }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .summary-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .summary-item h4 {
+            color: #f7fafc;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .summary-item p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .risk-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .risk-low {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .risk-medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .risk-high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        /* Data Sources */
+        .data-sources {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .sources-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .sources-list {
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .timestamp {
+            font-size: 0.8rem;
+            color: #718096;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* Responsive Design para PDF */
+        @media print {
+            .container {
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 10px !important;
+            }
+            
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .financing-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .comparable-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .property-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid,
+            .financing-options,
+            .summary-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .header-content,
+            .property-grid {
+                grid-template-columns: 1fr !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Professional Header -->
+        <div class="report-header">
+            {{HEADER_CONTENT}}
+        </div>
+
+        <!-- Property Summary -->
+        <div class="property-summary">
+            {{PROPERTY_CONTENT}}
+        </div>
+
+        <!-- Financial Metrics -->
+        <div class="financial-section">
+            <h2 class="section-title">
+                <svg class="section-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4 1a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z"/>
+                </svg>
+                Indicadores Financieros Clave
+            </h2>
+            
+            <div class="metrics-grid">
+                {{FINANCIAL_METRICS}}
+            </div>
+        </div>
+
+        <!-- Financing Analysis -->
+        <div class="financing-analysis">
+            {{FINANCING_ANALYSIS}}
+        </div>
+
+        <!-- Market Comparison -->
+        <div class="market-comparison">
+            {{MARKET_COMPARISON}}
+        </div>
+
+        <!-- Location Analysis -->
+        {{LOCATION_ANALYSIS}}
+
+        <!-- Security Analysis -->
+        {{SECURITY_ANALYSIS}}
+
+        <!-- Executive Summary -->
+        <div class="executive-summary">
+            {{EXECUTIVE_SUMMARY}}
+        </div>
+
+        <!-- Data Sources -->
+        <div class="data-sources">
+            {{DATA_SOURCES}}
+        </div>
+    </div>
+</body>
+</html>

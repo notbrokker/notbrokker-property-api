@@ -1,21 +1,41 @@
 {
   "name": "notbrokker-property-api",
-  "version": "1.0.0",
-  "main": "migrate.js",
+  "version": "2.2.0-pdf-premium",
+  "description": "API de análisis inmobiliario con IA y generación de PDFs premium",
+  "main": "src/server.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-pdf": "node scripts/test-pdf.js",
+    "test-complete": "curl http://localhost:3000/test-complete-system"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "real-estate",
+    "property-analysis",
+    "ai-analysis",
+    "pdf-generation",
+    "financial-reports",
+    "claude-ai",
+    "puppeteer"
+  ],
+  "author": "NotBrokker Team",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.9.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "pdf-parse": "^1.1.1",
     "playwright": "^1.54.1",
     "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
