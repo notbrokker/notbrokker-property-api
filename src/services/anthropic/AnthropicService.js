@@ -1577,9 +1577,7 @@ class AnthropicService {
         return mortgageData?.comparacionGeneral?.ahorroEntreEscenarios?.total || 'No disponible';
     }
 
-    /**
- * ✅ MÉTODO COMPLETAMENTE CORREGIDO: buildFinalReport con error handling robusto
- */
+
     static buildFinalReport(orchestrationData, claudeAnalysis, options = {}) {
         const methodName = 'buildFinalReport';
 
@@ -1610,29 +1608,34 @@ class AnthropicService {
 
             const isClaudeSuccess = claudeAnalysis?.success && !claudeAnalysis?.metadata?.fallbackUsed;
 
-            // ✅ 3. CÁLCULO DE MÉTRICAS CON MANEJO ROBUSTO DE ERRORES
-            let realMetrics;
-            try {
-                realMetrics = this.calculateFinancialMetrics(
-                    orchestrationData.property,
-                    mortgageData,
-                    orchestrationData.comparables?.properties
-                );
-            } catch (error) {
-                logError('❌ Error en calculateFinancialMetrics, usando fallback', error);
-                realMetrics = this.generateFallbackMetrics();
-            }
-
-            // ✅ 4. EXTRACCIÓN DE DATOS BÁSICOS CON VALIDACIÓN
+            // ✅ 3. EXTRACCIÓN DE DATOS BÁSICOS CON VALIDACIÓN
             let precioPropiedad, valorPropiedadPesos, arriendoEstimado;
 
             try {
                 precioPropiedad = this.extractPropertyPrice(orchestrationData.property);
+
+                // ✅ NUEVO: LOGGING DEBUG COMPLETO
+                logInfo('🔍 DEBUG - Extracción precio propiedad', {
+                    precioPropiedadExtraido: precioPropiedad,
+                    tipoDato: typeof precioPropiedad,
+                    esValido: precioPropiedad > 0,
+                    propiedadOriginal: orchestrationData.property?.precio_uf || 'No disponible'
+                });
+
                 if (!precioPropiedad || precioPropiedad <= 0) {
                     throw new Error('Precio de propiedad inválido');
                 }
+
                 valorPropiedadPesos = precioPropiedad * 39250;
                 arriendoEstimado = this.calculateEstimatedRent(orchestrationData.comparables?.properties);
+
+                // ✅ NUEVO: LOGGING DEBUG DE CÁLCULOS INICIALES
+                logInfo('🔍 DEBUG - Valores base calculados', {
+                    precioPropiedad: `${precioPropiedad} UF`,
+                    valorPropiedadPesos: this.formatCurrency(valorPropiedadPesos),
+                    arriendoEstimado: this.formatCurrency(arriendoEstimado)
+                });
+
             } catch (error) {
                 logError('❌ Error extrayendo datos básicos, usando valores por defecto', error);
                 precioPropiedad = 5000; // 5000 UF como fallback
@@ -1640,16 +1643,26 @@ class AnthropicService {
                 arriendoEstimado = 800000; // $800k como fallback
             }
 
-            // ✅ 5. CÁLCULOS FINANCIEROS CON FALLBACKS INDIVIDUALES
+            // ✅ 4. CÁLCULOS FINANCIEROS BÁSICOS PRIMERO (MOVER ANTES)
             const PIE_PORCENTAJE = 0.10;
             const pieUF = precioPropiedad * PIE_PORCENTAJE;
             const montoCredito = precioPropiedad - pieUF;
 
-            // ✅ 5A. Gastos únicos con fallback
+            // ✅ NUEVO: LOGGING DEBUG DETALLADO DEL CÁLCULO DE CRÉDITO
+            logInfo('🔍 DEBUG - Cálculo monto crédito', {
+                precioPropiedad: `${precioPropiedad} UF`,
+                PIE_PORCENTAJE: `${PIE_PORCENTAJE * 100}%`,
+                pieUF: `${pieUF} UF`,
+                montoCredito: `${montoCredito} UF`,
+                calculoRealizado: `${precioPropiedad} - ${pieUF} = ${montoCredito}`,
+                esResultadoCorrecto: montoCredito === 8280 // Para la propiedad de 9200 UF
+            });
+
+            // ✅ 5A. Gastos únicos con fallback (AHORA CON montoCredito DECLARADO)
             let gastosUnicos;
             try {
                 gastosUnicos = this.calculateOneTimeAcquisitionCosts(
-                    montoCredito,
+                    montoCredito,        // ✅ AHORA existe la variable (8280 UF)
                     valorPropiedadPesos,
                     mortgageData,
                     false
@@ -1703,9 +1716,23 @@ class AnthropicService {
                 };
             }
 
-            // ✅ 6. LOGGING DEFENSIVO
+            // ✅ 6. CÁLCULO DE MÉTRICAS CON GASTOS ÚNICOS CALCULADOS
+            let realMetrics;
             try {
-                logInfo('💰 Métricas financieras calculadas con desglose detallado para API', {
+                realMetrics = this.calculateFinancialMetrics(
+                    orchestrationData.property,
+                    mortgageData,
+                    orchestrationData.comparables?.properties,
+                    gastosUnicos  // ✅ Pasar gastos únicos ya calculados
+                );
+            } catch (error) {
+                logError('❌ Error en calculateFinancialMetrics, usando fallback', error);
+                realMetrics = this.generateFallbackMetrics();
+            }
+
+            // ✅ 7. LOGGING DEFENSIVO
+            try {
+                logInfo('💰 Métricas financieras calculadas con desglose unificado', {
                     precioPropiedad: `${precioPropiedad} UF`,
                     montoCredito: `${montoCredito} UF`,
                     gastosUnicosTotal: this.formatCurrency(gastosUnicos?.total || 0),
@@ -1714,14 +1741,63 @@ class AnthropicService {
                     yieldNeto: realMetrics?.yieldNeto || 'No calculado',
                     conceptosUnicos: Object.keys(gastosUnicos?.conceptos || {}).length,
                     conceptosMensuales: Object.keys(gastosOperacionalesMensuales?.conceptos || {}).length,
-                    errorHandling: 'robusto_aplicado'
+                    unificacionExitosa: '✅ Gastos únicos consolidados',
+                    eliminacionDuplicacion: '✅ calculateDetailedGastosOperacionales eliminado'
                 });
             } catch (loggingError) {
-                // Logging no debe fallar el proceso principal
                 console.error('Error en logging de métricas:', loggingError.message);
             }
 
-            // ✅ 7. CONSTRUCCIÓN DEL REPORTE FINAL CON VALIDACIÓN
+            // ✅ 8. INTEGRACIÓN DE MÉTRICAS REALES CON ANÁLISIS CLAUDE
+            let integratedAnalysis;
+            if (isClaudeSuccess && realMetrics) {
+                logInfo('🔄 Integrando métricas reales con análisis Claude para consistencia de datos');
+
+                try {
+                    // Crear copia profunda del análisis de Claude
+                    integratedAnalysis = JSON.parse(JSON.stringify(claudeAnalysis.analysis));
+
+                    // ✅ SOBRESCRIBIR indicadoresFinancieros con métricas reales
+                    integratedAnalysis.indicadoresFinancieros = {
+                        ...integratedAnalysis.indicadoresFinancieros,
+                        flujoCajaMensual: realMetrics.flujoCajaMensual,
+                        yieldBruto: realMetrics.yieldBruto,
+                        yieldNeto: realMetrics.yieldNeto,
+                        capRate: realMetrics.capRate,
+                        puntoEquilibrio: realMetrics.puntoEquilibrio,
+                        plusvaliaEsperada: realMetrics.plusvaliaEsperada || integratedAnalysis.indicadoresFinancieros?.plusvaliaEsperada || 4.2
+                    };
+
+                    // ✅ ACTUALIZAR resumenEjecutivo basándose en métricas reales
+                    if (realMetrics.flujoCajaMensual?.valor < 0) {
+                        integratedAnalysis.resumenEjecutivo.viabilidadInversion.decision = "NO_RECOMENDADA";
+                        integratedAnalysis.resumenEjecutivo.viabilidadInversion.justificacion =
+                            `La inversión presenta un flujo de caja mensual negativo de ${this.formatCurrency(Math.abs(realMetrics.flujoCajaMensual.valor))}, requiriendo aportes mensuales significativos del inversionista. Con un yield neto del ${realMetrics.yieldNeto?.toFixed(1)}%, no compensa el riesgo y la necesidad de capital adicional mensual.`;
+                        integratedAnalysis.resumenEjecutivo.viabilidadInversion.nivelRiesgo = "Alto";
+                    } else if (realMetrics.flujoCajaMensual?.valor > 100000 && realMetrics.yieldNeto >= 7) {
+                        integratedAnalysis.resumenEjecutivo.viabilidadInversion.decision = "RECOMENDADA";
+                        integratedAnalysis.resumenEjecutivo.viabilidadInversion.justificacion =
+                            `Flujo de caja positivo de ${this.formatCurrency(realMetrics.flujoCajaMensual.valor)} con yield neto competitivo del ${realMetrics.yieldNeto?.toFixed(1)}%`;
+                        integratedAnalysis.resumenEjecutivo.viabilidadInversion.nivelRiesgo = "Bajo";
+                    }
+
+                    logInfo('✅ Integración de métricas completada exitosamente', {
+                        flujoCajaIntegrado: realMetrics.flujoCajaMensual?.valor,
+                        yieldNetoIntegrado: realMetrics.yieldNeto,
+                        decisionActualizada: integratedAnalysis.resumenEjecutivo.viabilidadInversion.decision
+                    });
+
+                } catch (integrationError) {
+                    logError('❌ Error en integración de métricas, usando análisis original', integrationError);
+                    integratedAnalysis = claudeAnalysis.analysis;
+                }
+            } else {
+                integratedAnalysis = isClaudeSuccess ?
+                    claudeAnalysis.analysis :
+                    this.generateFallbackAnalysis(orchestrationData, realMetrics);
+            }
+
+            // ✅ 9. CONSTRUCCIÓN DEL REPORTE FINAL CON VALIDACIÓN
             let finalReport;
             try {
                 finalReport = {
@@ -1730,10 +1806,8 @@ class AnthropicService {
                     comparables: orchestrationData.comparables?.properties || [],
                     mortgage: mortgageData,
 
-                    // Análisis con fallback
-                    analysis: isClaudeSuccess ?
-                        claudeAnalysis.analysis :
-                        this.generateFallbackAnalysis(orchestrationData, realMetrics),
+                    // Análisis integrado con métricas reales
+                    analysis: integratedAnalysis,
 
                     // Métricas calculadas
                     metrics: {
@@ -1750,6 +1824,7 @@ class AnthropicService {
                         claudeAnalysisUsed: isClaudeSuccess,
                         dataQuality: orchestrationData.overallQuality || 85,
                         calculationEngine: 'NotBrokker Premium v4.0',
+                        metricsIntegrated: isClaudeSuccess && realMetrics, // ✅ Flag de integración
                         fallbacksUsed: {
                             claudeAnalysis: !isClaudeSuccess,
                             financialMetrics: !realMetrics,
@@ -1762,6 +1837,7 @@ class AnthropicService {
                             '✅ Comparable properties search',
                             isClaudeSuccess ? '✅ Claude AI analysis' : '⚠️ Fallback analysis',
                             '✅ Financial metrics calculation',
+                            isClaudeSuccess && realMetrics ? '✅ Metrics integration with Claude analysis' : '⚠️ No metrics integration',
                             '✅ Final report construction'
                         ]
                     }
@@ -1803,6 +1879,7 @@ class AnthropicService {
                 hasAnalysis: !!finalReport.analysis,
                 hasMetrics: !!finalReport.metrics,
                 claudeUsed: isClaudeSuccess,
+                metricsIntegrated: finalReport.metadata.metricsIntegrated,
                 dataQuality: finalReport.metadata.dataQuality
             });
 
@@ -2392,10 +2469,7 @@ class AnthropicService {
         return `anthropic_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     }
 
-    /**
- * ✅ CORREGIDO: Método principal con gastos separados correctamente
- */
-    static calculateFinancialMetrics(propertyData, mortgageData, comparablesData) {
+    static calculateFinancialMetrics(propertyData, mortgageData, comparablesData, gastosUnicos = null) {
         try {
             logInfo('📊 Iniciando cálculo de métricas financieras CORREGIDO con gastos separados');
 
@@ -2406,14 +2480,7 @@ class AnthropicService {
             const dividendoMensual = this.extractBestMortgagePayment(mortgageData);
             const arriendoEstimado = this.calculateEstimatedRent(comparablesData);
 
-            // 2. ✅ SEPARAR GASTOS: ÚNICOS vs MENSUALES
-            const gastosUnicos = this.calculateOneTimeAcquisitionCosts(
-                precioPropiedad,
-                valorPropiedadPesos,
-                mortgageData,
-                false // usaCorretor para compra
-            );
-
+            // 2. ✅ CALCULAR SOLO GASTOS MENSUALES (gastos únicos vienen como parámetro)
             const gastosOperacionalesMensuales = this.calculateMonthlyOperationalExpenses(
                 valorPropiedadPesos,
                 arriendoEstimado,
@@ -2433,10 +2500,10 @@ class AnthropicService {
             logInfo('💰 ✅ CORRECCIÓN APLICADA - Comparación flujo de caja:', {
                 errorAnterior: 'Incluía gastos únicos en flujo mensual',
                 flujoCorregido: this.formatCurrency(flujoCajaMensual),
-                gastosUnicosTotal: this.formatCurrency(gastosUnicos.total),
+                gastosUnicosTotal: gastosUnicos ? this.formatCurrency(gastosUnicos.total) : 'Recibidos como parámetro',
                 gastosOperacionalesMensuales: this.formatCurrency(gastosOperacionalesMensuales.total),
                 impactoCorrecion: flujoCajaMensual > 0 ? '✅ POSITIVO' : '❌ REQUIERE APORTE',
-                mejora: 'Separación correcta de gastos únicos vs mensuales'
+                mejora: 'Separación correcta de gastos únicos vs mensuales - SIN duplicación'
             });
 
             // 6. RETORNAR ESTRUCTURA COMPLETA
@@ -2454,9 +2521,13 @@ class AnthropicService {
                 capRate: yieldNeto,
                 puntoEquilibrio: gastosOperacionalesMensuales.total + dividendoMensual,
                 plusvaliaEsperada: 4.2,
-                // ✅ NUEVO: Incluir desglose completo separado
+                // ✅ USAR GASTOS ÚNICOS PASADOS COMO PARÁMETRO (no calcular internamente)
                 desgloseGastos: {
-                    gastosUnicos: gastosUnicos,
+                    gastosUnicos: gastosUnicos || {
+                        total: 0,
+                        conceptos: {},
+                        metadata: { fuente: 'no_disponible', nota: 'Gastos únicos no proporcionados' }
+                    },
                     gastosOperacionalesMensuales: gastosOperacionalesMensuales
                 }
             };
@@ -2468,19 +2539,40 @@ class AnthropicService {
     }
 
 
-    /**
-     * ✅ VERSIÓN MEJORADA: calculateOneTimeAcquisitionCosts con validación robusta
-     */
     static calculateOneTimeAcquisitionCosts(montoCredito, valorPropiedadPesos, mortgageData, usaCorretor = false) {
         const methodName = 'calculateOneTimeAcquisitionCosts';
 
         try {
-            // ✅ 1. VALIDACIÓN DEFENSIVA DE ENTRADA
-            const validationResult = this.validateCalculationInputs({
-                montoCredito,
-                valorPropiedadPesos,
-                usaCorretor
-            });
+            // ✅ 1. VALIDACIÓN DEFENSIVA DE ENTRADA (implementación directa)
+            const validationResult = (() => {
+                const errors = [];
+
+                // Validar montoCredito
+                if (typeof montoCredito !== 'number' || isNaN(montoCredito) || montoCredito <= 0) {
+                    errors.push('montoCredito debe ser un número positivo');
+                }
+
+                // Validar valorPropiedadPesos
+                if (typeof valorPropiedadPesos !== 'number' || isNaN(valorPropiedadPesos) || valorPropiedadPesos <= 0) {
+                    errors.push('valorPropiedadPesos debe ser un número positivo');
+                }
+
+                // Validar usaCorretor
+                if (typeof usaCorretor !== 'boolean') {
+                    errors.push('usaCorretor debe ser un boolean');
+                }
+
+                if (errors.length > 0) {
+                    return { isValid: false, errors };
+                }
+
+                return {
+                    isValid: true,
+                    validatedMontoCredito: Math.round(montoCredito),
+                    validatedValorPropiedad: Math.round(valorPropiedadPesos),
+                    errors: []
+                };
+            })();
 
             if (!validationResult.isValid) {
                 throw new Error(`Validación fallida: ${validationResult.errors.join(', ')}`);
@@ -2488,8 +2580,8 @@ class AnthropicService {
 
             const { validatedMontoCredito, validatedValorPropiedad } = validationResult;
 
-            // ✅ 2. CONFIGURACIÓN SEGURA CON VALORES POR DEFECTO
-            const precioUF = this.getCurrentUFValue(); // Método dinámico en lugar de hardcodear
+            // ✅ 2. CONFIGURACIÓN SEGURA CON VALORES POR DEFECTO (valor directo)
+            const precioUF = 39250; // Valor UF actual - reemplaza this.getCurrentUFValue()
 
             logInfo(`🔍 ${methodName} - Iniciando cálculo`, {
                 montoCredito: validatedMontoCredito,
@@ -2499,30 +2591,137 @@ class AnthropicService {
                 mortgageDataAvailable: !!mortgageData
             });
 
-            // ✅ 3. CÁLCULOS CON VALIDACIÓN MATEMÁTICA
-            const impuestoMutuo = this.safeCalculation(() =>
-                Math.round(validatedMontoCredito * precioUF * 0.008), 'impuestoMutuo');
+            // ✅ 3. CÁLCULOS CON VALIDACIÓN MATEMÁTICA (implementación directa de safeCalculation)
+            const impuestoMutuo = (() => {
+                try {
+                    const result = Math.round(validatedMontoCredito * precioUF * 0.008);
+                    if (typeof result !== 'number' || isNaN(result)) {
+                        logWarn(`⚠️ Error en cálculo de impuestoMutuo, usando valor por defecto`);
+                        return 0;
+                    }
+                    return Math.max(0, result);
+                } catch (error) {
+                    logWarn(`⚠️ Error en cálculo de impuestoMutuo, usando valor por defecto`, error);
+                    return 0;
+                }
+            })();
 
             const gastosNotariales = 200000; // Valor fijo válido
 
-            const conservadorBienes = this.safeCalculation(() =>
-                Math.round(validatedValorPropiedad * 0.002), 'conservadorBienes');
+            const conservadorBienes = (() => {
+                try {
+                    const result = Math.round(validatedValorPropiedad * 0.002);
+                    if (typeof result !== 'number' || isNaN(result)) {
+                        logWarn(`⚠️ Error en cálculo de conservadorBienes, usando valor por defecto`);
+                        return 0;
+                    }
+                    return Math.max(0, result);
+                } catch (error) {
+                    logWarn(`⚠️ Error en cálculo de conservadorBienes, usando valor por defecto`, error);
+                    return 0;
+                }
+            })();
 
-            // ✅ 4. EXTRACCIÓN SEGURA DE DATOS BANCARIOS
-            const tasacionData = this.extractTasacionSafely(mortgageData, precioUF);
-            const estudioTitulosData = this.extractEstudioTitulosSafely(mortgageData, precioUF);
+            // ✅ 4. EXTRACCIÓN SEGURA DE DATOS BANCARIOS (implementación directa)
+            const tasacionData = (() => {
+                try {
+                    if (mortgageData?.escenarios?.length > 0) {
+                        // Buscar en el mejor escenario (preferir 30 años)
+                        const mejorEscenario = mortgageData.escenarios.find(e => e.escenario.plazo === 30) ||
+                            mortgageData.escenarios[0];
 
-            const gestionBancaria = Math.round(precioUF * 1.0);
+                        const tasacionStr = mejorEscenario?.resultado?.mejorOferta?.detalle?.valoresUnicaVez?.['Tasación'];
 
-            // ✅ 5. COMISIÓN CORREDOR CON VALIDACIÓN
-            const comisionCorretor = usaCorretor ?
-                this.calculateComisionCorretor(validatedValorPropiedad) : 0;
+                        if (tasacionStr) {
+                            const tasacionMatch = tasacionStr.match(/\$?([\d,]+)/);
+                            if (tasacionMatch) {
+                                const tasacionParsed = parseInt(tasacionMatch[1].replace(/,/g, ''));
+                                if (!isNaN(tasacionParsed) && tasacionParsed > 0) {
+                                    return {
+                                        valor: tasacionParsed,
+                                        descripcion: 'Tasación de la propiedad',
+                                        fuente: 'mortgage_data_real',
+                                        rango: '$60,000 - $150,000'
+                                    };
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    logDebug('ℹ️ Usando fallback para tasación', { error: error.message });
+                }
+
+                // Fallback
+                const defaultValue = Math.round(precioUF * 2.7); // ~105,000
+                return {
+                    valor: defaultValue,
+                    descripcion: 'Tasación de la propiedad',
+                    fuente: 'default_calculation',
+                    rango: '$60,000 - $150,000'
+                };
+            })();
+
+            const estudioTitulosData = (() => {
+                try {
+                    if (mortgageData?.escenarios?.length > 0) {
+                        // Buscar en el mejor escenario
+                        const mejorEscenario = mortgageData.escenarios.find(e => e.escenario.plazo === 30) ||
+                            mortgageData.escenarios[0];
+
+                        const estudioStr = mejorEscenario?.resultado?.mejorOferta?.detalle?.valoresUnicaVez?.['Estudio de título'];
+
+                        if (estudioStr) {
+                            const estudioMatch = estudioStr.match(/\$?([\d,]+)/);
+                            if (estudioMatch) {
+                                const estudioParsed = parseInt(estudioMatch[1].replace(/,/g, ''));
+                                if (!isNaN(estudioParsed) && estudioParsed > 0) {
+                                    return {
+                                        valor: estudioParsed,
+                                        descripcion: 'Estudio de Títulos',
+                                        fuente: 'mortgage_data_real',
+                                        rango: '$100,000 - $250,000'
+                                    };
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    logDebug('ℹ️ Usando fallback para estudio de títulos', { error: error.message });
+                }
+
+                // Fallback
+                const defaultValue = Math.round(precioUF * 4.5); // ~175,000
+                return {
+                    valor: defaultValue,
+                    descripcion: 'Estudio de Títulos',
+                    fuente: 'default_calculation',
+                    rango: '$100,000 - $250,000'
+                };
+            })();
+
+            const gestionBancaria = Math.round(precioUF * 1.0); // 1 UF
+
+            // ✅ 5. COMISIÓN CORREDOR CON VALIDACIÓN (implementación directa)
+            const comisionCorretor = usaCorretor ? (() => {
+                try {
+                    const comisionBase = validatedValorPropiedad * 0.02; // 2%
+                    const iva = comisionBase * 0.19; // 19% IVA
+                    return Math.round(comisionBase + iva);
+                } catch (error) {
+                    logWarn('⚠️ Error calculando comisión corredor, usando 0', error);
+                    return 0;
+                }
+            })() : 0;
 
             // ✅ 6. CÁLCULO TOTAL CON VERIFICACIÓN
             const componentes = [
-                impuestoMutuo, gastosNotariales, conservadorBienes,
-                tasacionData.valor, estudioTitulosData.valor,
-                gestionBancaria, comisionCorretor
+                impuestoMutuo,
+                gastosNotariales,
+                conservadorBienes,
+                tasacionData.valor,
+                estudioTitulosData.valor,
+                gestionBancaria,
+                comisionCorretor
             ];
 
             const totalGastos = componentes.reduce((sum, valor) => {
@@ -2533,7 +2732,7 @@ class AnthropicService {
                 return sum + valor;
             }, 0);
 
-            // ✅ 7. ESTRUCTURA DE RESPUESTA COMPLETA
+            // ✅ 7. ESTRUCTURA DE RESPUESTA COMPLETA (EXACTAMENTE IGUAL)
             const desglose = {
                 total: totalGastos,
                 conceptos: {
@@ -2575,7 +2774,7 @@ class AnthropicService {
                 }
             };
 
-            // ✅ 8. LOGGING EXITOSO CON DETALLES
+            // ✅ 8. LOGGING EXITOSO CON DETALLES (EXACTAMENTE IGUAL)
             logInfo(`✅ ${methodName} - Cálculo completado exitosamente`, {
                 total: this.formatCurrency(totalGastos),
                 componentesCalculados: componentes.length,
@@ -2588,7 +2787,7 @@ class AnthropicService {
             return desglose;
 
         } catch (error) {
-            // ✅ 9. LOGGING DE ERROR MEJORADO CON CONTEXTO COMPLETO
+            // ✅ 9. LOGGING DE ERROR MEJORADO CON CONTEXTO COMPLETO (EXACTAMENTE IGUAL)
             const errorContext = {
                 methodName,
                 inputData: {
@@ -2604,7 +2803,7 @@ class AnthropicService {
 
             logError(`❌ ${methodName} - Error detallado`, error, errorContext);
 
-            // ✅ 10. FALLBACK SEGURO CON LOGGING
+            // ✅ 10. FALLBACK SEGURO CON LOGGING (EXACTAMENTE IGUAL)
             const fallbackTotal = Math.round((valorPropiedadPesos || 100000000) * 0.06);
 
             logWarn(`🔄 ${methodName} - Usando cálculo fallback`, {
@@ -3270,147 +3469,6 @@ class AnthropicService {
         }
 
         return points;
-    }
-
-    /**
-     * ✅ NUEVO: Calcular gastos operacionales con 7 conceptos específicos
-     * @param {number} montoCredito - Monto del crédito en UF
-     * @param {number} valorPropiedadPesos - Valor de la propiedad en CLP
-     * @param {object} mortgageData - Datos de hipoteca con mejorOferta
-     * @param {boolean} usaCorretor - Si usa corredor inmobiliario (opcional)
-     * @returns {object} Desglose detallado de gastos operacionales
-     */
-    static calculateDetailedGastosOperacionales(montoCredito, valorPropiedadPesos, mortgageData, usaCorretor = false) {
-        try {
-            logInfo('📊 Calculando gastos operacionales detallados con 7 conceptos');
-
-            const precioUF = 39250; // Valor UF actual
-
-            // 1. IMPUESTO AL MUTUO - 0.8% del monto del crédito (solo con crédito hipotecario)
-            const impuestoMutuo = Math.round(montoCredito * precioUF * 0.008);
-
-            // 2. GASTOS NOTARIALES - Rango fijo
-            const gastosNotariales = 200000; // Promedio entre $150,000 - $250,000
-
-            // 3. CONSERVADOR DE BIENES RAÍCES - Basado en valor propiedad
-            let conservadorBienes;
-            if (valorPropiedadPesos <= 300000000) { // Hasta 300M
-                conservadorBienes = 150000;
-            } else if (valorPropiedadPesos <= 500000000) { // 300M - 500M
-                conservadorBienes = 200000;
-            } else { // Más de 500M
-                conservadorBienes = 300000;
-            }
-
-            // 4. TASACIÓN - Obtener de response.json o usar rango por defecto
-            let tasacion = 105000; // Promedio entre $60,000 - $150,000
-            if (mortgageData?.escenarios?.length > 0) {
-                // Buscar en el mejor escenario (preferentemente 30 años)
-                const mejorEscenario = this.findBestMortgageScenario(mortgageData);
-                const tasacionStr = mejorEscenario?.resultado?.mejorOferta?.detalle?.valoresUnicaVez?.Tasación;
-                if (tasacionStr) {
-                    const tasacionMatch = tasacionStr.match(/\$?([\d,]+)/);
-                    if (tasacionMatch) {
-                        const tasacionParsed = parseInt(tasacionMatch[1].replace(/,/g, ''));
-                        if (!isNaN(tasacionParsed) && tasacionParsed > 0) {
-                            tasacion = tasacionParsed;
-                        }
-                    }
-                }
-            }
-
-            // 5. ESTUDIO DE TÍTULOS - Obtener de response.json o usar rango por defecto
-            let estudioTitulos = 175000; // Promedio entre $100,000 - $250,000
-            if (mortgageData?.escenarios?.length > 0) {
-                const mejorEscenario = this.findBestMortgageScenario(mortgageData);
-                const estudioStr = mejorEscenario?.resultado?.mejorOferta?.detalle?.valoresUnicaVez?.['Estudio de título'];
-                if (estudioStr) {
-                    const estudioMatch = estudioStr.match(/\$?([\d,]+)/);
-                    if (estudioMatch) {
-                        const estudioParsed = parseInt(estudioMatch[1].replace(/,/g, ''));
-                        if (!isNaN(estudioParsed) && estudioParsed > 0) {
-                            estudioTitulos = estudioParsed;
-                        }
-                    }
-                }
-            }
-
-            // 6. GESTIÓN BANCARIA - Rango fijo
-            const gestionBancaria = 175000; // Promedio entre $100,000 - $250,000
-
-            // 7. COMISIÓN DEL CORREDOR - 2% + IVA del valor de compra (opcional)
-            let comisionCorretor = 0;
-            if (usaCorretor) {
-                const comisionBase = valorPropiedadPesos * 0.02; // 2%
-                const iva = comisionBase * 0.19; // 19% IVA
-                comisionCorretor = Math.round(comisionBase + iva);
-            }
-
-            // TOTAL DE GASTOS OPERACIONALES
-            const totalGastos = impuestoMutuo + gastosNotariales + conservadorBienes +
-                tasacion + estudioTitulos + gestionBancaria + comisionCorretor;
-
-            const desglose = {
-                total: totalGastos,
-                conceptos: {
-                    impuestoMutuo: {
-                        valor: impuestoMutuo,
-                        descripcion: 'Impuesto al Mutuo (0.8% del crédito)',
-                        aplicaSolo: 'con crédito hipotecario'
-                    },
-                    gastosNotariales: {
-                        valor: gastosNotariales,
-                        descripcion: 'Gastos Notariales',
-                        rango: '$150,000 - $250,000'
-                    },
-                    conservadorBienes: {
-                        valor: conservadorBienes,
-                        descripcion: 'Conservador de Bienes Raíces',
-                        criterio: 'según valor propiedad'
-                    },
-                    tasacion: {
-                        valor: tasacion,
-                        descripcion: 'Tasación de la propiedad',
-                        fuente: mortgageData ? 'response.json' : 'rango por defecto',
-                        rango: '$60,000 - $150,000'
-                    },
-                    estudioTitulos: {
-                        valor: estudioTitulos,
-                        descripcion: 'Estudio de Títulos',
-                        fuente: mortgageData ? 'response.json' : 'rango por defecto',
-                        rango: '$100,000 - $250,000'
-                    },
-                    gestionBancaria: {
-                        valor: gestionBancaria,
-                        descripcion: 'Gestión Bancaria/Operación',
-                        rango: '$100,000 - $250,000'
-                    },
-                    comisionCorretor: {
-                        valor: comisionCorretor,
-                        descripcion: 'Comisión del Corredor (2% + IVA)',
-                        aplicaSolo: usaCorretor ? 'incluida' : 'no incluida'
-                    }
-                }
-            };
-
-            logInfo('💰 Gastos operacionales detallados calculados', {
-                total: this.formatCurrency(totalGastos),
-                usaCorretor,
-                fuenteTasacion: desglose.conceptos.tasacion.fuente,
-                fuenteEstudio: desglose.conceptos.estudioTitulos.fuente
-            });
-
-            return desglose;
-
-        } catch (error) {
-            logError('❌ Error calculando gastos operacionales detallados', error);
-            // Fallback al método anterior
-            return {
-                total: Math.round(2300000 * 0.18), // 18% de arriendo promedio
-                conceptos: {},
-                error: 'Usado cálculo simplificado por error'
-            };
-        }
     }
 
     /**
