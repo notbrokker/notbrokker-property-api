@@ -1,3 +1,12 @@
+// Al inicio de server.js, antes de cualquier import
+require('dotenv').config();
+// Agregar log para verificar que se leyó el .env
+console.log('🔧 Configuración cargada:', {
+    NODE_ENV: process.env.NODE_ENV,
+    CLAUDE_API_ENABLED: process.env.CLAUDE_API_ENABLED,
+    HAS_ANTHROPIC_KEY: !!process.env.ANTHROPIC_API_KEY,
+    PORT: process.env.PORT || 3000
+});
 // src/server.js (ACTUALIZACIÓN COMPLETA)
 const express = require('express');
 const cors = require('cors');

@@ -1,0 +1,2257 @@
+{
+  "success": true,
+  "message": "Reporte financiero generado exitosamente",
+  "data": {
+    "property": {
+      "titulo": "Casa En Venta Condominio, Lomas De Montemar, Concón",
+      "precio_uf": "UF 9.200",
+      "precio_clp": "$ 360.959.868",
+      "moneda": "UF",
+      "ubicacion": "Montemar, Concón, Valparaíso",
+      "dormitorios": "4 dormitorios",
+      "banos": "4 baños",
+      "superficie": "184 m² totales",
+      "descripcion": "MELEJ GESTIÓN INMOBILIARIAVende Casa en condominio de tres niveles con excelente ubicación en Lomas de MontemarPrimer piso:-Hall de entrada, living comedor con salida al patio-Cocina con mesones de granito, comedor de diario, lavadero, patio de servicio-Baño de visitas-Escritorio o dormitorioSegundo Piso:-Tres dormitorios principal en suite con balcón-Baño completoTercer Piso:-Sala de estar con Closets con 4 ventanas ve lux-Baño completoEquipamiento:-Piscina 6 x 5 m2 con jacuzzi-Panderetas revestidas con fulge-Guardapolvos y pilastras de madera Raulí -Calefacción central-Caldera-Dos estacionamientos techadosGastos comunes $ 140.000.- AproximadamenteContribuciones $200.000.- Cada cuota aproximadamente",
+      "caracteristicas": {
+        "pisos": "0",
+        "jardin": "No",
+        "quincho": "No",
+        "piscina": "Sí",
+        "estacionamientos": "2",
+        "antiguedad": "0 años",
+        "condominio_cerrado": "No disponible"
+      },
+      "caracteristicas_completas": {
+        "cantidad de pisos": "0",
+        "quincho": "No",
+        "estacionamientos": "2",
+        "jardín": "No",
+        "piscina": "Sí",
+        "antigüedad": "0 años",
+        "superficie total": "184 m²",
+        "superficie útil": "184 m²",
+        "dormitorios": "4",
+        "baños": "4",
+        "bodegas": "0",
+        "tipo de casa": "Casa",
+        "orientación": "N",
+        "gastos comunes": "140.000 UF",
+        "alarma": "No",
+        "conserjería": "No",
+        "portón automático": "No",
+        "parrilla": "No",
+        "closets": "No",
+        "terraza": "Sí",
+        "comedor": "No",
+        "walk-in clóset": "No",
+        "homeoffice": "No",
+        "living": "No",
+        "patio": "Sí",
+        "dormitorio en suite": "No",
+        "balcón": "No",
+        "mansarda": "No",
+        "cocina": "No",
+        "dormitorio y baño de servicio": "No",
+        "playroom": "No",
+        "con logia": "No",
+        "acceso a internet": "No",
+        "aire acondicionado": "No",
+        "calefacción": "No",
+        "tv por cable": "No",
+        "línea telefónica": "No",
+        "gas natural": "No",
+        "generador eléctrico": "No",
+        "con energia solar": "No",
+        "con conexión para lavarropas": "No",
+        "agua corriente": "No",
+        "cisterna": "No",
+        "caldera": "No",
+        "chimenea": "No",
+        "gimnasio": "No",
+        "jacuzzi": "Sí",
+        "estacionamiento de visitas": "No",
+        "área de cine": "No",
+        "área de juegos infantiles": "No",
+        "con área verde": "No",
+        "ascensor": "No",
+        "cancha de básquetbol": "No",
+        "con cancha de fútbol": "No",
+        "cancha de paddle": "No",
+        "cancha de tenis": "No",
+        "con cancha polideportiva": "No",
+        "salón de fiestas": "No",
+        "sauna": "No",
+        "refrigerador": "No",
+        "amoblado": "No"
+      },
+      "link": "https://casa.mercadolibre.cl/MLC-2950253622-casa-en-venta-condominio-lomas-de-montemar-concon-_JM#reco_item_pos=2&reco_backend=item_decorator&reco_backend_type=function&reco_client=home_items-decorator-legacy&reco_id=dfa5bef3-2103-49b1-a253-4845db4780f8&reco_model=&c_id=/home/navigation-recommendations-seed/element&c_uid=0c0b2f90-499e-43d2-88a9-973149258c6a&da_id=navigation&da_position=4&id_origin=/home/dynamic_access&da_sort_algorithm=ranker",
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_924144-MLC87208342513_072025-F-casa-en-venta-condominio-lomas-de-montemar-concon.webp"
+    },
+    "comparables": [
+      {
+        "titulo": "Casa En Arriendo 4d 6b 3e Piscina Lomas De Montemar",
+        "precio": "2.300.000",
+        "precio_uf": null,
+        "precio_clp": "2.300.000",
+        "precio_completo": "$ 2.300.000",
+        "moneda": "$",
+        "ubicacion": "San Cristobal 17, Montemar, Concón",
+        "dormitorios": "4 dormitorios",
+        "banos": "6 baños",
+        "superficie": "300 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2927291708-casa-en-arriendo-4d-6b-3e-piscina-lomas-de-montemar-_JM#polycard_client=search-nordic&position=1&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_732466-MLC85673787498_062025-E-casa-en-arriendo-4d-6b-3e-piscina-lomas-de-montemar.webp",
+        "posicion": 1,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:40.860Z"
+      },
+      {
+        "titulo": "Casa De Dos Pisos Y 6 Dormitorios En Bosques De Montemar",
+        "precio": "2.400.000",
+        "precio_uf": null,
+        "precio_clp": "2.400.000",
+        "precio_completo": "$ 2.400.000",
+        "moneda": "$",
+        "ubicacion": "Los Cedros, Concón, Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "4 baños",
+        "superficie": "240 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2947347512-casa-de-dos-pisos-y-6-dormitorios-en-bosques-de-montemar-_JM#polycard_client=search-nordic&position=2&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_607256-MLC86686556242_062025-E-casa-de-dos-pisos-y-6-dormitorios-en-bosques-de-montemar.webp",
+        "posicion": 2,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:40.890Z"
+      },
+      {
+        "titulo": "Estupenda Casa En Lomas",
+        "precio": "2.300.000",
+        "precio_uf": null,
+        "precio_clp": "2.300.000",
+        "precio_completo": "$ 2.300.000",
+        "moneda": "$",
+        "ubicacion": "Montemar, Concón",
+        "dormitorios": "5 dormitorios",
+        "banos": "4 baños",
+        "superficie": "298 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2919108992-estupenda-casa-en-lomas-_JM#polycard_client=search-nordic&position=3&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_804432-MLC85780171820_062025-E-estupenda-casa-en-lomas.webp",
+        "posicion": 3,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:40.919Z"
+      },
+      {
+        "titulo": "Espectacular Casa En Bosques De Montemar",
+        "precio": "2.300.000",
+        "precio_uf": null,
+        "precio_clp": "2.300.000",
+        "precio_completo": "$ 2.300.000",
+        "moneda": "$",
+        "ubicacion": "Los Cedros, Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "4 baños",
+        "superficie": "240 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-1623004235-espectacular-casa-en-bosques-de-montemar-_JM#polycard_client=search-nordic&position=4&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_840300-MLC86597239928_062025-E-espectacular-casa-en-bosques-de-montemar.webp",
+        "posicion": 4,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:40.948Z"
+      },
+      {
+        "titulo": "Gran Casa En Arriendo En Loma De Montemar",
+        "precio": "2.300.000",
+        "precio_uf": null,
+        "precio_clp": "2.300.000",
+        "precio_completo": "$ 2.300.000",
+        "moneda": "$",
+        "ubicacion": "San Juan, Concón",
+        "dormitorios": "4 dormitorios",
+        "banos": "5 baños",
+        "superficie": "310 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2971879376-gran-casa-en-arriendo-en-loma-de-montemar-_JM#polycard_client=search-nordic&position=5&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_969677-MLC87923064771_072025-E-gran-casa-en-arriendo-en-loma-de-montemar.webp",
+        "posicion": 5,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:40.975Z"
+      },
+      {
+        "titulo": "Arriendo Casa En Concon Apta Para Comercio",
+        "precio": "117",
+        "precio_uf": "117",
+        "precio_clp": null,
+        "precio_completo": "UF 117",
+        "moneda": "UF",
+        "ubicacion": "VERGARA, Los Romeros - Los Manantiales, Concón",
+        "dormitorios": "4 dormitorios",
+        "banos": "4 baños",
+        "superficie": "247 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2928218360-arriendo-casa-en-concon-apta-para-comercio-_JM#polycard_client=search-nordic&position=6&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_940987-MLC85970488594_062025-E-arriendo-casa-en-concon-apta-para-comercio.webp",
+        "posicion": 6,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.002Z"
+      },
+      {
+        "titulo": "Las Cinerarias, Concón, 7d 5b, 186/591m2",
+        "precio": "2.200.000",
+        "precio_uf": null,
+        "precio_clp": "2.200.000",
+        "precio_completo": "$ 2.200.000",
+        "moneda": "$",
+        "ubicacion": "Montemar, Concón",
+        "dormitorios": "7 dormitorios",
+        "banos": "4 baños",
+        "superficie": "186 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2966270194-las-cinerarias-concon-7d-5b-186591m2-_JM#polycard_client=search-nordic&position=7&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 7,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.045Z"
+      },
+      {
+        "titulo": "Concon",
+        "precio": "133",
+        "precio_uf": "133",
+        "precio_clp": null,
+        "precio_completo": "UF 133",
+        "moneda": "UF",
+        "ubicacion": "CONCON, Montemar, Concón",
+        "dormitorios": "4 dormitorios",
+        "banos": "4 baños",
+        "superficie": "287 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-1629487197-concon-_JM#polycard_client=search-nordic&position=8&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 8,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.087Z"
+      },
+      {
+        "titulo": "Se Arrienda Espectacular Casa En Bosques De Montemar",
+        "precio": "2.400.000",
+        "precio_uf": null,
+        "precio_clp": "2.400.000",
+        "precio_completo": "$ 2.400.000",
+        "moneda": "$",
+        "ubicacion": "Los Cedros, Concón, Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "4 baños",
+        "superficie": "240 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2954973114-se-arrienda-espectacular-casa-en-bosques-de-montemar-_JM#polycard_client=search-nordic&position=9&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 9,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.128Z"
+      },
+      {
+        "titulo": "Broker Bosques- Excelente Propiedad 6d-4b-gran Patio",
+        "precio": "2.200.000",
+        "precio_uf": null,
+        "precio_clp": "2.200.000",
+        "precio_completo": "$ 2.200.000",
+        "moneda": "$",
+        "ubicacion": "Las Cinerarias 300 - 600, Concón, Chile, Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "4 baños",
+        "superficie": "186 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2954783054-broker-bosques-excelente-propiedad-6d-4b-gran-patio-_JM#polycard_client=search-nordic&position=10&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 10,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.170Z"
+      },
+      {
+        "titulo": "Bosques De Montemar, Concón. Casa De Amplios Espacios.",
+        "precio": "2.400.000",
+        "precio_uf": null,
+        "precio_clp": "2.400.000",
+        "precio_completo": "$ 2.400.000",
+        "moneda": "$",
+        "ubicacion": "Bosques De Montemar. Concón., Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "4 baños",
+        "superficie": "240 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2947105388-bosques-de-montemar-concon-casa-de-amplios-espacios-_JM#polycard_client=search-nordic&position=11&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 11,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.212Z"
+      },
+      {
+        "titulo": "Extraordinaria Casa En Lomas De Montemar",
+        "precio": "2.300.000",
+        "precio_uf": null,
+        "precio_clp": "2.300.000",
+        "precio_completo": "$ 2.300.000",
+        "moneda": "$",
+        "ubicacion": "San Cristóbal 17, Valparaíso, Concón, Montemar, Concón",
+        "dormitorios": "4 dormitorios",
+        "banos": "4 baños",
+        "superficie": "315 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2913923010-extraordinaria-casa-en-lomas-de-montemar-_JM#polycard_client=search-nordic&position=12&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 12,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.252Z"
+      },
+      {
+        "titulo": "Bosques De Montemar 7d/4b - Terr 591 / Const 186",
+        "precio": "2.200.000",
+        "precio_uf": null,
+        "precio_clp": "2.200.000",
+        "precio_completo": "$ 2.200.000",
+        "moneda": "$",
+        "ubicacion": "Las Cinerarias 600 - 900, Concón, Montemar, Concón",
+        "dormitorios": "7 dormitorios",
+        "banos": "4 baños",
+        "superficie": "186 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2978998474-bosques-de-montemar-7d4b-terr-591-const-186-_JM#polycard_client=search-nordic&position=13&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 13,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.295Z"
+      },
+      {
+        "titulo": "Arriendo Linda Casa Cómodos Espacios Piscina Concon",
+        "precio": "2.300.000",
+        "precio_uf": null,
+        "precio_clp": "2.300.000",
+        "precio_completo": "$ 2.300.000",
+        "moneda": "$",
+        "ubicacion": "Los Cedros  1700, Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "6 baños",
+        "superficie": "240 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2950296802-arriendo-linda-casa-comodos-espacios-piscina-concon-_JM#polycard_client=search-nordic&position=14&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 14,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.340Z"
+      },
+      {
+        "titulo": "Arriendo Gran Casa En Bosques De Monteamar (105581)",
+        "precio": "2.400.000",
+        "precio_uf": null,
+        "precio_clp": "2.400.000",
+        "precio_completo": "$ 2.400.000",
+        "moneda": "$",
+        "ubicacion": "Avenida Bosques De Montemar, Concón, Chile, Montemar, Concón",
+        "dormitorios": "6 dormitorios",
+        "banos": "4 baños",
+        "superficie": "280 m² útiles",
+        "link": "https://portalinmobiliario.com/MLC-2955921506-arriendo-gran-casa-en-bosques-de-monteamar-105581-_JM#polycard_client=search-nordic&position=16&search_layout=grid&type=item&tracking_id=caf21ae3-eef5-4769-92b6-88985643222d",
+        "imagen": "No disponible",
+        "posicion": 16,
+        "pagina": 1,
+        "metodo_extraccion": "estandar_corregido",
+        "timestamp": "2025-07-21T02:05:41.426Z"
+      }
+    ],
+    "mortgage": {
+      "escenarios": [
+        {
+          "escenario": {
+            "numero": 1,
+            "monto": 9200,
+            "plazo": 15,
+            "etiqueta": "9200 UF x 15 años"
+          },
+          "resultado": {
+            "parametrosSimulacion": {
+              "monto": "9200 UF",
+              "plazo": "15 años",
+              "tipoCredito": "Mutuo No Endosable",
+              "tipoTasa": "Fija"
+            },
+            "resumenComparativo": {
+              "totalBancos": 10,
+              "valorUF": "No disponible",
+              "mejorOferta": {
+                "banco": "Coopeuch",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.783.707",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,20%",
+                "cae": "4,84 %",
+                "modalId": "#myModal1",
+                "posicion": 1,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.766)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 68,61",
+                    "dividendoPesos": "$2.691.898",
+                    "dividendoConSegurosUF": "UF 71,5",
+                    "dividendoConSegurosPesos": "$2.805.286"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 71,5",
+                      "valorPesos": "$2.805.286"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 71,5",
+                      "valorPesos": "$2.805.286"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 71,5",
+                      "valorPesos": "$2.805.286"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Coopeuch",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              }
+            },
+            "bancos": [
+              {
+                "banco": "Coopeuch",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.783.707",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,20%",
+                "cae": "4,84 %",
+                "modalId": "#myModal1",
+                "posicion": 1,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.766)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 68,61",
+                    "dividendoPesos": "$2.691.898",
+                    "dividendoConSegurosUF": "UF 71,5",
+                    "dividendoConSegurosPesos": "$2.805.286"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 71,5",
+                      "valorPesos": "$2.805.286"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 71,5",
+                      "valorPesos": "$2.805.286"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 71,5",
+                      "valorPesos": "$2.805.286"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Coopeuch",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Bice",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.823.334",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,80%",
+                "cae": "4,97 %",
+                "modalId": "#myModal2",
+                "posicion": 2,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 6,20 (equivale a $243.256)",
+                    "Tasación": "UF 3,50 \n(equivale a $137.322)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 71,31",
+                    "dividendoPesos": "$2.797.831",
+                    "dividendoConSegurosUF": "UF 73,87",
+                    "dividendoConSegurosPesos": "$2.898.272"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 73,87",
+                      "valorPesos": "$2.898.272"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 73,87",
+                      "valorPesos": "$2.898.272"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 73,87",
+                      "valorPesos": "$2.898.272"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Bice",
+                    "fecha": "27/06/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco del Estado de Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.833.927",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,75%",
+                "cae": "5,02 %",
+                "modalId": "#myModal3",
+                "posicion": 3,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 2,92 (equivale a $114.566)",
+                    "Tasación": "UF 3,15 \n(equivale a $123.590)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 71,08",
+                    "dividendoPesos": "$2.788.807",
+                    "dividendoConSegurosUF": "UF 74,8",
+                    "dividendoConSegurosPesos": "$2.934.761"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 74,8",
+                      "valorPesos": "$2.934.761"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 74,8",
+                      "valorPesos": "$2.934.761"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 74,8",
+                      "valorPesos": "$2.934.761"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco del Estado de Chile",
+                    "fecha": "14/04/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Internacional",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.839.028",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,71%",
+                "cae": "5,07 %",
+                "modalId": "#myModal4",
+                "posicion": 4,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 8,50 (equivale a $333.496)",
+                    "Tasación": "UF 2,50 \n(equivale a $98.087)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 70,90",
+                    "dividendoPesos": "$2.781.745",
+                    "dividendoConSegurosUF": "UF 73,59",
+                    "dividendoConSegurosPesos": "$2.887.287"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 73,59",
+                      "valorPesos": "$2.887.287"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 73,59",
+                      "valorPesos": "$2.887.287"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 73,59",
+                      "valorPesos": "$2.887.287"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Internacional",
+                    "fecha": "17/06/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Falabella",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.860.607",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,70%",
+                "cae": "5,22 %",
+                "modalId": "#myModal5",
+                "posicion": 5,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 70,86",
+                    "dividendoPesos": "$2.780.176",
+                    "dividendoConSegurosUF": "UF 74,22",
+                    "dividendoConSegurosPesos": "$2.912.005"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 74,22",
+                      "valorPesos": "$2.912.005"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 74,22",
+                      "valorPesos": "$2.912.005"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 74,22",
+                      "valorPesos": "$2.912.005"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Falabella",
+                    "fecha": "30/12/2024"
+                  }
+                }
+              },
+              {
+                "banco": "Itaú Corpbanca",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.937.900",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,85%",
+                "cae": "5,58 %",
+                "modalId": "#myModal6",
+                "posicion": 6,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,28 (equivale a $167.925)",
+                    "Tasación": "UF 2,50 \n(equivale a $98.087)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 71,54",
+                    "dividendoPesos": "$2.806.855",
+                    "dividendoConSegurosUF": "UF 74,88",
+                    "dividendoConSegurosPesos": "$2.937.900"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 74,88",
+                      "valorPesos": "$2.937.900"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 74,88",
+                      "valorPesos": "$2.937.900"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 74,88",
+                      "valorPesos": "$2.937.900"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Itaú Corpbanca",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco de Crédito e Inversiones",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.991.651",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,60%",
+                "cae": "5,92 %",
+                "modalId": "#myModal7",
+                "posicion": 7,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 3,50 (equivale a $137.322)",
+                    "Tasación": "UF 2,30 \n(equivale a $90.240)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 74,98",
+                    "dividendoPesos": "$2.941.823",
+                    "dividendoConSegurosUF": "UF 78,33",
+                    "dividendoConSegurosPesos": "$3.073.260"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 78,33",
+                      "valorPesos": "$3.073.260"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 78,33",
+                      "valorPesos": "$3.073.260"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 78,33",
+                      "valorPesos": "$3.073.260"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco de Crédito e Inversiones",
+                    "fecha": "09/04/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco de Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.996.752",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,59%",
+                "cae": "5,95 %",
+                "modalId": "#myModal8",
+                "posicion": 8,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,50 (equivale a $176.556)",
+                    "Tasación": "UF 2,90 \n(equivale a $113.781)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 74,94",
+                    "dividendoPesos": "$2.940.254",
+                    "dividendoConSegurosUF": "UF 77,81",
+                    "dividendoConSegurosPesos": "$3.052.857"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 77,81",
+                      "valorPesos": "$3.052.857"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 77,81",
+                      "valorPesos": "$3.052.857"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 77,81",
+                      "valorPesos": "$3.052.857"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco de Chile",
+                    "fecha": "10/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Scotiabank Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$3.099.939",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,66%",
+                "cae": "6,46 %",
+                "modalId": "#myModal9",
+                "posicion": 9,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 5,60 (equivale a $219.715)",
+                    "Tasación": "UF 2,25 \n(equivale a $88.278)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 75,26",
+                    "dividendoPesos": "$2.952.809",
+                    "dividendoConSegurosUF": "UF 79,01",
+                    "dividendoConSegurosPesos": "$3.099.939"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 79,01",
+                      "valorPesos": "$3.099.939"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 79,01",
+                      "valorPesos": "$3.099.939"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 79,01",
+                      "valorPesos": "$3.099.939"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Scotiabank Chile",
+                    "fecha": "10/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Santander-Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$3.211.758",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "6,44%",
+                "cae": "7,06 %",
+                "modalId": "#myModal10",
+                "posicion": 10,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 3,50 (equivale a $137.322)",
+                    "Tasación": "UF 2,88 \n(equivale a $112.996)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 78,92",
+                    "dividendoPesos": "$3.096.408",
+                    "dividendoConSegurosUF": "UF 81,86",
+                    "dividendoConSegurosPesos": "$3.211.758"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 81,86",
+                      "valorPesos": "$3.211.758"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 81,86",
+                      "valorPesos": "$3.211.758"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 81,86",
+                      "valorPesos": "$3.211.758"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Santander-Chile",
+                    "fecha": "15/07/2025"
+                  }
+                }
+              }
+            ],
+            "timestamp": "2025-07-21T02:05:33.964Z",
+            "analisis": {
+              "estadisticas": {
+                "totalBancos": 10,
+                "bancosConDividendo": 10,
+                "bancosConTasa": 10,
+                "rangoDividendos": "2,783 UF - 3,211 UF (diferencia: 0,428 UF)",
+                "rangoTasas": "4.2% - 6.44% (diferencia: 2.24%)"
+              },
+              "mejoresOfertas": {
+                "menorDividendo": {
+                  "banco": "Coopeuch",
+                  "dividendo": "$2.783.707",
+                  "valor": 2.783
+                },
+                "menorTasa": {
+                  "banco": "Coopeuch",
+                  "tasa": "4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                  "valor": 4.2
+                }
+              },
+              "potencialAhorro": {
+                "mensual": "0,428 UF (~$14.980)",
+                "total30Anos": "154,08 UF (~$5.392.800)",
+                "explicacion": "Comparando Coopeuch (mejor) vs Banco Santander-Chile (peor)"
+              },
+              "recomendaciones": [
+                "💰 Menor dividendo: Coopeuch con $2.783.707",
+                "📈 Menor tasa: Coopeuch con 4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                "⭐ RECOMENDACIÓN: Coopeuch ofrece tanto el menor dividendo como la menor tasa",
+                "📊 Datos analizados: 10 bancos con dividendo, 10 bancos con tasa",
+                "📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco",
+                "⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir"
+              ]
+            }
+          },
+          "resumen": {
+            "mejorOferta": {
+              "banco": "Coopeuch",
+              "dividendo": "$2.783.707",
+              "tasa": "4,20%"
+            },
+            "totalBancos": 10
+          }
+        },
+        {
+          "escenario": {
+            "numero": 2,
+            "monto": 9200,
+            "plazo": 20,
+            "etiqueta": "9200 UF x 20 años"
+          },
+          "resultado": {
+            "parametrosSimulacion": {
+              "monto": "9200 UF",
+              "plazo": "20 años",
+              "tipoCredito": "Mutuo No Endosable",
+              "tipoTasa": "Fija"
+            },
+            "resumenComparativo": {
+              "totalBancos": 10,
+              "valorUF": "No disponible",
+              "mejorOferta": {
+                "banco": "Coopeuch",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.302.296",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,20%",
+                "cae": "4,81 %",
+                "modalId": "#myModal1",
+                "posicion": 1,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 56,34",
+                    "dividendoPesos": "$2.210.487",
+                    "dividendoConSegurosUF": "UF 59,23",
+                    "dividendoConSegurosPesos": "$2.323.875"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 59,23",
+                      "valorPesos": "$2.323.875"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 59,23",
+                      "valorPesos": "$2.323.875"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 59,23",
+                      "valorPesos": "$2.323.875"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Coopeuch",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              }
+            },
+            "bancos": [
+              {
+                "banco": "Coopeuch",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.302.296",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,20%",
+                "cae": "4,81 %",
+                "modalId": "#myModal1",
+                "posicion": 1,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 56,34",
+                    "dividendoPesos": "$2.210.487",
+                    "dividendoConSegurosUF": "UF 59,23",
+                    "dividendoConSegurosPesos": "$2.323.875"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 59,23",
+                      "valorPesos": "$2.323.875"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 59,23",
+                      "valorPesos": "$2.323.875"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 59,23",
+                      "valorPesos": "$2.323.875"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Coopeuch",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco del Estado de Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.348.201",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,70%",
+                "cae": "4,96 %",
+                "modalId": "#myModal2",
+                "posicion": 2,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 2,92 (equivale a $114.566)",
+                    "Tasación": "UF 3,15 \n(equivale a $123.590)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 58,71",
+                    "dividendoPesos": "$2.303.473",
+                    "dividendoConSegurosUF": "UF 62,42",
+                    "dividendoConSegurosPesos": "$2.449.034"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 62,42",
+                      "valorPesos": "$2.449.034"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 62,42",
+                      "valorPesos": "$2.449.034"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 62,42",
+                      "valorPesos": "$2.449.034"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco del Estado de Chile",
+                    "fecha": "14/04/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Bice",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.366.249",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,90%",
+                "cae": "5,06 %",
+                "modalId": "#myModal3",
+                "posicion": 3,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 6,20 (equivale a $243.256)",
+                    "Tasación": "UF 3,50 \n(equivale a $137.322)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 59,67",
+                    "dividendoPesos": "$2.341.139",
+                    "dividendoConSegurosUF": "UF 62,22",
+                    "dividendoConSegurosPesos": "$2.441.187"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 62,22",
+                      "valorPesos": "$2.441.187"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 62,22",
+                      "valorPesos": "$2.441.187"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 62,22",
+                      "valorPesos": "$2.441.187"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Bice",
+                    "fecha": "27/06/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Falabella",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.380.373",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,68%",
+                "cae": "5,17 %",
+                "modalId": "#myModal4",
+                "posicion": 4,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 58,61",
+                    "dividendoPesos": "$2.299.550",
+                    "dividendoConSegurosUF": "UF 61,97",
+                    "dividendoConSegurosPesos": "$2.431.379"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 61,97",
+                      "valorPesos": "$2.431.379"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 61,97",
+                      "valorPesos": "$2.431.379"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 61,97",
+                      "valorPesos": "$2.431.379"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Falabella",
+                    "fecha": "30/12/2024"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Internacional",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.428.632",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,06%",
+                "cae": "5,39 %",
+                "modalId": "#myModal5",
+                "posicion": 5,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 8,50 (equivale a $333.496)",
+                    "Tasación": "UF 2,50 \n(equivale a $98.087)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 60,44",
+                    "dividendoPesos": "$2.371.349",
+                    "dividendoConSegurosUF": "UF 63,13",
+                    "dividendoConSegurosPesos": "$2.476.891"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 63,13",
+                      "valorPesos": "$2.476.891"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 63,13",
+                      "valorPesos": "$2.476.891"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 63,13",
+                      "valorPesos": "$2.476.891"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Internacional",
+                    "fecha": "17/06/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Itaú Corpbanca",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.472.183",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,90%",
+                "cae": "5,58 %",
+                "modalId": "#myModal6",
+                "posicion": 6,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,28 (equivale a $167.925)",
+                    "Tasación": "UF 2,50 \n(equivale a $98.087)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 59,67",
+                    "dividendoPesos": "$2.341.139",
+                    "dividendoConSegurosUF": "UF 63,01",
+                    "dividendoConSegurosPesos": "$2.472.183"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 63,01",
+                      "valorPesos": "$2.472.183"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 63,01",
+                      "valorPesos": "$2.472.183"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 63,01",
+                      "valorPesos": "$2.472.183"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Itaú Corpbanca",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco de Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.510.633",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,49%",
+                "cae": "5,83 %",
+                "modalId": "#myModal7",
+                "posicion": 7,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,50 (equivale a $176.556)",
+                    "Tasación": "UF 2,90 \n(equivale a $113.781)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 62,54",
+                    "dividendoPesos": "$2.453.743",
+                    "dividendoConSegurosUF": "UF 65,42",
+                    "dividendoConSegurosPesos": "$2.566.739"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 65,42",
+                      "valorPesos": "$2.566.739"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 65,42",
+                      "valorPesos": "$2.566.739"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 65,42",
+                      "valorPesos": "$2.566.739"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco de Chile",
+                    "fecha": "10/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco de Crédito e Inversiones",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.511.418",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,53%",
+                "cae": "5,83 %",
+                "modalId": "#myModal8",
+                "posicion": 8,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 3,50 (equivale a $137.322)",
+                    "Tasación": "UF 2,30 \n(equivale a $90.240)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 62,74",
+                    "dividendoPesos": "$2.461.589",
+                    "dividendoConSegurosUF": "UF 66,08",
+                    "dividendoConSegurosPesos": "$2.592.634"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 66,08",
+                      "valorPesos": "$2.592.634"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 66,08",
+                      "valorPesos": "$2.592.634"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 66,08",
+                      "valorPesos": "$2.592.634"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco de Crédito e Inversiones",
+                    "fecha": "09/04/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Scotiabank Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.627.945",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,63%",
+                "cae": "6,38 %",
+                "modalId": "#myModal9",
+                "posicion": 9,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 5,60 (equivale a $219.715)",
+                    "Tasación": "UF 2,25 \n(equivale a $88.278)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 63,23",
+                    "dividendoPesos": "$2.480.815",
+                    "dividendoConSegurosUF": "UF 66,98",
+                    "dividendoConSegurosPesos": "$2.627.945"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 66,98",
+                      "valorPesos": "$2.627.945"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 66,98",
+                      "valorPesos": "$2.627.945"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 66,98",
+                      "valorPesos": "$2.627.945"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Scotiabank Chile",
+                    "fecha": "10/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Santander-Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.757.420",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "6,45%",
+                "cae": "7,03 %",
+                "modalId": "#myModal10",
+                "posicion": 10,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 3,50 (equivale a $137.322)",
+                    "Tasación": "UF 2,88 \n(equivale a $112.996)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 67,34",
+                    "dividendoPesos": "$2.642.069",
+                    "dividendoConSegurosUF": "UF 70,28",
+                    "dividendoConSegurosPesos": "$2.757.420"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 70,28",
+                      "valorPesos": "$2.757.420"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 70,28",
+                      "valorPesos": "$2.757.420"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 70,28",
+                      "valorPesos": "$2.757.420"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Santander-Chile",
+                    "fecha": "15/07/2025"
+                  }
+                }
+              }
+            ],
+            "timestamp": "2025-07-21T02:06:23.364Z",
+            "analisis": {
+              "estadisticas": {
+                "totalBancos": 10,
+                "bancosConDividendo": 10,
+                "bancosConTasa": 10,
+                "rangoDividendos": "2,302 UF - 2,757 UF (diferencia: 0,455 UF)",
+                "rangoTasas": "4.2% - 6.45% (diferencia: 2.25%)"
+              },
+              "mejoresOfertas": {
+                "menorDividendo": {
+                  "banco": "Coopeuch",
+                  "dividendo": "$2.302.296",
+                  "valor": 2.302
+                },
+                "menorTasa": {
+                  "banco": "Coopeuch",
+                  "tasa": "4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                  "valor": 4.2
+                }
+              },
+              "potencialAhorro": {
+                "mensual": "0,455 UF (~$15.925)",
+                "total30Anos": "163,8 UF (~$5.733.000)",
+                "explicacion": "Comparando Coopeuch (mejor) vs Banco Santander-Chile (peor)"
+              },
+              "recomendaciones": [
+                "💰 Menor dividendo: Coopeuch con $2.302.296",
+                "📈 Menor tasa: Coopeuch con 4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                "⭐ RECOMENDACIÓN: Coopeuch ofrece tanto el menor dividendo como la menor tasa",
+                "📊 Datos analizados: 10 bancos con dividendo, 10 bancos con tasa",
+                "📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco",
+                "⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir"
+              ]
+            }
+          },
+          "resumen": {
+            "mejorOferta": {
+              "banco": "Coopeuch",
+              "dividendo": "$2.302.296",
+              "tasa": "4,20%"
+            },
+            "totalBancos": 10
+          }
+        },
+        {
+          "escenario": {
+            "numero": 3,
+            "monto": 9200,
+            "plazo": 30,
+            "etiqueta": "9200 UF x 30 años"
+          },
+          "resultado": {
+            "parametrosSimulacion": {
+              "monto": "9200 UF",
+              "plazo": "30 años",
+              "tipoCredito": "Mutuo No Endosable",
+              "tipoTasa": "Fija"
+            },
+            "resumenComparativo": {
+              "totalBancos": 6,
+              "valorUF": "No disponible",
+              "mejorOferta": {
+                "banco": "Coopeuch",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$1.840.111",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,20%",
+                "cae": "4,75 %",
+                "modalId": "#myModal1",
+                "posicion": 1,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 44,57",
+                    "dividendoPesos": "$1.748.694",
+                    "dividendoConSegurosUF": "UF 47,46",
+                    "dividendoConSegurosPesos": "$1.862.082"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 47,46",
+                      "valorPesos": "$1.862.082"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 47,46",
+                      "valorPesos": "$1.862.082"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 47,46",
+                      "valorPesos": "$1.862.082"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Coopeuch",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              }
+            },
+            "bancos": [
+              {
+                "banco": "Coopeuch",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$1.840.111",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,20%",
+                "cae": "4,75 %",
+                "modalId": "#myModal1",
+                "posicion": 1,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 44,57",
+                    "dividendoPesos": "$1.748.694",
+                    "dividendoConSegurosUF": "UF 47,46",
+                    "dividendoConSegurosPesos": "$1.862.082"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 47,46",
+                      "valorPesos": "$1.862.082"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 47,46",
+                      "valorPesos": "$1.862.082"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 47,46",
+                      "valorPesos": "$1.862.082"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Coopeuch",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco del Estado de Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$1.885.231",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,65%",
+                "cae": "4,88 %",
+                "modalId": "#myModal2",
+                "posicion": 2,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 2,92 (equivale a $114.566)",
+                    "Tasación": "UF 3,15 \n(equivale a $123.590)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 46,91",
+                    "dividendoPesos": "$1.840.503",
+                    "dividendoConSegurosUF": "UF 50,62",
+                    "dividendoConSegurosPesos": "$1.986.064"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 50,62",
+                      "valorPesos": "$1.986.064"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 50,62",
+                      "valorPesos": "$1.986.064"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 50,62",
+                      "valorPesos": "$1.986.064"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco del Estado de Chile",
+                    "fecha": "14/04/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Falabella",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$1.918.973",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,64%",
+                "cae": "5,08 %",
+                "modalId": "#myModal3",
+                "posicion": 3,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,17 (equivale a $163.609)",
+                    "Tasación": "UF 2,98 \n(equivale a $116.920)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 46,86",
+                    "dividendoPesos": "$1.838.541",
+                    "dividendoConSegurosUF": "UF 50,21",
+                    "dividendoConSegurosPesos": "$1.969.978"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 50,21",
+                      "valorPesos": "$1.969.978"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 50,21",
+                      "valorPesos": "$1.969.978"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 50,21",
+                      "valorPesos": "$1.969.978"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Falabella",
+                    "fecha": "30/12/2024"
+                  }
+                }
+              },
+              {
+                "banco": "Itaú Corpbanca",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.031.576",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "4,94%",
+                "cae": "5,56 %",
+                "modalId": "#myModal4",
+                "posicion": 4,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 4,28 (equivale a $167.925)",
+                    "Tasación": "UF 2,50 \n(equivale a $98.087)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 48,44",
+                    "dividendoPesos": "$1.900.532",
+                    "dividendoConSegurosUF": "UF 51,78",
+                    "dividendoConSegurosPesos": "$2.031.576"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 51,78",
+                      "valorPesos": "$2.031.576"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 51,78",
+                      "valorPesos": "$2.031.576"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 51,78",
+                      "valorPesos": "$2.031.576"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Itaú Corpbanca",
+                    "fecha": "04/07/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco de Crédito e Inversiones",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.053.940",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "5,43%",
+                "cae": "5,71 %",
+                "modalId": "#myModal5",
+                "posicion": 5,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 3,50 (equivale a $137.322)",
+                    "Tasación": "UF 2,30 \n(equivale a $90.240)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 51,08",
+                    "dividendoPesos": "$2.004.112",
+                    "dividendoConSegurosUF": "UF 54,43",
+                    "dividendoConSegurosPesos": "$2.135.549"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 54,43",
+                      "valorPesos": "$2.135.549"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 54,43",
+                      "valorPesos": "$2.135.549"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 54,43",
+                      "valorPesos": "$2.135.549"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco de Crédito e Inversiones",
+                    "fecha": "09/04/2025"
+                  }
+                }
+              },
+              {
+                "banco": "Banco Santander-Chile",
+                "tipoCredito": "Mutuo no Endosable",
+                "dividendoMensual": "$2.343.885",
+                "monedaCredito": "UF",
+                "tipoTasa": "Fija",
+                "tasaCredito": "6,46%",
+                "cae": "6,98 %",
+                "modalId": "#myModal6",
+                "posicion": 6,
+                "detalle": {
+                  "valoresUnicaVez": {
+                    "Estudio de título": "UF 3,50 (equivale a $137.322)",
+                    "Tasación": "UF 2,88 \n(equivale a $112.996)"
+                  },
+                  "valoresMensuales": {
+                    "dividendoUF": "UF 56,80",
+                    "dividendoPesos": "$2.228.535",
+                    "dividendoConSegurosUF": "UF 59,74",
+                    "dividendoConSegurosPesos": "$2.343.885"
+                  },
+                  "seguros": {
+                    "desgravamen": {
+                      "valorUF": "UF 59,74",
+                      "valorPesos": "$2.343.885"
+                    },
+                    "incendio": {
+                      "valorUF": "UF 59,74",
+                      "valorPesos": "$2.343.885"
+                    },
+                    "incendio más sismo": {
+                      "valorUF": "UF 59,74",
+                      "valorPesos": "$2.343.885"
+                    }
+                  },
+                  "actualizacion": {
+                    "entidad": "Banco Santander-Chile",
+                    "fecha": "15/07/2025"
+                  }
+                }
+              }
+            ],
+            "timestamp": "2025-07-21T02:07:00.287Z",
+            "analisis": {
+              "estadisticas": {
+                "totalBancos": 6,
+                "bancosConDividendo": 6,
+                "bancosConTasa": 6,
+                "rangoDividendos": "1,84 UF - 2,343 UF (diferencia: 0,503 UF)",
+                "rangoTasas": "4.2% - 6.46% (diferencia: 2.26%)"
+              },
+              "mejoresOfertas": {
+                "menorDividendo": {
+                  "banco": "Coopeuch",
+                  "dividendo": "$1.840.111",
+                  "valor": 1.84
+                },
+                "menorTasa": {
+                  "banco": "Coopeuch",
+                  "tasa": "4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                  "valor": 4.2
+                }
+              },
+              "potencialAhorro": {
+                "mensual": "0,503 UF (~$17.605)",
+                "total30Anos": "181,08 UF (~$6.337.800)",
+                "explicacion": "Comparando Coopeuch (mejor) vs Banco Santander-Chile (peor)"
+              },
+              "recomendaciones": [
+                "💰 Menor dividendo: Coopeuch con $1.840.111",
+                "📈 Menor tasa: Coopeuch con 4,20\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t%",
+                "⭐ RECOMENDACIÓN: Coopeuch ofrece tanto el menor dividendo como la menor tasa",
+                "📊 Datos analizados: 6 bancos con dividendo, 6 bancos con tasa",
+                "📋 Considera también: costos notariales, seguros y condiciones especiales de cada banco",
+                "⏰ Verifica las tasas actualizadas directamente con los bancos antes de decidir"
+              ]
+            }
+          },
+          "resumen": {
+            "mejorOferta": {
+              "banco": "Coopeuch",
+              "dividendo": "$1.840.111",
+              "tasa": "4,20%"
+            },
+            "totalBancos": 6
+          }
+        }
+      ],
+      "resumen": {
+        "totalEscenarios": 3,
+        "escenariosProcesados": 3,
+        "escenariosConError": 0
+      },
+      "comparacionGeneral": {
+        "comparacionDetallada": [
+          {
+            "escenario": "9200 UF x 15 años",
+            "monto": 9200,
+            "plazo": 15,
+            "mejorDividendo": "$2.783.707",
+            "mejorBanco": "Coopeuch",
+            "totalBancos": 10,
+            "dividendoNumerico": 2.783,
+            "costoTotalAproximado": 500.94
+          },
+          {
+            "escenario": "9200 UF x 20 años",
+            "monto": 9200,
+            "plazo": 20,
+            "mejorDividendo": "$2.302.296",
+            "mejorBanco": "Coopeuch",
+            "totalBancos": 10,
+            "dividendoNumerico": 2.302,
+            "costoTotalAproximado": 552.48
+          },
+          {
+            "escenario": "9200 UF x 30 años",
+            "monto": 9200,
+            "plazo": 30,
+            "mejorDividendo": "$1.840.111",
+            "mejorBanco": "Coopeuch",
+            "totalBancos": 6,
+            "dividendoNumerico": 1.84,
+            "costoTotalAproximado": 662.4000000000001
+          }
+        ],
+        "analisisOptimizacion": {
+          "mejorEscenario": {
+            "escenario": "9200 UF x 30 años",
+            "dividendo": "$1.840.111",
+            "banco": "Coopeuch",
+            "ventaja": "Ahorra 0,943 UF mensual vs peor opción"
+          },
+          "ahorroEntreEscenarios": {
+            "mensual": "0,943 UF",
+            "total": "339,48 UF",
+            "escenarioOptimo": "9200 UF x 30 años",
+            "escenarioCaro": "9200 UF x 15 años"
+          },
+          "analisisPorPlazo": {
+            "tendencia": "Dividendos menores con plazos más largos",
+            "detalles": [
+              {
+                "plazo": 15,
+                "dividendoPromedio": "2.78",
+                "escenarios": 1
+              },
+              {
+                "plazo": 20,
+                "dividendoPromedio": "2.30",
+                "escenarios": 1
+              },
+              {
+                "plazo": 30,
+                "dividendoPromedio": "1.84",
+                "escenarios": 1
+              }
+            ]
+          },
+          "analisisPorMonto": {
+            "conclusion": "Se necesitan al menos 2 montos diferentes para analizar impacto"
+          }
+        },
+        "recomendacion": "🏆 MEJOR OPCIÓN: 9200 UF x 30 años con Coopeuch\n   └ Dividendo: $1.840.111\n💰 AHORRO POTENCIAL: 0,943 UF mensual (339,48 UF total)\n   └ Entre 9200 UF x 30 años vs 9200 UF x 15 años\n📅 IMPACTO PLAZO: Dividendos menores con plazos más largos\n\n📋 PRÓXIMOS PASOS RECOMENDADOS:\n• Contacta directamente al banco recomendado para confirmar condiciones\n• Solicita una simulación oficial con tus datos específicos\n• Considera costos adicionales (notariales, tasación, seguros)\n• Evalúa tu capacidad de pago con holgura de al menos 20%",
+        "metadatos": {
+          "escenariosAnalizados": 3,
+          "escenariosConDatos": 3,
+          "timestamp": "2025-07-21T02:07:00.334Z"
+        }
+      }
+    },
+    "analysis": {
+      "indicadoresFinancieros": {
+        "flujoCajaMensual": {
+          "valor": -459612,
+          "composicion": {
+            "ingresoArriendo": 2300000,
+            "gastosOperacionalesMensuales": 476905,
+            "dividendoHipotecario": 1840111
+          }
+        },
+        "yieldBruto": 7.66,
+        "yieldNeto": 6.08,
+        "capRate": 6.08,
+        "puntoEquilibrio": 2317016,
+        "plusvaliaEsperada": 4.2
+      },
+      "analisisUbicacion": {
+        "educacion": [
+          {
+            "nombre": "Colegio Inmaculada Concepción",
+            "distancia": "2.5 km",
+            "tipo": "Educación básica y media",
+            "descripcion": "Colegio particular reconocido en Concón"
+          },
+          {
+            "nombre": "Universidad Federico Santa María - Sede Viña del Mar",
+            "distancia": "8.5 km",
+            "tipo": "Educación superior",
+            "descripcion": "Campus universitario de ingeniería y tecnología"
+          }
+        ],
+        "areasVerdes": [
+          {
+            "nombre": "Playa La Boca",
+            "distancia": "1.2 km",
+            "tipo": "Playa",
+            "descripcion": "Playa familiar con dunas y actividades náuticas"
+          },
+          {
+            "nombre": "Parque Ecológico La Isla",
+            "distancia": "3.8 km",
+            "tipo": "Parque natural",
+            "descripcion": "Humedal urbano con senderos y observación de aves"
+          }
+        ],
+        "comercio": [
+          {
+            "nombre": "Mall Plaza Viña del Mar",
+            "distancia": "9.2 km",
+            "tipo": "Centro comercial",
+            "descripcion": "Centro comercial principal con tiendas, supermercado y servicios"
+          },
+          {
+            "nombre": "Supermercado Líder Concón",
+            "distancia": "3.1 km",
+            "tipo": "Supermercado",
+            "descripcion": "Supermercado de cadena con productos básicos y farmacia"
+          }
+        ],
+        "salud": [
+          {
+            "nombre": "CESFAM Concón",
+            "distancia": "3.5 km",
+            "tipo": "Atención primaria",
+            "descripcion": "Centro de salud familiar municipal con urgencia básica"
+          },
+          {
+            "nombre": "Hospital Gustavo Fricke",
+            "distancia": "12.8 km",
+            "tipo": "Hospital",
+            "descripcion": "Hospital regional de alta complejidad en Viña del Mar"
+          }
+        ]
+      },
+      "analisisSeguridad": {
+        "indiceSeguridad": 8.5,
+        "detalleSeguridad": {
+          "factores": [
+            "Condominio cerrado",
+            "Vigilancia privada",
+            "Zona residencial consolidada",
+            "Baja densidad poblacional",
+            "Accesos controlados"
+          ],
+          "clasificacion": "Muy Seguro"
+        },
+        "serviciosEmergencia": {
+          "tiempoRespuesta": "< 8 min",
+          "detalles": [
+            "Bomberos Concón",
+            "Carabineros Sector Montemar",
+            "SAMU Región Valparaíso",
+            "Guardacostas Quintero"
+          ]
+        },
+        "riesgosNaturales": {
+          "nivel": "Moderado",
+          "detalles": [
+            "Tsunamis por proximidad costera",
+            "Actividad sísmica regional",
+            "Vientos costeros fuertes",
+            "Erosión por cercanía al mar"
+          ]
+        }
+      },
+      "resumenEjecutivo": {
+        "viabilidadInversion": {
+          "decision": "NO_RECOMENDADA",
+          "justificacion": "La propiedad presenta flujo de caja negativo de $459,612 mensuales, requiriendo aporte constante del inversionista. El alto precio de $360.959.868 no se sustenta con los ingresos por arriendo del mercado local. A pesar del yield bruto aceptable de 7.66%, los costos operacionales y el dividendo hipotecario superan significativamente los ingresos.",
+          "nivelRiesgo": "Alto",
+          "puntosACavor": [
+            "Ubicación premium en Montemar",
+            "Propiedad nueva con piscina",
+            "Zona de alta plusvalía",
+            "Mercado de arriendos estable"
+          ]
+        },
+        "optimizacionFinanciera": {
+          "recomendacion": "Considerar mayor pie inicial para reducir dividendo o buscar propiedades con mejor relación precio-arriendo",
+          "ventajas": [
+            "Coopeuch ofrece la mejor tasa del mercado (4.20%)",
+            "Dividendo competitivo para el monto",
+            "Múltiples opciones bancarias disponibles"
+          ],
+          "bancoRecomendado": "Coopeuch",
+          "plazoOptimo": 30
+        },
+        "potencialCrecimiento": {
+          "proyeccion": "Plusvalía esperada del 4.2% anual por ubicación premium y desarrollo inmobiliario de la zona costera",
+          "factores": [
+            "Crecimiento turístico de Concón",
+            "Desarrollo inmobiliario costero",
+            "Conectividad con Valparaíso y Viña",
+            "Escasez de suelo disponible"
+          ],
+          "roi": "Negativo en el corto plazo, dependiente de plusvalía a largo plazo"
+        },
+        "recomendacionFinal": {
+          "accion": "EVITAR",
+          "resumen": "Inversión no viable por flujo de caja negativo significativo. El punto de equilibrio requiere arriendo de $2.317.016, muy superior al promedio de mercado de $2.300.000.",
+          "siguientesPasos": [
+            "Buscar propiedades con mejor relación precio-arriendo",
+            "Considerar aumentar pie inicial a 40-50%",
+            "Evaluar mercado de venta a 3-5 años para capitalizar plusvalía",
+            "Analizar propiedades similares con precios menores"
+          ]
+        }
+      }
+    },
+    "metrics": {
+      "financial": {
+        "flujoCajaMensual": {
+          "valor": 275002,
+          "composicion": {
+            "arriendoEstimado": 2333333,
+            "gastosOperacionalesMensuales": 218220,
+            "dividendoHipotecario": 1840111
+          }
+        },
+        "yieldBruto": 7.754083633342565,
+        "yieldNeto": 7.028899473829964,
+        "capRate": 7.028899473829964,
+        "puntoEquilibrio": 2058331,
+        "plusvaliaEsperada": 4.2,
+        "desgloseGastos": {
+          "gastosUnicos": {
+            "total": 3850257.15,
+            "conceptos": {
+              "impuestoMutuo": {
+                "valor": 2888800,
+                "descripcion": "Impuesto al Mutuo (0.8% del crédito)",
+                "aplicaSolo": "con crédito hipotecario",
+                "calculoBase": "9200 UF × 39250 × 0.008"
+              },
+              "gastosNotariales": {
+                "valor": 200000,
+                "descripcion": "Gastos Notariales",
+                "rango": "$150,000 - $250,000"
+              },
+              "conservadorBienes": {
+                "valor": 722200,
+                "descripcion": "Conservador de Bienes Raíces",
+                "criterio": "según valor propiedad",
+                "calculoBase": "361100000 × 0.002"
+              },
+              "tasacion": {
+                "valor": 2.98,
+                "descripcion": "Tasación de la propiedad",
+                "fuente": "mortgage_data_real",
+                "rango": "$60,000 - $150,000"
+              },
+              "estudioTitulos": {
+                "valor": 4.17,
+                "descripcion": "Estudio de Títulos",
+                "fuente": "mortgage_data_real",
+                "rango": "$100,000 - $250,000"
+              },
+              "gestionBancaria": {
+                "valor": 39250,
+                "descripcion": "Gestión Bancaria/Operación",
+                "rango": "$100,000 - $250,000"
+              },
+              "comisionCorretor": {
+                "valor": 0,
+                "descripcion": "Comisión del Corredor (2% + IVA)",
+                "aplicaSolo": "no incluida",
+                "tipoGasto": "ÚNICO"
+              }
+            },
+            "metadata": {
+              "calculationMethod": "validated",
+              "precioUFUtilizado": 39250,
+              "timestamp": "2025-07-21T02:07:27.970Z"
+            }
+          },
+          "gastosOperacionalesMensuales": {
+            "total": 218220,
+            "conceptos": {
+              "contribuciones": {
+                "valor": 34545,
+                "descripcion": "Contribuciones territoriales (prorrateadas)",
+                "calculo": "1.148% anual del avalúo / 12",
+                "tipoGasto": "MENSUAL",
+                "frecuencia": "Trimestral (prorrateado)"
+              },
+              "mantenciones": {
+                "valor": 13083,
+                "descripcion": "Mantenciones y reparaciones menores",
+                "calculo": "UF 4 anuales / 12 meses",
+                "tipoGasto": "MENSUAL",
+                "frecuencia": "Según necesidad"
+              },
+              "comisionAdministracion": {
+                "valor": 0,
+                "descripcion": "Comisión administración inmobiliaria",
+                "calculo": "No aplica",
+                "tipoGasto": "MENSUAL",
+                "aplicaSolo": "Autogestión"
+              },
+              "vacancia": {
+                "valor": 116667,
+                "descripcion": "Provisión por períodos de vacancia",
+                "calculo": "5% del arriendo (provisión)",
+                "tipoGasto": "MENSUAL",
+                "frecuencia": "Provisión continua"
+              },
+              "seguroPropiedad": {
+                "valor": 3925,
+                "descripcion": "Seguro contra incendio y sismo",
+                "calculo": "UF 1.2 anuales / 12 meses",
+                "tipoGasto": "MENSUAL",
+                "frecuencia": "Anual (prorrateado)"
+              },
+              "gastosComunes": {
+                "valor": 0,
+                "descripcion": "Gastos comunes del edificio",
+                "calculo": "No aplica",
+                "tipoGasto": "MENSUAL",
+                "aplicaSolo": "Arrendatario paga"
+              },
+              "fondoReparaciones": {
+                "valor": 50000,
+                "descripcion": "Fondo para reparaciones e imprevistos",
+                "calculo": "Provisión fija $50,000",
+                "tipoGasto": "MENSUAL",
+                "frecuencia": "Provisión continua"
+              }
+            }
+          }
+        }
+      },
+      "gastos": {
+        "unicos": {
+          "total": 3561377.15,
+          "conceptos": {
+            "impuestoMutuo": {
+              "valor": 2599920,
+              "descripcion": "Impuesto al Mutuo (0.8% del crédito)",
+              "aplicaSolo": "con crédito hipotecario",
+              "calculoBase": "8280 UF × 39250 × 0.008"
+            },
+            "gastosNotariales": {
+              "valor": 200000,
+              "descripcion": "Gastos Notariales",
+              "rango": "$150,000 - $250,000"
+            },
+            "conservadorBienes": {
+              "valor": 722200,
+              "descripcion": "Conservador de Bienes Raíces",
+              "criterio": "según valor propiedad",
+              "calculoBase": "361100000 × 0.002"
+            },
+            "tasacion": {
+              "valor": 2.98,
+              "descripcion": "Tasación de la propiedad",
+              "fuente": "mortgage_data_real",
+              "rango": "$60,000 - $150,000"
+            },
+            "estudioTitulos": {
+              "valor": 4.17,
+              "descripcion": "Estudio de Títulos",
+              "fuente": "mortgage_data_real",
+              "rango": "$100,000 - $250,000"
+            },
+            "gestionBancaria": {
+              "valor": 39250,
+              "descripcion": "Gestión Bancaria/Operación",
+              "rango": "$100,000 - $250,000"
+            },
+            "comisionCorretor": {
+              "valor": 0,
+              "descripcion": "Comisión del Corredor (2% + IVA)",
+              "aplicaSolo": "no incluida",
+              "tipoGasto": "ÚNICO"
+            }
+          },
+          "metadata": {
+            "calculationMethod": "validated",
+            "precioUFUtilizado": 39250,
+            "timestamp": "2025-07-21T02:07:27.974Z"
+          }
+        },
+        "operacionalesMensuales": {
+          "total": 218220,
+          "conceptos": {
+            "contribuciones": {
+              "valor": 34545,
+              "descripcion": "Contribuciones territoriales (prorrateadas)",
+              "calculo": "1.148% anual del avalúo / 12",
+              "tipoGasto": "MENSUAL",
+              "frecuencia": "Trimestral (prorrateado)"
+            },
+            "mantenciones": {
+              "valor": 13083,
+              "descripcion": "Mantenciones y reparaciones menores",
+              "calculo": "UF 4 anuales / 12 meses",
+              "tipoGasto": "MENSUAL",
+              "frecuencia": "Según necesidad"
+            },
+            "comisionAdministracion": {
+              "valor": 0,
+              "descripcion": "Comisión administración inmobiliaria",
+              "calculo": "No aplica",
+              "tipoGasto": "MENSUAL",
+              "aplicaSolo": "Autogestión"
+            },
+            "vacancia": {
+              "valor": 116667,
+              "descripcion": "Provisión por períodos de vacancia",
+              "calculo": "5% del arriendo (provisión)",
+              "tipoGasto": "MENSUAL",
+              "frecuencia": "Provisión continua"
+            },
+            "seguroPropiedad": {
+              "valor": 3925,
+              "descripcion": "Seguro contra incendio y sismo",
+              "calculo": "UF 1.2 anuales / 12 meses",
+              "tipoGasto": "MENSUAL",
+              "frecuencia": "Anual (prorrateado)"
+            },
+            "gastosComunes": {
+              "valor": 0,
+              "descripcion": "Gastos comunes del edificio",
+              "calculo": "No aplica",
+              "tipoGasto": "MENSUAL",
+              "aplicaSolo": "Arrendatario paga"
+            },
+            "fondoReparaciones": {
+              "valor": 50000,
+              "descripcion": "Fondo para reparaciones e imprevistos",
+              "calculo": "Provisión fija $50,000",
+              "tipoGasto": "MENSUAL",
+              "frecuencia": "Provisión continua"
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "generatedAt": "2025-07-21T02:07:27.975Z",
+      "claudeAnalysisUsed": true,
+      "dataQuality": 100,
+      "calculationEngine": "NotBrokker Premium v4.0",
+      "fallbacksUsed": {
+        "claudeAnalysis": false,
+        "financialMetrics": false
+      },
+      "processingSteps": [
+        "✅ Property data validation",
+        "✅ Mortgage analysis",
+        "✅ Comparable properties search",
+        "✅ Claude AI analysis",
+        "✅ Financial metrics calculation",
+        "✅ Final report construction"
+      ]
+    }
+  },
+  "metadata": {
+    "generatedAt": "2025-07-21T02:07:27.976Z",
+    "claudeAnalysisUsed": true,
+    "dataQuality": 100,
+    "calculationEngine": "NotBrokker Premium v4.0",
+    "fallbacksUsed": {
+      "claudeAnalysis": false,
+      "financialMetrics": false
+    },
+    "processingSteps": [
+      "URL validation",
+      "Property data extraction",
+      "Location mapping correction",
+      "Comparable properties search",
+      "Mortgage analysis",
+      "Claude AI analysis",
+      "Final report generation"
+    ],
+    "requestId": "anthropic_1753063477044_a6nhx41vk",
+    "totalTime": "170931ms",
+    "locationValidation": {
+      "isConsistent": true,
+      "propertyLocation": "Montemar, Concón, Valparaíso...",
+      "searchLocation": "Montemar, Concón, Valparaíso...",
+      "mappingMethod": "direct_extraction",
+      "confidence": "medium"
+    }
+  }
+}

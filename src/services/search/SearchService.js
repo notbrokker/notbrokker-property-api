@@ -1202,7 +1202,7 @@ static async aplicarFiltroMedianteEnlaceEnResultados(page, tipoFiltro, opcion) {
  */
 static async launchBrowser() {
     return await chromium.launch({
-        headless: false, // Portal Inmobiliario puede requerir interacción visual
+        headless: true, // Portal Inmobiliario puede requerir interacción visual
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -1377,7 +1377,7 @@ static async createContext(browser) {
      */
     static async launchBrowser() {
         return await chromium.launch({
-            headless: false,
+            headless: true,
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',

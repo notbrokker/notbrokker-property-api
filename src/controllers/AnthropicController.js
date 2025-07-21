@@ -11,158 +11,324 @@ const AnthropicConfig = require('../services/anthropic/AnthropicConfig'); // NUE
  */
 class AnthropicController {
 
+
     /**
-     * Generar reporte completo de análisis financiero inmobiliario
-     * POST /api/anthropic/financial-report
-     */
-    static generateFinancialReport = asyncErrorHandler(async (req, res) => {
+ * POST /api/anthropic/financial-report
+ * ✅ VERSIÓN CORREGIDA: Validación defensiva + estructura de respuesta con nodo data
+ */
+    static async generateFinancialReport(req, res) {
+        const startTime = Date.now();
         const { propertyUrl, options = {} } = req.body;
-        const startTime = req.startTime || Date.now(); // Usar startTime del middleware si está disponible
+        const requestId = req.anthropicRequestId || `anthropic_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-        logInfo('📊 Nueva solicitud de reporte financiero con Claude API', {
-            propertyUrl,
-            options,
-            ip: req.ip,
-            userAgent: req.get('User-Agent')?.substring(0, 100),
-            timestamp: new Date().toISOString()
-        });
-
-        // Verificar que no se haya enviado respuesta ya (por timeout)
-        if (res.headersSent) {
-            logWarn('⚠️ Headers ya enviados, cancelando procesamiento', {
-                propertyUrl,
-                requestId: req.anthropicRequestId
-            });
-            return;
-        }
-
-        // Validaciones de entrada
-        AnthropicController.validateFinancialReportRequest({ propertyUrl, options });
-
-        // Procesar opciones con valores por defecto
-        const processedOptions = AnthropicController.processReportOptions(options);
+        // ✅ VALIDACIÓN DEFENSIVA DE TIPOS ANTES DE CUALQUIER USO
+        let validatedPropertyUrl = null;
+        let propertyUrlForLogging = 'undefined';
 
         try {
-            // Generar reporte usando AnthropicService con API real
-            const reportResult = await AnthropicService.generateFinancialReport(
-                propertyUrl,
-                processedOptions
-            );
+            if (propertyUrl && typeof propertyUrl === 'string' && propertyUrl.trim().length > 0) {
+                validatedPropertyUrl = propertyUrl.trim();
+                propertyUrlForLogging = validatedPropertyUrl.substring(0, 50) + '...';
+            } else {
+                // ✅ ERROR TEMPRANO con información de debugging
+                const errorInfo = {
+                    receivedType: typeof propertyUrl,
+                    receivedValue: propertyUrl,
+                    isNull: propertyUrl === null,
+                    isUndefined: propertyUrl === undefined,
+                    isEmpty: propertyUrl === '',
+                    length: propertyUrl?.length || 0,
+                    requestId
+                };
 
-            // Verificar nuevamente que no se haya enviado respuesta (por timeout)
-            if (res.headersSent) {
-                logWarn('⚠️ Headers ya enviados después del procesamiento, no enviando respuesta', {
-                    propertyUrl,
-                    requestId: req.anthropicRequestId
+                logError('❌ propertyUrl inválido recibido', errorInfo);
+                throw ErrorFactory.validation('URL de propiedad es requerida y debe ser una cadena válida', 'propertyUrl');
+            }
+
+            // Marcar procesamiento como activo
+            req.processingActive = true;
+
+            logInfo('🏠 Nueva solicitud de reporte financiero con validación defensiva', {
+                requestId,
+                propertyUrl: propertyUrlForLogging,
+                hasOptions: Object.keys(options).length > 0,
+                optionKeys: Object.keys(options),
+                ip: req.ip,
+                userAgent: req.get('User-Agent')?.substring(0, 100)
+            });
+
+            // ✅ COMPLETAR OPCIONES CON DEFAULTS SEGUROS
+            const completeOptions = {
+                includeLocationAnalysis: options.includeLocationAnalysis !== false,
+                includeSecurityAnalysis: options.includeSecurityAnalysis !== false,
+                includeFinancialMetrics: options.includeFinancialMetrics !== false,
+                includeRiskAssessment: options.includeRiskAssessment !== false,
+                confidenceLevel: options.confidenceLevel || 'high',
+                propertyPrice: options.propertyPrice || null,
+                marketRadius: options.marketRadius || '2km',
+                maxComparables: Math.min(parseInt(options.maxComparables) || 15, 30),
+                forceClaudeAnalysis: options.forceClaudeAnalysis === true,
+                analysisDepth: options.analysisDepth || 'complete',
+                requestId,
+                startTime,
+                coordinationContext: options.coordinationContext,
+                propertyUrlLength: validatedPropertyUrl.length
+            };
+
+            // ✅ LLAMAR AL SERVICIO CON URL VALIDADA
+            const reportResult = await Promise.race([
+                AnthropicService.generateFinancialReport(validatedPropertyUrl, completeOptions),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Service timeout')), 230000) // 3.8 minutos
+                )
+            ]);
+
+            // VERIFICACIÓN CRÍTICA ANTES DE RESPONDER
+            if (res.headersSent || res.finished || res.destroyed || !req.processingActive) {
+                logWarn('⚠️ No se puede enviar respuesta - estado de response comprometido', {
+                    requestId,
+                    headersSent: res.headersSent,
+                    finished: res.finished,
+                    destroyed: res.destroyed,
+                    processingActive: req.processingActive
                 });
                 return;
             }
 
-            const processingTime = Date.now() - startTime;
+            const totalTime = Date.now() - startTime;
 
-            // Log de éxito con métricas detalladas
-            logInfo('✅ Reporte financiero generado exitosamente', {
-                propertyUrl,
-                confidence: reportResult.metadata?.confidence,
-                dataQuality: reportResult.data?.metadata?.dataQuality?.overall,
-                claudeApiUsed: reportResult.metadata?.claudeApi?.used,
-                claudeModel: reportResult.metadata?.claudeApi?.model,
-                fallbackUsed: reportResult.metadata?.claudeApi?.fallbackUsed,
-                processingTime: `${processingTime}ms`,
-                servicesUsed: Object.keys(reportResult.data?.metadata?.services || {})
+            // ✅ VALIDAR DATOS DE UBICACIÓN (con validación defensiva)
+            const locationValidation = AnthropicController.validateLocationConsistency(reportResult);
+            if (!locationValidation.isConsistent) {
+                logWarn('⚠️ Inconsistencia de ubicación detectada en respuesta final', locationValidation);
+            }
+
+            logInfo('✅ Reporte financiero generado exitosamente con ubicación corregida', {
+                requestId,
+                totalTime: `${totalTime}ms`,
+                hasProperty: !!reportResult.property,
+                hasAnalysis: !!reportResult.analysis,
+                hasMetrics: !!reportResult.metrics,
+                claudeUsed: reportResult.metadata?.claudeAnalysisUsed,
+                dataQuality: reportResult.metadata?.dataQuality,
+                locationConsistent: locationValidation.isConsistent
             });
 
-            // Respuesta estructurada mejorada para el frontend
-            res.json({
+            // Marcar procesamiento como completo
+            req.processingActive = false;
+
+            // ✅ ESTRUCTURA DE RESPUESTA CORREGIDA CON NODO DATA
+            const successResponse = {
                 success: true,
-                message: reportResult.metadata?.claudeApi?.used ? 
-                    'Reporte financiero generado con Claude AI' :
-                    'Reporte financiero generado con análisis de respaldo',
-                data: reportResult.data,
+                message: "Reporte financiero generado exitosamente",
+                data: reportResult, // ✅ AGREGAR NODO DATA CON EL REPORTE COMPLETO
                 metadata: {
                     ...reportResult.metadata,
-                    requestId: req.anthropicRequestId || AnthropicController.generateRequestId(),
-                    totalProcessingTime: `${processingTime}ms`,
-                    apiVersion: '1.0.0',
-                    // NUEVA: Información específica de Claude
-                    aiAnalysis: {
-                        provider: 'Anthropic',
-                        model: reportResult.metadata?.claudeApi?.model || 'N/A',
-                        apiUsed: reportResult.metadata?.claudeApi?.used || false,
-                        fallbackReason: reportResult.metadata?.claudeApi?.fallbackUsed ? 
-                            'Claude API no disponible o error en procesamiento' : null,
-                        analysisQuality: reportResult.metadata?.claudeApi?.used ? 'AI-Enhanced' : 'Standard'
-                    }
+                    generatedAt: new Date().toISOString(),
+                    requestId,
+                    totalTime: `${totalTime}ms`,
+                    locationValidation,
+                    processingSteps: [
+                        'URL validation',
+                        'Property data extraction',
+                        'Location mapping correction',
+                        'Comparable properties search',
+                        'Mortgage analysis',
+                        'Claude AI analysis',
+                        'Final report generation'
+                    ]
                 }
-            });
+            };
+
+            // Verificación final antes de enviar
+            if (!res.headersSent && !res.finished && !res.destroyed) {
+                res.json(successResponse);
+            } else {
+                logWarn('⚠️ Respuesta exitosa generada pero no se pudo enviar', { requestId });
+            }
 
         } catch (error) {
-            // Verificar que no se haya enviado respuesta antes de manejar error
-            if (res.headersSent) {
-                logWarn('⚠️ Headers ya enviados, no enviando respuesta de error', {
-                    propertyUrl,
-                    error: error.message,
-                    requestId: req.anthropicRequestId
+            // Marcar procesamiento como completo
+            req.processingActive = false;
+
+            // ✅ MANEJO DE ERRORES CON VALIDACIÓN DEFENSIVA
+            if (res.headersSent || res.finished || res.destroyed) {
+                logError('❌ Error después de headers enviados', error, {
+                    requestId,
+                    propertyUrl: propertyUrlForLogging,
+                    headersSent: res.headersSent,
+                    finished: res.finished
                 });
                 return;
             }
 
-            // Manejo específico de errores del servicio
-            const errorResponse = AnthropicController.handleServiceError(error, propertyUrl);
-            const processingTime = Date.now() - startTime;
-            
-            logError('❌ Error generando reporte financiero', {
-                propertyUrl,
+            const totalTime = Date.now() - startTime;
+
+            logError('❌ Error generando reporte financiero', error, {
+                requestId,
+                propertyUrl: propertyUrlForLogging,
                 error: error.message,
-                errorType: error.name,
-                processingTime: `${processingTime}ms`,
+                errorType: error.constructor.name,
+                processingTime: `${totalTime}ms`,
                 stack: error.stack?.split('\n')[0]
             });
 
-            return res.status(errorResponse.status).json({
-                ...errorResponse.response,
+            // Determinar código de estado del error
+            const statusCode = error.statusCode ||
+                (error.name === 'ValidationError' ? 400 :
+                    error.message.includes('timeout') ? 408 : 500);
+
+            // ✅ RESPUESTA DE ERROR CON VALIDACIÓN DEFENSIVA
+            const errorResponse = {
+                success: false,
+                error: error.message || 'Error interno generando reporte financiero',
+                code: error.code || 'FINANCIAL_REPORT_ERROR',
+                requestId,
                 metadata: {
-                    ...errorResponse.response.metadata,
-                    processingTime: `${processingTime}ms`,
-                    requestId: req.anthropicRequestId || AnthropicController.generateRequestId()
+                    processingTime: `${totalTime}ms`,
+                    errorType: error.constructor.name,
+                    timestamp: new Date().toISOString(),
+                    recoverable: statusCode < 500,
+                    locationContext: {
+                        propertyUrl: propertyUrlForLogging,
+                        detectedDomain: validatedPropertyUrl ?
+                            (() => {
+                                try {
+                                    return new URL(validatedPropertyUrl).hostname;
+                                } catch {
+                                    return 'invalid_url';
+                                }
+                            })() : 'unknown'
+                    }
+                },
+                help: {
+                    message: 'Error procesando el análisis financiero',
+                    possibleCauses: [
+                        'URL de propiedad inválida o inaccesible',
+                        'Timeout en servicios externos',
+                        'Error en mapeo de ubicación',
+                        'Fallo temporal en Claude API'
+                    ],
+                    nextSteps: [
+                        'Verificar que la URL sea válida y accesible',
+                        'Intentar nuevamente en unos momentos',
+                        'Contactar soporte si el problema persiste'
+                    ]
                 }
-            });
+            };
+
+            // Envío seguro de error
+            if (!res.headersSent && !res.finished && !res.destroyed) {
+                res.status(statusCode).json(errorResponse);
+            }
         }
-    });
+    }
 
     /**
-     * Generar reporte financiero vía GET (para testing)
-     * GET /api/anthropic/financial-report?url=...
+     * ✅ MÉTODO CORREGIDO: Validar consistencia alineado con estructura real del service
      */
-    static generateFinancialReportGet = asyncErrorHandler(async (req, res) => {
+    static validateLocationConsistency(reportResult) {
+        try {
+            // ✅ RUTAS CORREGIDAS según estructura real del service (sin nodo data)
+            const propertyLocation = reportResult.property?.ubicacion;
+            const serviceMetadata = reportResult.metadata?.locationMapping;
+
+            // ✅ FALLBACK: Si no hay locationMapping en metadata del service, usar datos de propiedad
+            const searchLocation = serviceMetadata?.searchLocation ||
+                serviceMetadata?.originalLocation ||
+                reportResult.property?.ubicacion;
+
+            const mappingMethod = serviceMetadata?.mappingMethod || 'direct_extraction';
+
+            logInfo('🔍 Validando consistencia de ubicación', {
+                propertyLocation: propertyLocation?.substring(0, 50),
+                searchLocation: searchLocation?.substring(0, 50),
+                mappingMethod,
+                hasServiceMetadata: !!serviceMetadata,
+                hasPropertyData: !!reportResult.property
+            });
+
+            if (!propertyLocation) {
+                return {
+                    isConsistent: false,
+                    reason: 'Missing property location data',
+                    propertyLocation: 'N/A',
+                    searchLocation: searchLocation || 'N/A',
+                    mappingMethod,
+                    debugInfo: {
+                        hasReportData: !!reportResult.property, // ✅ CORREGIDO: verificar reportResult.property
+                        hasProperty: !!reportResult.property,   // ✅ CORREGIDO: verificar reportResult.property
+                        propertyKeys: reportResult.property ? Object.keys(reportResult.property) : [],
+                        hasMetadata: !!reportResult.metadata,
+                        hasLocationMapping: !!serviceMetadata
+                    }
+                };
+            }
+
+            if (!searchLocation) {
+                // ✅ Si no hay searchLocation, usar propertyLocation como referencia
+                return {
+                    isConsistent: true,
+                    reason: 'Using property location as reference',
+                    propertyLocation: propertyLocation.substring(0, 50) + '...',
+                    searchLocation: propertyLocation.substring(0, 50) + '...',
+                    mappingMethod: 'property_location_reference',
+                    confidence: 'medium'
+                };
+            }
+
+            // ✅ USAR VERIFICADOR DEL SERVICE
+            const consistency = AnthropicService.verifyLocationConsistency(propertyLocation, searchLocation);
+
+            return {
+                isConsistent: consistency.isConsistent,
+                consistencyRatio: consistency.consistencyRatio,
+                propertyLocation: propertyLocation.substring(0, 50) + '...',
+                searchLocation: searchLocation.substring(0, 50) + '...',
+                mappingMethod,
+                confidence: consistency.isConsistent ?
+                    (consistency.consistencyRatio >= 0.8 ? 'high' : 'medium') : 'low',
+                matches: consistency.matches,
+                totalElements: consistency.totalElements,
+                recommendation: consistency.recommendation
+            };
+
+        } catch (error) {
+            logError('Error validando consistencia de ubicación en respuesta', error);
+            return {
+                isConsistent: false,
+                error: error.message,
+                reason: 'Validation error',
+                propertyLocation: 'Error',
+                searchLocation: 'Error',
+                confidence: 'unknown',
+                debugInfo: {
+                    errorType: error.constructor.name,
+                    errorMessage: error.message
+                }
+            };
+        }
+    }
+
+    /**
+     * GET /api/anthropic/financial-report - Version GET para testing
+     */
+    static async generateFinancialReportGet(req, res) {
         const { url, ...queryOptions } = req.query;
 
-        logInfo('📊 Solicitud GET de reporte financiero', {
-            url,
-            queryOptions,
-            ip: req.ip
-        });
-
-        if (!url) {
-            return res.status(400).json({
-                success: false,
-                error: 'URL de propiedad es requerida',
-                code: 'URL_REQUIRED',
-                example: '/api/anthropic/financial-report?url=https://casa.mercadolibre.cl/...',
-                help: {
-                    message: 'Proporciona una URL válida de propiedad como query parameter',
-                    format: '?url=<property_url>&includeLocationAnalysis=true'
-                }
-            });
-        }
-
-        // Convertir query parameters a formato de opciones
-        const options = AnthropicController.parseQueryOptions(queryOptions);
+        // Convertir query params a opciones
+        const options = {
+            includeLocationAnalysis: queryOptions.includeLocationAnalysis === 'true',
+            includeSecurityAnalysis: queryOptions.includeSecurityAnalysis === 'true',
+            includeFinancialMetrics: queryOptions.includeFinancialMetrics === 'true',
+            confidenceLevel: queryOptions.confidenceLevel || 'medium',
+            maxComparables: parseInt(queryOptions.maxComparables) || 15
+        };
 
         // Reutilizar lógica del POST
         req.body = { propertyUrl: url, options };
         return AnthropicController.generateFinancialReport(req, res);
-    });
+    }
 
     /**
      * Obtener información del servicio de análisis - ACTUALIZADA
@@ -180,7 +346,7 @@ class AnthropicController {
             version: '1.0.0',
             description: 'Generación automática de reportes financieros completos usando Claude Sonnet 4',
             status: 'Operativo',
-            
+
             // NUEVA: Información de Claude API
             aiProvider: {
                 name: 'Anthropic Claude',
@@ -195,7 +361,7 @@ class AnthropicController {
                     'Recomendaciones personalizadas'
                 ]
             },
-            
+
             capabilities: {
                 propertyAnalysis: 'Análisis completo de propiedades inmobiliarias',
                 marketComparison: 'Comparación con propiedades similares en el mercado',
@@ -230,7 +396,7 @@ class AnthropicController {
                     avgTime: '10-15 segundos'
                 },
                 search: {
-                    service: 'SearchService', 
+                    service: 'SearchService',
                     purpose: 'Búsqueda de propiedades comparables',
                     coverage: 'Portal Inmobiliario',
                     avgTime: '15-20 segundos'
@@ -330,7 +496,7 @@ class AnthropicController {
                 breakdown: {
                     validation: '2-3 segundos',
                     scraping: '10-15 segundos',
-                    comparables: '15-20 segundos', 
+                    comparables: '15-20 segundos',
                     mortgage: '20-25 segundos',
                     claudeAnalysis: claudeStatus.success ? '5-10 segundos' : '2-3 segundos (fallback)',
                     reportGeneration: '3-5 segundos'
@@ -364,97 +530,110 @@ class AnthropicController {
     });
 
     /**
-     * NUEVO: Probar conectividad con Claude API
-     * POST /api/anthropic/test-claude
+     * POST/GET /api/anthropic/test-claude
+     * Probar conectividad con Claude API
      */
-    static testClaudeConnection = asyncErrorHandler(async (req, res) => {
-        logInfo('🧪 Test de conectividad con Claude API solicitado');
+    static async testClaudeConnection(req, res) {
+        const requestId = req.anthropicRequestId || `test_${Date.now()}`;
+
+        logInfo('🧪 Testing Claude API connection', { requestId });
 
         try {
-            const connectionTest = await ClaudeApiHelper.testConnection();
-            
-            const response = {
-                success: connectionTest.success,
-                service: 'Claude API Connection Test',
+            const testResult = await ClaudeApiHelper.testConnection();
+
+            return res.json({
+                success: true,
+                claude: {
+                    status: testResult.success ? 'connected' : 'unavailable',
+                    model: 'claude-sonnet-4-20250514',
+                    latency: testResult.latency,
+                    error: testResult.error || null
+                },
                 timestamp: new Date().toISOString(),
-                result: connectionTest.success ? 'Conexión exitosa' : 'Conexión fallida',
-                details: {
-                    model: AnthropicConfig.claude.model,
-                    apiKey: AnthropicConfig.claude.apiKey ? 
-                        `Configurada (${AnthropicConfig.claude.apiKey.substring(0, 10)}...)` : 
-                        'No configurada',
-                    timeout: `${AnthropicConfig.claude.timeout}ms`,
-                    retries: AnthropicConfig.claude.retries
-                }
-            };
-
-            if (!connectionTest.success) {
-                response.error = connectionTest.error;
-                response.code = connectionTest.code;
-                response.fallbackAvailable = true;
-                response.recommendation = 'El servicio funcionará con análisis de fallback';
-            }
-
-            const statusCode = connectionTest.success ? 200 : 503;
-            res.status(statusCode).json(response);
-
+                requestId
+            });
         } catch (error) {
-            logError('Error en test de Claude API', { error: error.message });
-            
-            res.status(500).json({
+            logError('Error testing Claude connection', error);
+
+            return res.status(500).json({
                 success: false,
-                service: 'Claude API Connection Test',
-                error: 'Error interno durante el test',
-                details: error.message,
-                timestamp: new Date().toISOString()
+                error: 'Error testing Claude API',
+                claude: {
+                    status: 'error',
+                    error: error.message
+                },
+                requestId
             });
         }
-    });
+    }
 
     /**
-     * NUEVO: Endpoint para forzar análisis con Claude (testing)
      * POST /api/anthropic/force-claude-analysis
+     * Forzar análisis con Claude (debugging)
      */
-    static forceClaudeAnalysis = asyncErrorHandler(async (req, res) => {
-        const { testData } = req.body;
-
-        logInfo('🔬 Análisis forzado con Claude solicitado');
-
-        if (!testData) {
-            return res.status(400).json({
-                success: false,
-                error: 'Se requiere testData para el análisis',
-                example: {
-                    testData: {
-                        property: { titulo: 'Test Property', precio_uf: '5000 UF' },
-                        location: 'Santiago',
-                        analysis: 'financial'
-                    }
-                }
-            });
-        }
+    static async forceClaudeAnalysis(req, res) {
+        const { propertyUrl, options = {} } = req.body;
+        const requestId = req.anthropicRequestId || `force_${Date.now()}`;
 
         try {
-            const analysisResult = await ClaudeApiHelper.analyzeWithClaude(testData, 'financial');
-            
-            res.json({
-                success: true,
-                message: 'Análisis Claude completado',
-                result: analysisResult,
-                timestamp: new Date().toISOString()
-            });
+            const forceOptions = {
+                ...options,
+                forceClaudeAnalysis: true,
+                skipFallback: true,
+                requestId
+            };
 
+            const result = await AnthropicService.generateFinancialReport(propertyUrl, forceOptions);
+
+            return res.json({
+                success: true,
+                message: 'Análisis forzado con Claude',
+                data: result,
+                forced: true,
+                requestId
+            });
         } catch (error) {
-            logError('Error en análisis forzado Claude', { error: error.message });
-            
-            res.status(500).json({
+            return res.status(500).json({
                 success: false,
-                error: 'Error durante análisis Claude',
+                error: 'Error en análisis forzado',
                 details: error.message,
-                timestamp: new Date().toISOString()
+                requestId
             });
         }
-    });
+    }
+
+    /**
+  * GET /api/anthropic/info
+  * Información del servicio
+  */
+    static async getServiceInfo(req, res) {
+        try {
+            const claudeTest = await ClaudeApiHelper.testConnection();
+
+            return res.json({
+                success: true,
+                service: 'AnthropicService',
+                version: '1.0.0',
+                claude: {
+                    status: claudeTest.success ? 'connected' : 'unavailable',
+                    model: 'claude-sonnet-4-20250514',
+                    latency: claudeTest.latency
+                },
+                capabilities: [
+                    'Análisis financiero inmobiliario',
+                    'Evaluación de riesgos con IA',
+                    'Recomendaciones personalizadas',
+                    'Métricas calculadas por IA'
+                ],
+                timestamp: new Date().toISOString()
+            });
+        } catch (error) {
+            return res.status(500).json({
+                success: false,
+                error: 'Error obteniendo información del servicio'
+            });
+        }
+    }
 
     /**
      * Validar solicitud de reporte financiero
@@ -708,7 +887,7 @@ class AnthropicController {
      */
     static calculateProcessingTime(startTime) {
         if (!startTime) return null;
-        
+
         const duration = Date.now() - startTime;
         return {
             milliseconds: duration,

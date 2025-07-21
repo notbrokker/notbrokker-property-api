@@ -1,14 +1,12 @@
 // src/middleware/anthropicMiddleware.js
 const { logInfo, logWarn, logError } = require('../utils/logger');
-const { ErrorFactory } = require('../utils/errors');
 
 /**
- * Middleware específico para el servicio Anthropic - CORREGIDO
+ * Middleware específico para Anthropic - COMPLETAMENTE CORREGIDO
  */
 
 /**
  * Rate limiting para el servicio Anthropic
- * Limita a 10 requests por hora por IP
  */
 const rateLimitMiddleware = (() => {
     const requests = new Map();
@@ -51,11 +49,7 @@ const rateLimitMiddleware = (() => {
                 retryAfter: 3600,
                 currentCount: recentRequests.length,
                 limit: LIMIT_PER_HOUR,
-                resetTime: new Date(now + HOUR_IN_MS).toISOString(),
-                help: {
-                    message: 'Los reportes financieros tienen un límite para garantizar calidad del servicio',
-                    suggestion: 'Espera antes de realizar otra solicitud o considera el plan premium'
-                }
+                resetTime: new Date(now + HOUR_IN_MS).toISOString()
             });
         }
 
@@ -63,7 +57,7 @@ const rateLimitMiddleware = (() => {
         clientData.timestamps.push(now);
         requests.set(clientIP, clientData);
 
-        // Agregar headers informativos
+        // Headers informativos
         res.setHeader('X-RateLimit-Limit', LIMIT_PER_HOUR);
         res.setHeader('X-RateLimit-Remaining', LIMIT_PER_HOUR - recentRequests.length - 1);
         res.setHeader('X-RateLimit-Reset', Math.ceil((now + HOUR_IN_MS) / 1000));
@@ -73,24 +67,227 @@ const rateLimitMiddleware = (() => {
 })();
 
 /**
- * Middleware de validación de contenido
+ * ✅ MIDDLEWARE DE LOGGING CORREGIDO - SIN INTERCEPTACIONES
+ */
+const anthropicLoggingMiddleware = (req, res, next) => {
+    const startTime = Date.now();
+    const requestId = `anthropic_${startTime}_${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Agregar al request
+    req.anthropicRequestId = requestId;
+    req.startTime = startTime;
+
+    logInfo('🤖 AnthropicService Request iniciado', {
+        requestId,
+        method: req.method,
+        path: req.path,
+        ip: req.ip,
+        userAgent: req.get('User-Agent')?.substring(0, 100),
+        bodySize: req.body ? JSON.stringify(req.body).length : 0,
+        timestamp: new Date().toISOString()
+    });
+
+    // ✅ SOLO logging al final - SIN INTERCEPTAR res.send
+    res.on('finish', () => {
+        const duration = Date.now() - startTime;
+        logInfo('🤖 AnthropicService Request completado', {
+            requestId,
+            statusCode: res.statusCode,
+            success: res.statusCode < 400,
+            duration: `${duration}ms`,
+            endpoint: req.path,
+            method: req.method,
+            coordinationUsed: !!req.processingActive,
+            finalState: {
+                headersSent: res.headersSent,
+                finished: res.finished,
+                statusCode: res.statusCode
+            }
+        });
+    });
+
+    // ✅ LOG adicional para debugging de errores
+    res.on('error', (error) => {
+        const duration = Date.now() - startTime;
+        logError('🤖 AnthropicService Request error', error, {
+            requestId,
+            duration: `${duration}ms`,
+            endpoint: req.path,
+            method: req.method
+        });
+    });
+
+    next();
+};
+
+/**
+ * ✅ MIDDLEWARE DE TIMEOUT COMPLETAMENTE CORREGIDO
+ * Elimina race conditions y coordina con req.processingActive
+ */
+const timeoutMiddleware = (timeoutMs = 240000) => { // 4 minutos
+    return (req, res, next) => {
+        let timeoutTriggered = false;
+        
+        const timeout = setTimeout(() => {
+            // ✅ VERIFICACIÓN COMPLETA: Headers + processingActive + timeoutTriggered
+            if (!res.headersSent && 
+                !res.finished && 
+                !res.destroyed && 
+                !req.processingActive && 
+                !timeoutTriggered) {
+                
+                timeoutTriggered = true;
+                
+                logError('Timeout en AnthropicService', {
+                    requestId: req.anthropicRequestId,
+                    timeout: timeoutMs,
+                    path: req.path,
+                    method: req.method,
+                    processingActive: !!req.processingActive,
+                    headersSent: res.headersSent,
+                    timestamp: new Date().toISOString()
+                });
+
+                try {
+                    res.status(408).json({
+                        success: false,
+                        error: 'Tiempo de espera agotado',
+                        code: 'REQUEST_TIMEOUT',
+                        message: 'El procesamiento del reporte tardó demasiado tiempo',
+                        timeout: `${timeoutMs / 1000} segundos`,
+                        requestId: req.anthropicRequestId,
+                        metadata: {
+                            timestamp: new Date().toISOString(),
+                            processingTime: `${timeoutMs}ms`,
+                            suggestions: [
+                                'Intenta nuevamente con una URL más simple',
+                                'Verifica que la URL sea accesible',
+                                'Contacta soporte si el problema persiste'
+                            ],
+                            coordinationFlags: {
+                                processingActive: !!req.processingActive,
+                                timeoutTriggered: true,
+                                headersSent: res.headersSent,
+                                finished: res.finished,
+                                destroyed: res.destroyed
+                            },
+                            troubleshooting: {
+                                step1: 'Verifica conectividad a la URL de la propiedad',
+                                step2: 'Asegúrate que la URL sea de un portal inmobiliario soportado',
+                                step3: 'Contacta soporte técnico si el problema persiste'
+                            }
+                        }
+                    });
+                } catch (timeoutError) {
+                    logError('Error enviando respuesta de timeout', timeoutError, {
+                        requestId: req.anthropicRequestId,
+                        originalTimeout: timeoutMs
+                    });
+                }
+            } else {
+                // ✅ LOG DETALLADO cuando timeout no se dispara (para debugging)
+                logInfo('⏰ Timeout no disparado por coordinación activa', {
+                    requestId: req.anthropicRequestId,
+                    timeoutMs,
+                    coordinationState: {
+                        headersSent: res.headersSent,
+                        finished: res.finished,
+                        destroyed: res.destroyed,
+                        processingActive: !!req.processingActive,
+                        timeoutTriggered
+                    },
+                    reason: res.headersSent ? 'HEADERS_ALREADY_SENT' :
+                           res.finished ? 'RESPONSE_FINISHED' :
+                           res.destroyed ? 'RESPONSE_DESTROYED' :
+                           req.processingActive ? 'PROCESSING_ACTIVE' :
+                           timeoutTriggered ? 'TIMEOUT_ALREADY_TRIGGERED' : 'UNKNOWN'
+                });
+            }
+        }, timeoutMs);
+
+        // ✅ CLEANUP SIN INTERCEPTACIÓN - Solo event listeners nativos
+        const cleanup = () => {
+            if (!timeoutTriggered) {
+                clearTimeout(timeout);
+                timeoutTriggered = true;
+                
+                logInfo('🧹 Timeout cleanup ejecutado', {
+                    requestId: req.anthropicRequestId,
+                    trigger: 'response_event'
+                });
+            }
+        };
+
+        // Event listeners para cleanup automático - SIN INTERCEPTAR res.send
+        res.on('finish', cleanup);
+        res.on('close', cleanup);
+        res.on('error', cleanup);
+
+        // ✅ OPCIONAL: Cleanup manual adicional por si acaso
+        res.on('end', cleanup);
+
+        next();
+    };
+};
+
+
+
+
+/**
+ * Headers de seguridad
+ */
+const securityHeadersMiddleware = (req, res, next) => {
+    res.setHeader('X-Service', 'AnthropicService');
+    res.setHeader('X-API-Version', '1.0.0');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    
+    if (req.path.includes('financial-report')) {
+        res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+    }
+
+    next();
+};
+/**
+ * ✅ PERFORMANCE MIDDLEWARE CORREGIDO - SIN INTERCEPTACIONES
+ */
+const performanceMiddleware = (req, res, next) => {
+    const startTime = process.hrtime.bigint();
+    
+    // Solo agregar headers al final - SIN interceptar
+    res.on('finish', () => {
+        const endTime = process.hrtime.bigint();
+        const durationNs = endTime - startTime;
+        const durationMs = Number(durationNs) / 1000000;
+
+        // Agregar headers de performance si no fueron enviados
+        if (!res.headersSent) {
+            try {
+                res.setHeader('X-Response-Time', `${durationMs.toFixed(2)}ms`);
+                res.setHeader('X-Process-Memory', `${Math.round(process.memoryUsage().rss / 1024 / 1024)}MB`);
+                res.setHeader('X-Request-ID', req.anthropicRequestId || 'unknown');
+            } catch (headerError) {
+                // Headers ya enviados, no hacer nada
+                logInfo('Headers de performance no agregados (ya enviados)');
+            }
+        }
+    });
+
+    next();
+};
+
+/**
+ * Validación de contenido
  */
 const contentValidationMiddleware = (req, res, next) => {
-    // Solo aplicar a requests POST con body
     if (req.method === 'POST' && req.body) {
         const { propertyUrl, options } = req.body;
 
-        // Validación básica de URL
         if (propertyUrl) {
-            // Verificar que no sea una URL maliciosa
             const suspiciousPatterns = [
-                'javascript:',
-                'data:',
-                'file:',
-                'ftp:',
-                '<script',
-                'eval(',
-                'alert('
+                'javascript:', 'data:', 'file:', 'ftp:', '<script', 'eval(', 'alert('
             ];
 
             const urlLower = propertyUrl.toLowerCase();
@@ -105,23 +302,19 @@ const contentValidationMiddleware = (req, res, next) => {
                     return res.status(400).json({
                         success: false,
                         error: 'URL no válida',
-                        code: 'INVALID_URL_CONTENT',
-                        message: 'La URL contiene contenido no permitido'
+                        code: 'INVALID_URL_CONTENT'
                     });
                 }
             }
         }
 
-        // Validación de opciones
         if (options && typeof options === 'object') {
-            // Verificar que las opciones no sean excesivamente grandes
             const optionsString = JSON.stringify(options);
             if (optionsString.length > 5000) {
                 return res.status(400).json({
                     success: false,
                     error: 'Opciones demasiado extensas',
-                    code: 'OPTIONS_TOO_LARGE',
-                    message: 'Las opciones exceden el tamaño máximo permitido'
+                    code: 'OPTIONS_TOO_LARGE'
                 });
             }
         }
@@ -131,188 +324,7 @@ const contentValidationMiddleware = (req, res, next) => {
 };
 
 /**
- * Middleware de logging específico para Anthropic - CORREGIDO
- */
-const anthropicLoggingMiddleware = (req, res, next) => {
-    const startTime = Date.now();
-    const requestId = `anthropic_${startTime}_${Math.random().toString(36).substr(2, 9)}`;
-    
-    // Agregar requestId al request
-    req.anthropicRequestId = requestId;
-    req.startTime = startTime; // NUEVO: Agregar startTime al request
-
-    logInfo('🤖 AnthropicService Request iniciado', {
-        requestId,
-        method: req.method,
-        path: req.path,
-        ip: req.ip,
-        userAgent: req.get('User-Agent')?.substring(0, 100),
-        bodySize: req.body ? JSON.stringify(req.body).length : 0,
-        timestamp: new Date().toISOString()
-    });
-
-    // CORREGIDO: Interceptar la respuesta solo UNA VEZ
-    if (!res.anthropicIntercepted) {
-        res.anthropicIntercepted = true; // Marcar como interceptado
-        
-        const originalSend = res.send;
-        res.send = function(data) {
-            const endTime = Date.now();
-            const duration = endTime - startTime;
-
-            let responseSize = 0;
-            let success = res.statusCode < 400;
-
-            try {
-                if (typeof data === 'string') {
-                    responseSize = data.length;
-                } else if (data) {
-                    responseSize = JSON.stringify(data).length;
-                }
-            } catch (error) {
-                responseSize = 0;
-            }
-
-            logInfo('🤖 AnthropicService Request completado', {
-                requestId,
-                statusCode: res.statusCode,
-                success,
-                duration: `${duration}ms`,
-                responseSize,
-                endpoint: req.path,
-                method: req.method
-            });
-
-            // Si es un reporte completo, log adicional con métricas
-            if (req.path.includes('financial-report') && success) {
-                try {
-                    const responseData = typeof data === 'string' ? JSON.parse(data) : data;
-                    if (responseData?.data?.metadata) {
-                        logInfo('📊 Reporte financiero generado', {
-                            requestId,
-                            confidence: responseData.data.metadata.confidence,
-                            dataQuality: responseData.data.metadata.dataQuality?.overall,
-                            servicesUsed: Object.keys(responseData.data.metadata.services || {}),
-                            processingTime: duration
-                        });
-                    }
-                } catch (error) {
-                    // No hacer nada si no se puede parsear
-                }
-            }
-
-            return originalSend.call(this, data);
-        };
-    }
-
-    next();
-};
-
-/**
- * Middleware de timeout específico para operaciones largas - AUMENTADO
- */
-const timeoutMiddleware = (timeoutMs = 180000) => { // CAMBIADO: 3 minutos en lugar de 2
-    return (req, res, next) => {
-        const timeout = setTimeout(() => {
-            if (!res.headersSent) { // CORREGIDO: Verificar si headers ya fueron enviados
-                logError('Timeout en AnthropicService', {
-                    requestId: req.anthropicRequestId,
-                    timeout: timeoutMs,
-                    path: req.path,
-                    method: req.method
-                });
-
-                res.status(408).json({
-                    success: false,
-                    error: 'Tiempo de espera agotado',
-                    code: 'REQUEST_TIMEOUT',
-                    message: 'El procesamiento del reporte tardó demasiado tiempo',
-                    timeout: `${timeoutMs / 1000} segundos`,
-                    help: {
-                        message: 'Los reportes financieros pueden tomar hasta 3 minutos',
-                        suggestion: 'Intenta nuevamente o verifica la URL de la propiedad'
-                    },
-                    requestId: req.anthropicRequestId
-                });
-            }
-        }, timeoutMs);
-
-        // CORREGIDO: Limpiar timeout cuando la respuesta se envía
-        const originalSend = res.send;
-        res.send = function(data) {
-            clearTimeout(timeout);
-            return originalSend.call(this, data);
-        };
-
-        // También limpiar timeout en caso de error
-        res.on('finish', () => {
-            clearTimeout(timeout);
-        });
-
-        next();
-    };
-};
-
-/**
- * Middleware de headers de seguridad específicos
- */
-const securityHeadersMiddleware = (req, res, next) => {
-    // Headers específicos para el servicio Anthropic
-    res.setHeader('X-Service', 'AnthropicService');
-    res.setHeader('X-API-Version', '1.0.0');
-    res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.setHeader('X-Frame-Options', 'DENY');
-    
-    // Cache control para reportes
-    if (req.path.includes('financial-report')) {
-        res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.setHeader('Pragma', 'no-cache');
-        res.setHeader('Expires', '0');
-    }
-
-    next();
-};
-
-/**
- * Middleware de métricas de performance - SIMPLIFICADO
- */
-const performanceMiddleware = (req, res, next) => {
-    const startTime = process.hrtime.bigint();
-    
-    // CORREGIDO: Interceptar solo si no ha sido interceptado
-    if (!res.performanceIntercepted) {
-        res.performanceIntercepted = true;
-        
-        const originalSend = res.send;
-        res.send = function(data) {
-            const endTime = process.hrtime.bigint();
-            const durationNs = endTime - startTime;
-            const durationMs = Number(durationNs) / 1000000;
-
-            // Agregar headers de performance
-            res.setHeader('X-Response-Time', `${durationMs.toFixed(2)}ms`);
-            res.setHeader('X-Process-Memory', `${Math.round(process.memoryUsage().rss / 1024 / 1024)}MB`);
-            
-            // Log métricas si es un endpoint principal
-            if (req.path.includes('financial-report')) {
-                logInfo('⚡ Performance metrics', {
-                    requestId: req.anthropicRequestId,
-                    duration: `${durationMs.toFixed(2)}ms`,
-                    memoryUsage: `${Math.round(process.memoryUsage().rss / 1024 / 1024)}MB`,
-                    endpoint: req.path,
-                    statusCode: res.statusCode
-                });
-            }
-
-            return originalSend.call(this, data);
-        };
-    }
-
-    next();
-};
-
-/**
- * Middleware compuesto para el servicio Anthropic - CORREGIDO
+ * ✅ MIDDLEWARE COMBINADO CORREGIDO
  */
 const anthropicMiddleware = {
     // Middleware individual
@@ -331,14 +343,14 @@ const anthropicMiddleware = {
         contentValidationMiddleware
     ],
 
-    // Middleware para endpoints principales (con rate limiting) - TIMEOUT AUMENTADO
+    // ✅ MIDDLEWARE PARA ENDPOINTS PRINCIPALES - COORDINACIÓN COMPLETA
     protected: [
         securityHeadersMiddleware,
         rateLimitMiddleware,
         anthropicLoggingMiddleware,
         performanceMiddleware,
         contentValidationMiddleware,
-        timeoutMiddleware(180000) // CAMBIADO: 3 minutos para reportes
+        timeoutMiddleware(240000) // 4 minutos con coordinación
     ],
 
     // Middleware básico para endpoints informativos

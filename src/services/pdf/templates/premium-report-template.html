@@ -1,6 +1,7 @@
 <!-- src/services/pdf/templates/premium-report-template.html -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -513,54 +514,254 @@
                 margin: 0 !important;
                 padding: 10px !important;
             }
-            
+
             .header-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
+
             .property-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .financing-options {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .metrics-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
-            
+
             .summary-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .comparable-item {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
+
             .property-features {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
+
             .metrics-grid,
             .financing-options,
             .summary-grid {
                 grid-template-columns: 1fr !important;
             }
-            
+
             .header-content,
             .property-grid {
                 grid-template-columns: 1fr !important;
                 text-align: center !important;
             }
         }
+
+        /* ✅ NUEVOS ESTILOS PARA DESGLOSE DE GASTOS OPERACIONALES */
+        .flow-composition {
+            margin-top: 10px;
+        }
+
+        .composition-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .composition-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .composition-item.positive .composition-value {
+            color: #38a169;
+            font-weight: 600;
+        }
+
+        .composition-item.negative .composition-value {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+
+        .composition-label {
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .gastos-desglose {
+            background: #f0f4f8;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .desglose-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .desglose-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 6px 0;
+            border-bottom: 1px solid #cbd5e0;
+            font-size: 0.85rem;
+        }
+
+        .desglose-item:last-child {
+            border-bottom: none;
+        }
+
+        .desglose-concept {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .desglose-concept strong {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .desglose-desc {
+            color: #718096;
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+
+        .desglose-amount {
+            color: #4a5568;
+            font-weight: 600;
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .desglose-total {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #cbd5e0;
+            text-align: right;
+        }
+
+        .desglose-metadata {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            color: #718096;
+            font-style: italic;
+        }
+
+        .desglose-metadata p {
+            margin: 2px 0;
+        }
+
+        /* Responsive para desglose */
+        @media print {
+            .gastos-desglose {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .desglose-item {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desglose-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .desglose-amount {
+                text-align: left;
+                min-width: auto;
+                font-weight: 700;
+                color: #2d3748;
+            }
+        }
+
+        /* ✅ ESTILOS ESPECÍFICOS PARA VALORES DE PORCENTAJE */
+.yield-percentage {
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    letter-spacing: -1px;
+    position: relative;
+}
+
+.yield-percentage::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 0.7em;
+    opacity: 0.8;
+    font-weight: normal;
+}
+
+/* Clases específicas para rangos de yield */
+.metric-positive .yield-percentage {
+    color: #38a169;
+    text-shadow: 0 1px 2px rgba(56, 161, 105, 0.2);
+}
+
+.metric-neutral .yield-percentage {
+    color: #667eea;
+    text-shadow: 0 1px 2px rgba(102, 126, 234, 0.2);
+}
+
+.metric-negative .yield-percentage {
+    color: #e53e3e;
+    text-shadow: 0 1px 2px rgba(229, 62, 62, 0.2);
+}
+
+/* Estilos para metric-calculation */
+.metric-calculation {
+    font-family: 'Courier New', monospace;
+    background: #e2e8f0;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #4a5568;
+    border-left: 3px solid #667eea;
+}
+
+/* Responsive para PDF */
+@media print {
+    .yield-percentage {
+        color: #2d3748 !important;
+        text-shadow: none !important;
+    }
+    
+    .metric-calculation {
+        background: #f7fafc !important;
+        border-color: #cbd5e0 !important;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .yield-percentage {
+        font-size: 1.8rem;
+        letter-spacing: -0.5px;
+    }
+}
+
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Professional Header -->
@@ -577,11 +778,12 @@
         <div class="financial-section">
             <h2 class="section-title">
                 <svg class="section-icon" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4 1a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z"/>
+                    <path fill-rule="evenodd"
+                        d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4 1a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z" />
                 </svg>
                 Indicadores Financieros Clave
             </h2>
-            
+
             <div class="metrics-grid">
                 {{FINANCIAL_METRICS}}
             </div>
@@ -614,4 +816,5 @@
         </div>
     </div>
 </body>
+
 </html>

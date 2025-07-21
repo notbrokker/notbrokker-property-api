@@ -22,7 +22,7 @@ class ScrapingService {
         logInfo(`🚀 Iniciando scraping de ${tipoPortal} para URL: ${url}`);
 
         const browser = await chromium.launch({
-            headless: false,
+            headless: true,
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',

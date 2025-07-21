@@ -17,7 +17,7 @@ class PDFController {
     static generateFinancialReportPDF = asyncErrorHandler(async (req, res) => {
         const { propertyUrl, options = {}, analysisData = null } = req.body;
         const startTime = req.startTime || Date.now();
-        
+
         logInfo('📄 Nueva solicitud de PDF financiero', {
             propertyUrl: propertyUrl?.substring(0, 50) + '...',
             hasPrecomputedData: !!analysisData,
@@ -50,26 +50,26 @@ class PDFController {
                 // FLUJO RÁPIDO: Usar datos pre-computados
                 reportData = analysisData;
                 logInfo('✅ Usando datos de análisis pre-computados para PDF');
-                
+
                 // Validar estructura de datos pre-computados
                 PDFController.validateAnalysisData(analysisData);
-                
+
             } else if (propertyUrl) {
                 // FLUJO COMPLETO: Generar análisis completo + PDF
                 logInfo('🔄 Generando análisis financiero completo para PDF');
-                
+
                 const analysisStart = Date.now();
                 reportData = await AnthropicService.generateFinancialReport(propertyUrl, {
                     ...options,
                     optimizedForPDF: true // Flag especial para PDF
                 });
                 analysisTime = Date.now() - analysisStart;
-                
+
                 logInfo('✅ Análisis completado para PDF', {
                     analysisTime: `${analysisTime}ms`,
                     confidence: reportData.metadata?.confidence
                 });
-                
+
             } else {
                 throw ErrorFactory.validation('Se requiere propertyUrl o analysisData', 'request');
             }
@@ -100,7 +100,7 @@ class PDFController {
             res.setHeader('Content-Type', 'application/pdf');
             res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
             res.setHeader('Content-Length', pdfResult.pdf.length);
-            
+
             // Headers informativos adicionales
             res.setHeader('X-PDF-Pages', pdfResult.metadata.pages || 'Unknown');
             res.setHeader('X-PDF-Size', `${Math.round(pdfResult.pdf.length / 1024)}KB`);
@@ -140,7 +140,7 @@ class PDFController {
             // Manejo específico de errores del servicio PDF
             const errorResponse = PDFController.handlePDFError(error, propertyUrl);
             const totalTime = Date.now() - startTime;
-            
+
             logError('❌ Error generando PDF', {
                 propertyUrl: propertyUrl?.substring(0, 50) + '...',
                 error: error.message,
@@ -196,11 +196,11 @@ class PDFController {
         }
 
         // Convertir query parameters a formato de opciones
-        const options = PDFController.parseQueryOptions({ 
-            filename, 
-            quality, 
-            device, 
-            ...queryOptions 
+        const options = PDFController.parseQueryOptions({
+            filename,
+            quality,
+            device,
+            ...queryOptions
         });
 
         // Reutilizar lógica del POST
@@ -262,9 +262,9 @@ class PDFController {
                 timestamp: new Date().toISOString(),
                 details: serviceTest
             },
-            
+
             description: 'Generación automática de reportes financieros premium en formato PDF',
-            
+
             capabilities: {
                 formats: ['PDF'],
                 templates: ['NotBrokkerPremiumReportV4'],
@@ -471,13 +471,13 @@ class PDFController {
         try {
             // Test básico del servicio
             const serviceTest = await PDFGeneratorService.testService();
-            
+
             const healthStatus = {
                 service: 'PDFGeneratorService',
                 status: serviceTest.success ? 'healthy' : 'unhealthy',
                 timestamp: new Date().toISOString(),
                 version: '1.0.0',
-                
+
                 components: {
                     puppeteer: {
                         status: serviceTest.success ? 'operational' : 'error',
@@ -492,7 +492,7 @@ class PDFController {
                         templatesPath: '/src/services/pdf/templates'
                     }
                 },
-                
+
                 performance: {
                     uptime: process.uptime(),
                     memoryUsage: {
@@ -502,7 +502,7 @@ class PDFController {
                     },
                     lastTestDuration: serviceTest.testPDFSize ? '< 5 seconds' : 'Failed'
                 },
-                
+
                 dependencies: {
                     anthropicService: 'available',
                     scrapingService: 'available',
@@ -516,7 +516,7 @@ class PDFController {
 
         } catch (error) {
             logError('❌ Error en health check PDF', { error: error.message });
-            
+
             res.status(503).json({
                 service: 'PDFGeneratorService',
                 status: 'error',
@@ -533,9 +533,9 @@ class PDFController {
     static validateTemplate = asyncErrorHandler(async (req, res) => {
         const { mockData, returnPDF = false } = req.body;
 
-        logInfo('🧪 Validando template PDF con datos mock', { 
+        logInfo('🧪 Validando template PDF con datos mock', {
             hasMockData: !!mockData,
-            returnPDF 
+            returnPDF
         });
 
         try {
@@ -590,11 +590,11 @@ class PDFController {
             });
 
         } catch (error) {
-            logError('❌ Error validando template PDF', { 
+            logError('❌ Error validando template PDF', {
                 error: error.message,
                 stack: error.stack?.split('\n')[0]
             });
-            
+
             res.status(500).json({
                 success: false,
                 error: 'Error validando template PDF',
@@ -672,7 +672,7 @@ class PDFController {
 
         } catch (error) {
             logError('❌ Error en generación batch de PDFs', { error: error.message });
-            
+
             res.status(500).json({
                 success: false,
                 error: 'Error procesando batch de PDFs',

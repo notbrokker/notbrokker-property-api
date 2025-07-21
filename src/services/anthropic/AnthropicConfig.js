@@ -8,10 +8,10 @@ const AnthropicConfig = {
     claude: {
         apiKey: process.env.ANTHROPIC_API_KEY,
         baseURL: 'https://api.anthropic.com',
-        model: 'claude-3-5-sonnet-20241022', // Modelo más reciente disponible
-        maxTokens: 4000,
-        temperature: 0.2, // Más conservador para análisis financiero
-        timeout: 90000, // AUMENTADO: 90 segundos para análisis complejos
+        model: 'claude-sonnet-4-20250514', // ✅ CAMBIADO A SONNET
+        maxTokens: 8192,
+        temperature: 1, // ✅ ACTUALIZADO según tu imagen (era 0.2)
+        timeout: 240000,
         retries: 3,
         retryDelay: 2000
     },
@@ -33,7 +33,7 @@ const AnthropicConfig = {
         timeoutBetweenRetries: 2000,
         parallelProcessing: true,
         failureHandling: 'partial', // 'strict' | 'partial'
-        
+
         // Timeouts específicos por servicio
         serviceTimeouts: {
             scraping: 45000,   // 45 segundos (aumentado)
@@ -50,13 +50,13 @@ const AnthropicConfig = {
             maxComparables: 15, // Reducido para eficiencia
             marketRadius: '2km'
         },
-        
+
         mortgageScenarios: [
             { plazo: 15, etiqueta: '15 años (pago rápido)' },
             { plazo: 20, etiqueta: '20 años (equilibrio)' },
             { plazo: 30, etiqueta: '30 años (cuota menor)' }
         ],
-        
+
         analysisOptions: {
             includeLocationAnalysis: true,
             includeSecurityAnalysis: true,
@@ -75,7 +75,7 @@ const AnthropicConfig = {
             fair: { min: 4.0, max: 5.99, label: 'Regular' },
             poor: { min: 0, max: 3.99, label: 'Bajo' }
         },
-        
+
         // Factores para análisis de riesgo
         riskFactors: {
             location: {
@@ -84,14 +84,14 @@ const AnthropicConfig = {
                 moderate: ['Independencia', 'Recoleta', 'Quinta Normal', 'Conchalí'],
                 high: ['La Pintana', 'San Ramón', 'El Bosque', 'Pedro Aguirre Cerda']
             },
-            
+
             propertyTypes: {
                 low_risk: ['Casa', 'Departamento'],
                 medium_risk: ['Townhouse', 'Duplex'],
                 high_risk: ['Loft', 'Comercial', 'Mixto']
             }
         },
-        
+
         // Valores por defecto para cálculos chilenos
         defaultValues: {
             rentYield: 6.0,        // % anual promedio Chile
@@ -117,7 +117,7 @@ Tu experiencia incluye:
 Siempre proporciona análisis equilibrados, considerando tanto oportunidades como riesgos.
 Usa datos objetivos y proporciona recomendaciones específicas y accionables.
 Enfócate en el contexto del mercado chileno y las particularidades locales.`,
-        
+
         analysisPrompt: `Analiza la siguiente información inmobiliaria del mercado chileno y genera un análisis financiero completo y detallado.
 
 DATOS DE ENTRADA:
@@ -176,7 +176,7 @@ ESTRUCTURA DE RESPUESTA REQUERIDA (JSON):
 }
 
 Responde ÚNICAMENTE con el JSON estructurado, sin texto adicional.`,
-        
+
         locationPrompt: `Analiza la ubicación específica de esta propiedad en Chile:
 
 DATOS DE UBICACIÓN: {location_data}
@@ -190,7 +190,7 @@ Evalúa considerando:
 - Plusvalía histórica de la zona
 
 Responde en formato JSON con scores del 1 al 10.`,
-        
+
         riskPrompt: `Evalúa los riesgos específicos de esta inversión inmobiliaria en Chile:
 
 DATOS PARA EVALUACIÓN: {risk_data}
@@ -210,7 +210,7 @@ Proporciona evaluación detallada con mitigaciones sugeridas.`
     cache: {
         enabled: true,
         defaultTTL: 3600, // 1 hora
-        
+
         // TTL específico por tipo de dato
         ttlByType: {
             propertyData: 1800,      // 30 minutos
@@ -227,7 +227,7 @@ Proporciona evaluación detallada con mitigaciones sugeridas.`
         level: process.env.LOG_LEVEL || 'info',
         enablePerformanceMetrics: true,
         enableDebugMode: process.env.NODE_ENV === 'development',
-        
+
         // Eventos específicos a loggear
         events: {
             orchestrationStart: true,
@@ -249,7 +249,7 @@ Proporciona evaluación detallada con mitigaciones sugeridas.`
             'portalinmobiliario.com',
             'www.portalinmobiliario.com'
         ],
-        
+
         // Rangos válidos para parámetros
         ranges: {
             propertyPrice: { min: 100, max: 50000 }, // UF
@@ -262,18 +262,43 @@ Proporciona evaluación detallada con mitigaciones sugeridas.`
         }
     },
 
-    // NUEVA: Configuración de error handling para API real
+    // Agregar/actualizar en AnthropicConfig.js - sección errorHandling
+
+    // NUEVA: Configuración de error handling para API real - EXPANDIDA
     errorHandling: {
         claudeApiErrors: {
-            429: 'Rate limit excedido - esperar antes de reintentar',
-            401: 'API Key inválida o expirada',
-            400: 'Solicitud malformada a Claude',
-            500: 'Error interno de Anthropic',
-            503: 'Servicio de Anthropic temporalmente no disponible'
+            400: 'Solicitud malformada - verificar formato de datos',
+            401: 'API Key inválida o expirada - verificar ANTHROPIC_API_KEY',
+            403: 'Acceso denegado - verificar permisos de API Key',
+            404: 'Endpoint no encontrado - verificar configuración de modelo',
+            429: 'Rate limit excedido - reducir frecuencia de requests',
+            500: 'Error interno de Anthropic - reintentar más tarde',
+            502: 'Bad Gateway - problema temporal de conectividad',
+            503: 'Servicio temporalmente no disponible - reintentar en unos minutos',
+            504: 'Gateway timeout - aumentar timeout o reintentar'
         },
         retryStatuses: [429, 500, 502, 503, 504],
         maxRetries: 3,
-        backoffMultiplier: 2
+        backoffMultiplier: 2,
+        timeoutRetries: 2,
+        fallbackEnabled: true,
+
+        // Configuración de circuit breaker
+        circuitBreaker: {
+            enabled: false, // Deshabilitar por ahora
+            failureThreshold: 5,
+            resetTimeout: 300000 // 5 minutos
+        }
+    },
+
+    // NUEVA: Configuración de monitoreo y métricas
+    monitoring: {
+        enabled: true,
+        logAllRequests: process.env.NODE_ENV === 'development',
+        logSlowRequests: true,
+        slowRequestThreshold: 30000, // 30 segundos
+        trackTokenUsage: true,
+        trackErrorRates: true
     }
 };
 

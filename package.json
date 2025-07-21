@@ -25,8 +25,9 @@
   "author": "NotBrokker Team",
   "license": "ISC",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.9.1",
+    "@anthropic-ai/sdk": "^0.56.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "pdf-parse": "^1.1.1",
     "playwright": "^1.54.1",
