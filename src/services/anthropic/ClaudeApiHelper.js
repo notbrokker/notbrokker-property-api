@@ -3,6 +3,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { logInfo, logError, logDebug, logWarn } = require('../../utils/logger');
 const { ErrorFactory } = require('../../utils/errors');
 const AnthropicConfig = require('./AnthropicConfig');
+const PromptManager = require('../../config/PromptManager');
 
 /**
  * Helper para integración con Claude API - VERSIÓN CORREGIDA
@@ -336,149 +337,28 @@ RESPONDE ÚNICAMENTE CON EL JSON VÁLIDO, SIN TEXTO ADICIONAL NI MARKDOWN.`;
 
 
     /**
- * ✅ PROMPT CORREGIDO: Separación correcta de gastos únicos vs mensuales
- */
+     * ✅ NUEVO: Construir prompt usando PromptManager
+     */
     static buildOptimizedPrompt(inputData, analysisType) {
-        const contextData = this.prepareContextData(inputData);
-
-        return `Eres un experto analista financiero inmobiliario especializado en el mercado chileno con 15 años de experiencia en inversiones inmobiliarias.
-
-DATOS DE ENTRADA PARA ANÁLISIS:
-${JSON.stringify(contextData, null, 2)}
-
-INSTRUCCIONES CRÍTICAS PARA CÁLCULO CORRECTO DE GASTOS:
-
-🚨 SEPARACIÓN OBLIGATORIA DE GASTOS:
-1. GASTOS ÚNICOS (NO incluir en flujo de caja mensual):
-   - Impuesto al mutuo (0.8% del crédito)
-   - Gastos notariales (~$200,000)
-   - Conservador de bienes raíces
-   - Tasación y estudio de títulos
-   - Comisión del corredor (si aplica)
-
-2. GASTOS OPERACIONALES MENSUALES (ÚNICOS que van en flujo mensual):
-   - Contribuciones territoriales (1.148% anual / 12)
-   - Mantenciones y reparaciones (UF 4 anuales / 12)
-   - Provisión vacancia (5% del arriendo)
-   - Seguro de la propiedad (UF 1.2 anuales / 12)
-   - Fondo de reparaciones ($50,000 mensual)
-   - Comisión administración inmobiliaria (8% del arriendo, solo si usa corredor)
-
-FÓRMULAS CORRECTAS OBLIGATORIAS:
-- Flujo de caja mensual = arriendo_estimado - SOLO_gastos_operacionales_mensuales - dividendo_hipotecario
-- Yield bruto = (arriendo_anual / precio_propiedad_clp) * 100
-- Yield neto = ((arriendo_anual - gastos_operacionales_anuales) / precio_propiedad_clp) * 100
-- Punto equilibrio = gastos_operacionales_mensuales + dividendo_hipotecario
-
-INSTRUCCIONES ESPECÍFICAS:
-- Usa los datos reales de propertyInfo, marketComparison y mortgageAnalysis
-- NUNCA incluyas gastos únicos en el cálculo del flujo de caja mensual
-- Calcula métricas financieras precisas basadas en datos actuales
-- Infiere análisis de ubicación usando la dirección de la propiedad
-- Genera recomendaciones ejecutivas fundamentadas
-
-ESTRUCTURA JSON REQUERIDA (responde SOLO con este JSON, sin texto adicional):
-
-{
-  "indicadoresFinancieros": {
-    "flujoCajaMensual": {
-      "valor": [calcular: arriendo_estimado - SOLO_gastos_operacionales_mensuales - dividendo_hipotecario],
-      "composicion": {
-        "ingresoArriendo": [usar promedio de comparables similares de marketComparison],
-        "gastosOperacionalesMensuales": [SOLO gastos mensuales recurrentes: contribuciones/12 + mantenciones/12 + provisión_vacancia + seguro/12 + fondo_reparaciones],
-        "dividendoHipotecario": [usar mejor dividendo de mortgageAnalysis para 30 años]
-      }
-    },
-    "yieldBruto": [calcular: (arriendo_anual / precio_propiedad_clp) * 100],
-    "yieldNeto": [calcular: ((arriendo_anual - gastos_operacionales_anuales) / precio_propiedad_clp) * 100],
-    "capRate": [mismo valor que yieldNeto],
-    "puntoEquilibrio": [SOLO gastos_operacionales_mensuales + dividendo_hipotecario],
-    "plusvaliaEsperada": [estimar 3.5% para zona premium, ajustar según ubicación]
-  },
-  "analisisUbicacion": {
-    "educacion": [
-      {
-        "nombre": "Institución educativa cercana",
-        "distancia": "X.X km",
-        "tipo": "Educación inicial/básica/media/superior",
-        "descripcion": "Breve descripción"
-      }
-    ],
-    "areasVerdes": [
-      {
-        "nombre": "Área verde cercana", 
-        "distancia": "X.X km",
-        "tipo": "Parque/Playa/Reserva natural",
-        "descripcion": "Actividades disponibles"
-      }
-    ],
-    "comercio": [
-      {
-        "nombre": "Servicio comercial",
-        "distancia": "X.X km", 
-        "tipo": "Supermercado/Centro comercial/Banco/Farmacia",
-        "descripcion": "Servicios disponibles"
-      }
-    ],
-    "salud": [
-      {
-        "nombre": "Centro de salud",
-        "distancia": "X.X km",
-        "tipo": "Atención primaria/Hospital/Clínica/Farmacia", 
-        "descripcion": "Servicios médicos disponibles"
-      }
-    ]
-  },
-  "analisisSeguridad": {
-    "indiceSeguridad": [número entre 1-10, estimar 8-10 para zonas premium],
-    "detalleSeguridad": {
-      "factores": [lista de factores de seguridad de la zona],
-      "clasificacion": "Muy Seguro/Seguro/Moderado/Inseguro"
-    },
-    "serviciosEmergencia": {
-      "tiempoRespuesta": "< X min",
-      "detalles": [lista de servicios de emergencia cercanos]
-    },
-    "riesgosNaturales": {
-      "nivel": "Bajo/Moderado/Alto",
-      "detalles": [lista de riesgos naturales específicos de la zona]
+        try {
+            const contextData = this.prepareContextData(inputData);
+            const ubicacion = contextData.propertyInfo?.ubicacion || 'Chile';
+            
+            // Usar PromptManager para construir el prompt
+            return PromptManager.buildFinancialAnalysisPrompt(contextData, ubicacion);
+            
+        } catch (error) {
+            logError('❌ Error construyendo prompt desde PromptManager', {
+                error: error.message,
+                analysisType
+            });
+            
+            // Fallback al prompt anterior si falla
+            return this.buildOptimizedPrompt_fallback(inputData, analysisType);
+        }
     }
-  },
-  "resumenEjecutivo": {
-    "viabilidadInversion": {
-      "decision": "RECOMENDADA/CONDICIONADA/NO_RECOMENDADA",
-      "justificacion": "Análisis detallado basado en métricas financieras calculadas",
-      "nivelRiesgo": "Bajo/Moderado/Alto",
-      "puntosACavor": [lista de puntos positivos basados en datos]
-    },
-    "optimizacionFinanciera": {
-      "recomendacion": "Estrategia financiera específica",
-      "ventajas": [lista de ventajas del financiamiento recomendado],
-      "bancoRecomendado": [nombre del banco con mejor oferta de mortgageAnalysis],
-      "plazoOptimo": [plazo recomendado en años]
-    },
-    "potencialCrecimiento": {
-      "proyeccion": "Análisis de crecimiento proyectado",
-      "factores": [factores que influyen en el crecimiento],
-      "roi": "ROI proyectado basado en métricas calculadas"
-    },
-    "recomendacionFinal": {
-      "accion": "INVERTIR/EVALUAR/EVITAR",
-      "resumen": "Recomendación ejecutiva concisa",
-      "siguientesPasos": [lista de acciones específicas recomendadas]
-    }
-  }
-}
 
-INFERENCIA DE UBICACIÓN:
-Basándote en la ubicación "${contextData.propertyInfo?.ubicacion || 'Chile'}", infiere servicios y amenidades típicas de esa zona, considerando:
-- Nivel socioeconómico de la zona
-- Servicios urbanos disponibles  
-- Distancias realistas en contexto chileno
-- Características geográficas y topográficas
 
-RESPONDE ÚNICAMENTE CON EL JSON VÁLIDO, SIN TEXTO ADICIONAL NI MARKDOWN.`;
-    }
 
     /**
      * ✅ CORREGIDO: Preparar datos de contexto con nombres correctos
@@ -878,11 +758,16 @@ RESPONDE ÚNICAMENTE CON EL JSON VÁLIDO, SIN TEXTO ADICIONAL NI MARKDOWN.`;
 
     // ✅ MANTENER: Métodos helper existentes
     static getSystemPrompt(analysisType) {
-        return `Eres un asistente experto en análisis financiero inmobiliario para el mercado chileno. 
-                Siempre respondes en formato JSON válido con análisis precisos y recomendaciones accionables.
-                Incluyes niveles de confianza para cada sección del análisis.
-                NUNCA incluyas texto adicional fuera del JSON.
-                Usa la estructura exacta especificada en el prompt del usuario.`;
+        try {
+            return PromptManager.getSystemPrompt('financial_analysis');
+        } catch (error) {
+            logWarn('⚠️ Usando system prompt por defecto', { error: error.message });
+            return `Eres un asistente experto en análisis financiero inmobiliario para el mercado chileno. 
+                    Siempre respondes en formato JSON válido con análisis precisos y recomendaciones accionables.
+                    Incluyes niveles de confianza para cada sección del análisis.
+                    NUNCA incluyas texto adicional fuera del JSON.
+                    Usa la estructura exacta especificada en el prompt del usuario.`;
+        }
     }
 
     static async validateInputData(inputData, analysisType) {
