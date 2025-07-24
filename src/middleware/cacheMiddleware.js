@@ -286,7 +286,7 @@ class CacheMiddleware {
                 const originalJson = res.json;
                 res.json = (data) => {
                     // Solo cachear respuestas exitosas de análisis
-                    if (data.success !== false && !data.error && data.analisisFinanciero) {
+                    if (data.success === true && !data.error && data.data) {
                         this.cacheService.set('claude', cacheKey, data)
                             .then(result => {
                                 if (result.success) {
