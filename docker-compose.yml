@@ -1,0 +1,45 @@
+# docker-compose.yml - Infraestructura local de desarrollo
+version: '3.8'
+
+services:
+  # Redis Cache Service
+  redis:
+    image: redis:7-alpine
+    container_name: notbrokker-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass ""
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - notbrokker-network
+
+  # Redis Commander (Interfaz web para gestionar Redis)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: notbrokker-redis-ui
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+      - HTTP_USER=admin
+      - HTTP_PASSWORD=admin
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - notbrokker-network
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  notbrokker-network:
+    driver: bridge

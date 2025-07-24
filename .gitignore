@@ -1,6 +1,18 @@
 # Node modules
 node_modules/
 
+# Bruno Collection
+
+bruno-collection/
+
+#Claude
+CLAUDE.md
+
+#Enviroment
+.env.example
+.env.prod
+.env
+
 # Logs
 logs/
 *.log

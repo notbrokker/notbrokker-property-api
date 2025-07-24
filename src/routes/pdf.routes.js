@@ -3,6 +3,7 @@ const express = require('express');
 const PDFController = require('../controllers/PDFController');
 const { asyncErrorHandler } = require('../middleware/errorHandler');
 const pdfMiddleware = require('../middleware/pdfMiddleware');
+const { cacheForPDF } = require('../middleware/cacheMiddleware');
 
 const router = express.Router();
 
@@ -19,9 +20,10 @@ router.use(pdfMiddleware.basic);
 
 /**
  * POST /api/pdf/financial-report
- * Generar PDF de reporte financiero completo
+ * Generar PDF de reporte financiero completo con cache
  */
 router.post('/financial-report', 
+    cacheForPDF(), // Cache para PDFs
     pdfMiddleware.protected,
     asyncErrorHandler(PDFController.generateFinancialReportPDF)
 );
@@ -31,24 +33,27 @@ router.post('/financial-report',
  * Redirigir a financial-report para mantener compatibilidad
  */
 router.post('/generate-report', 
+    cacheForPDF(), // Cache para compatibilidad
     pdfMiddleware.protected,
     asyncErrorHandler(PDFController.generateFinancialReportPDF)
 );
 
 /**
  * GET /api/pdf/financial-report
- * Generar PDF vía query parameters (para testing)
+ * Generar PDF vía query parameters (para testing) con cache
  */
 router.get('/financial-report', 
+    cacheForPDF(), // Cache para testing
     pdfMiddleware.standard,
     asyncErrorHandler(PDFController.generateFinancialReportPDFGet)
 );
 
 /**
  * POST /api/pdf/from-analysis
- * Generar PDF con datos pre-computados (flujo optimizado)
+ * Generar PDF con datos pre-computados (flujo optimizado) con cache
  */
 router.post('/from-analysis', 
+    cacheForPDF(), // Cache para PDFs optimizados
     pdfMiddleware.protected,
     asyncErrorHandler(PDFController.generatePDFFromAnalysis)
 );

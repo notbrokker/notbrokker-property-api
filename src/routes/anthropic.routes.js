@@ -3,6 +3,7 @@ const express = require('express');
 const AnthropicController = require('../controllers/AnthropicController');
 const { asyncErrorHandler } = require('../middleware/errorHandler');
 const anthropicMiddleware = require('../middleware/anthropicMiddleware');
+const { cacheForAnthropicAnalysis } = require('../middleware/cacheMiddleware');
 
 const router = express.Router();
 
@@ -34,6 +35,7 @@ router.use(anthropicMiddleware.basic);
  * }
  */
 router.post('/financial-report', 
+    cacheForAnthropicAnalysis(), // Cache inteligente para IA (80% ahorro)
     anthropicMiddleware.protected, // Rate limiting para endpoint principal
     asyncErrorHandler(AnthropicController.generateFinancialReport)
 );
@@ -43,6 +45,7 @@ router.post('/financial-report',
  * Generar reporte financiero vía query parameters (para testing)
  */
 router.get('/financial-report', 
+    cacheForAnthropicAnalysis(), // Cache inteligente para IA
     anthropicMiddleware.standard, // Sin rate limiting para testing
     asyncErrorHandler(AnthropicController.generateFinancialReportGet)
 );

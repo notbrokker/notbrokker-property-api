@@ -89,41 +89,54 @@ const customFormat = winston.format.combine(
     })
 );
 
-// Configuración del logger
+// Configuración del logger con manejo de errores mejorado
 const logger = winston.createLogger({
-    level: process.env.LOG_LEVEL || 'info',
+    level: process.env.LOG_LEVEL || 'debug', // Mostrar más logs en desarrollo
     format: customFormat,
     defaultMeta: { 
         service: 'property-scraper',
-        version: '2.0.0-modular'
+        version: '2.2.0-pdf-premium'
     },
     transports: [
         // Log de errores
         new winston.transports.File({ 
-            filename: path.join('logs', 'error.log'), 
+            filename: path.join(__dirname, '../../logs', 'error.log'), 
             level: 'error',
-            maxsize: 5242880, // 5MB
-            maxFiles: 5
+            handleExceptions: false,
+            handleRejections: false
         }),
         
         // Log combinado
         new winston.transports.File({ 
-            filename: path.join('logs', 'combined.log'),
-            maxsize: 5242880, // 5MB
-            maxFiles: 5
+            filename: path.join(__dirname, '../../logs', 'combined.log'),
+            handleExceptions: false,
+            handleRejections: false
         })
     ],
+    exitOnError: false
 });
 
-// En desarrollo, también mostrar en consola
-if (process.env.NODE_ENV !== 'production') {
-    logger.add(new winston.transports.Console({
-        format: winston.format.combine(
-            winston.format.colorize(),
-            winston.format.simple()
-        )
-    }));
-}
+// Siempre mostrar en consola para desarrollo (forzado)
+const consoleTransport = new winston.transports.Console({
+    level: 'debug', // Mostrar todos los niveles
+    format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+    ),
+    handleExceptions: false,
+    handleRejections: false,
+    silent: false
+});
+
+// Manejar errores del transport de consola
+consoleTransport.on('error', (error) => {
+    // Silenciar errores EPIPE para evitar bucles
+    if (error.code !== 'EPIPE') {
+        console.error('Console transport error:', error.message);
+    }
+});
+
+logger.add(consoleTransport);
 
 // Función helper para logging con contexto
 const log = (level, message, data = null) => {
@@ -141,7 +154,40 @@ const logError = createSecureLogger(logger.error.bind(logger));
 const logWarn = createSecureLogger(logger.warn.bind(logger));
 const logDebug = createSecureLogger(logger.debug.bind(logger));
 
-// Agregar al final del archivo
+// Manejo global de excepciones no capturadas para evitar bucles EPIPE
+process.on('uncaughtException', (error) => {
+    // Evitar bucles infinitos con errores EPIPE del propio logger
+    if (error.code === 'EPIPE' || error.message.includes('write EPIPE')) {
+        return; // Silenciar errores EPIPE
+    }
+    
+    try {
+        // Usar el logger principal pero solo file transports para evitar EPIPE
+        logger.error('Excepción no capturada', {
+            error: error.message,
+            critical: true
+        });
+    } catch (loggingError) {
+        // Si falla el logging, no hacer nada para evitar bucles
+    }
+});
+
+process.on('unhandledRejection', (reason) => {
+    // Evitar bucles con errores de logging
+    if (reason && reason.code === 'EPIPE') {
+        return;
+    }
+    
+    try {
+        logger.error('Promise rechazada no manejada', {
+            reason: reason,
+            critical: true
+        });
+    } catch (loggingError) {
+        // Si falla el logging, no hacer nada para evitar bucles
+    }
+});
+
 module.exports = {
     logger,
     logInfo,

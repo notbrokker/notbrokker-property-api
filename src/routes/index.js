@@ -11,6 +11,8 @@ const setupRoutes = (app) => {
         const mortgageRoutes = require('./mortgage.routes');
         const anthropicRoutes = require('./anthropic.routes');
         const pdfRoutes = require('./pdf.routes'); // NUEVO
+        const authRoutes = require('./auth.routes'); // NUEVO
+        const cacheRoutes = require('./cache.routes'); // NUEVO
         
         logInfo('✅ Rutas importadas correctamente (incluye PDF Premium)');
 
@@ -22,8 +24,10 @@ const setupRoutes = (app) => {
         app.use('/api/mortgage', mortgageRoutes);
         app.use('/api/anthropic', anthropicRoutes);
         app.use('/api/pdf', pdfRoutes); // NUEVO
+        app.use('/api/auth', authRoutes); // NUEVO
+        app.use('/api/cache', cacheRoutes); // NUEVO
         
-        logInfo('✅ API v2 configurado: /api/scraping, /api/search, /api/mortgage, /api/anthropic, /api/pdf');
+        logInfo('✅ API v2 configurado: /api/scraping, /api/search, /api/mortgage, /api/anthropic, /api/pdf, /api/auth, /api/cache');
 
         // ==========================================
         // RUTAS API v1 (COMPATIBILIDAD) - OPCIONAL
@@ -393,7 +397,9 @@ const setupRoutes = (app) => {
                 '/api/search', 
                 '/api/mortgage', 
                 '/api/anthropic',
-                '/api/pdf' // NUEVO
+                '/api/pdf', // NUEVO
+                '/api/auth', // NUEVO
+                '/api/cache' // NUEVO
             ],
             api_v1_compatibilidad: [
                 '/scrape-property', 
@@ -407,7 +413,9 @@ const setupRoutes = (app) => {
                 'search', 
                 'mortgage', 
                 'anthropic-ai',
-                'pdf-premium' // NUEVO
+                'pdf-premium', // NUEVO
+                'authentication', // NUEVO
+                'cache-redis' // NUEVO
             ],
             nuevas_funcionalidades: [
                 'Reportes financieros con IA',
@@ -416,7 +424,10 @@ const setupRoutes = (app) => {
                 'Orquestación de servicios',
                 'Generación de PDFs premium', // NUEVO
                 'Templates profesionales',
-                'Optimización para impresión'
+                'Optimización para impresión',
+                'Sistema de autenticación con tiers', // NUEVO
+                'Cache multi-nivel con Redis', // NUEVO
+                'Analytics empresariales' // NUEVO
             ]
         });
 
